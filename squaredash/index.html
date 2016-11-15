@@ -97,7 +97,6 @@
 	var drawBG = function () {
 		OOP.forArr(bg, function(el) {
 			el.draw();
-			el.move(point(-3, 0));
 			if(el.x + el.w < 0) {
 				el.x = oldB.x + oldB.w;
 				oldB = el;
@@ -108,7 +107,6 @@
 	var drawGR = function () {
 		OOP.forArr(gr, function(el) {
 			el.draw();
-			el.move(point(-5.5, 0));
 			if(el.x + el.w < 0) {
 				el.x = oldG.x + oldG.w;
 				oldG = el;
