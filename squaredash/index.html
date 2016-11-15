@@ -435,25 +435,16 @@
 
 				if(el.bottom.isInCamera()) {
 					if(el.bottom.isIntersect(player)) {
-						el.bottom.x = el.bottom.x - score + width;
-						el.top.x = el.bottom.x - score + width;
-						el.triangle.x = el.bottom.x - score + width;
 						game.setLoop('over');												
 					}
 				};
 				if(el.top.isInCamera()) {
 					if(el.top.isIntersect(player)) {
-						el.bottom.x = el.bottom.x - score + width;
-						el.top.x = el.bottom.x - score + width;
-						el.triangle.x = el.bottom.x - score + width;
 						game.setLoop('over');
 					}
 				};
 				if(el.triangle.isInCamera()) {
 					if(el.triangle.isIntersect(player)) {
-						el.bottom.x = el.bottom.x - score + width;
-						el.top.x = el.bottom.x - score + width;
-						el.triangle.x = el.bottom.x - score + width;
 						game.setLoop('over');
 					}
 				};
