@@ -38,6 +38,7 @@
 	var height = js.game.getWH().h;
 	var click = false;
 	var recordStatus = false;
+	var adminLogin = false;
 	
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
@@ -332,6 +333,7 @@
 					if(key.isDown('D')) {
 						if(key.isDown('5')) {
 							if(key.isDown('0')) {
+								adminLogin = true;
 								game.setLoop('adminka');
 							}
 						}
@@ -473,7 +475,11 @@
 			drawGR();
 			drawTriangles();
 
-			score = score +1;
+			if(adminLogin == false)
+				score = score +1;
+
+			if(adminLogin == true)
+				score = score +5;
 
 			if(player.y >= player.dy)
 				player.dy == 0;
@@ -569,7 +575,7 @@
 			}
 			if(m.isPeekObject('LEFT', share)) {
 				VK.api('wall.post', {
-					'message': 'В новой игре SquareDash я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796\nГруппа игры - https://vk.com/squaredash',
+					'message': 'В новой игре SquareDash я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
 					'attachments': 'photo-132547045_456239018'
 				}, function (data) {
 					log('susses');
