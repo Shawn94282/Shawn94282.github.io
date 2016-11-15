@@ -649,6 +649,45 @@
 		};
 	};
 
+	var Beta = function() {
+		this.update = function() {
+			var bg = game.newRectObject({
+				w: width, h: height,
+				fillColor: '#fef2dc'
+			});
+			var text = game.newTextObject({
+				text: 'Внимание! Данная игра находится на стадии разработки!',
+				x: width/20, y: height/20+100,
+				font: 'Arial',
+				style: 'bold',
+				size: 15,
+				color: '#728ebd'				
+			});
+			var text1 = game.newTextObject({
+				text: 'Если вы увидите какую-то недоработку, то знайте, скоро их не будет!',
+				x: width/20, y: height/20+130,
+				font: 'Arial',
+				style: 'bold',
+				size: 15,
+				color: '#728ebd'				
+			});
+			var text2 = game.newTextObject({
+				text: '(нажмите на экран что бы зайти в меню)',
+				x: width/20, y: height/20+160,
+				font: 'Arial',
+				style: 'bold',
+				size: 15,
+				color: '#728ebd'				
+			});
+			bg.draw();
+			text.draw();
+			text1.draw();
+			text2.draw();
+			if(m.isDown('LEFT')) 
+				game.setLoop('menu');
+		}
+	};
+
 	var Adminka = function() {
 		this.update = function() {
 			drawBG();
@@ -764,6 +803,7 @@
 	game.newLoopFromClassObject('menu', new Menu());
 	game.newLoopFromClassObject('over', new Over());
 	game.newLoopFromClassObject('shop', new Shop());
+	game.newLoopFromClassObject('beta', new Beta());
 	game.newLoopFromClassObject('adminka', new Adminka());
 	game.setLoopSound('game', [music1, music2, music3]);
 	/* 
@@ -772,7 +812,7 @@
 	BG: #fef2dc
 
 	*/
-	game.startLoop('menu');
+	game.startLoop('beta');
 	</script>
 </body>
 </html>
