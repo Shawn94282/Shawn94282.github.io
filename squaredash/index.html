@@ -38,7 +38,10 @@
 	var height = js.game.getWH().h;
 	var click = false;
 	var recordStatus = false;
-	var adminLogin = false;
+	var fivex = false;
+	var tenx = false;
+	var mlb = true;
+	var hlb = true;
 	
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
@@ -321,7 +324,12 @@
 			shop.draw();
 
 			if(m.isPeekObject('LEFT', play)) {
-				game.setLoop('game');
+				if(mlb == true)
+					game.setLoop('leversE');
+				if(mlb == false)
+					game.setLoop('leversM');
+				if(hlb == false)
+					game.setLoop('leversH');
 			}
 			if(m.isPeekObject('LEFT', shop)) {
 				game.setLoop('shop');
@@ -331,7 +339,6 @@
 					if(key.isDown('D')) {
 						if(key.isDown('5')) {
 							if(key.isDown('0')) {
-								adminLogin = true;
 								game.setLoop('adminka');
 							}
 						}
@@ -342,7 +349,290 @@
 		};
 	};
 
-	var Game = function () {
+	var GameE = function () {
+		
+		var triangles = [], oldTriangle = false;
+		var space = 96;
+		
+		var addTriangles = function(y) {
+
+			var dX = oldTriangle ? oldTriangle.bottom.x + random(150, 300) : width;
+
+			var t = game.newImageObject({
+				file: 'img/triangle_b.png',
+				scale: 0.5,
+				x : dX, y : 451 - 96,
+				w : 50, h : 50,
+			});
+
+			t.setBox ({
+				offset : point(9, 5), 
+				size : size(-20, -20)
+			});
+			/*var t2 = game.newImageObject({
+				file: 'img/triangle_b2.png',
+				scale: 0.5,
+				x : dX, y : 0,
+				w : 100, h : 50,
+				onload : function () {
+					this.y = 452 - space;
+				}
+			});*/
+
+			var obj = {
+				'bottom' : t
+			}
+
+			oldTriangle = obj;
+			triangles.push(obj);
+		};
+
+		var drawTriangles = function () {
+			OOP.forArr(triangles, function(el) {
+				el.bottom.draw();
+
+				el.bottom.move(point(-5.5, 0));
+
+				if(el.bottom.x + el.bottom.y < 0) {
+					el.bottom.x = oldTriangle.bottom.x + oldTriangle.bottom.w + random(150, 300);
+					oldTriangle = el;
+				};
+
+				if(el.bottom.isInCamera()) {
+					if(el.bottom.isIntersect(player)) {
+						game.setLoop('overE');												
+					}
+				};
+			});
+		};
+
+		this.update = function () {
+			drawBG();
+			
+			brush.drawRect({
+				fillColor : '#9aa498',
+				h : 30, w : 70,
+				x : 560, y : 10
+			});
+
+			brush.drawText({
+				text : ' ' + score,
+				size : 20,
+				color: '#fef2dc',
+				x : 565, y: 10,
+				font: 'Ubuntu'
+			});	
+
+			var pause = game.newImageObject({
+				file: 'img/pause.png',
+				x : 10, y : 10,
+				scale: 0.5
+			});
+			pause.draw();
+
+			player.draw();
+			player.dy += 0.5;
+			player.y += player.dy;
+
+			drawGR();
+			drawTriangles();
+
+			if(fivex == false || tenx == false)
+				score = score+1;
+
+			if(fivex == true)
+				score += 5;
+
+			if(tenx == true)
+				score += 10;
+
+			if(player.y >= player.dy)
+				player.dy == 0;
+
+			if(m.isPeekObject('LEFT', pause)) {
+				this.entry;
+				game.setLoop('menu');
+			}
+
+			if(m.isPress('LEFT')) {
+				if(click == false) {
+					click = true;
+					player.dy = -8;
+					player.angle = player.angle + 90;
+				}
+			}
+			if(key.isPress('SPACE')) {
+				if(click == false) {
+					click = true;
+					player.dy = -8;
+					player.angle = player.angle + 90;
+				}
+			}
+		};
+		this.entry = function () {
+			triangles = [], oldTriangle = false;
+
+			OOP.forInt(5, function() {
+				addTriangles(height / 2);
+			});
+
+			player.setPositionC(point(115, 365));//385
+			score = 0;
+		};
+	};
+
+	var GameM = function () {
+		
+		var triangles = [], oldTriangle = false;
+		var space = 96;
+		
+		var addTriangles = function(y) {
+
+			var dX = oldTriangle ? oldTriangle.bottom.x + random(150, 600) : width;
+
+			var t = game.newImageObject({
+				file: 'img/triangle_b.png',
+				scale: 0.5,
+				x : dX, y : 451 - 96,
+				w : 50, h : 50,
+			});
+
+			var t2 = game.newImageObject({
+				file: 'img/triangle_t.png',
+				scale: 0.5,
+				x : dX, y : 361 - 96,
+				w: 50, h : 50,
+			});
+
+			t.setBox ({
+				offset : point(9, 5), 
+				size : size(-20, -20)
+			});
+			t2.setBox ({
+				offset : point(9, 20), 
+				size : size(-20, -20)
+			});
+			/*var t2 = game.newImageObject({
+				file: 'img/triangle_b2.png',
+				scale: 0.5,
+				x : dX, y : 0,
+				w : 100, h : 50,
+				onload : function () {
+					this.y = 452 - space;
+				}
+			});*/
+
+			var obj = {
+				'bottom' : t,
+				'top' : t2
+			}
+
+			oldTriangle = obj;
+			triangles.push(obj);
+		};
+
+		var drawTriangles = function () {
+			OOP.forArr(triangles, function(el) {
+				el.bottom.draw();
+				el.top.draw();
+
+				el.bottom.move(point(-5.5, 0));
+				el.top.move(point(-5.5, 0));
+
+				if(el.top.x + el.top.y < 0) {
+					el.top.x = el.bottom.x = oldTriangle.top.x + oldTriangle.bottom.w + random(150, 600);
+					oldTriangle = el;
+				};
+
+				if(el.bottom.isInCamera()) {
+					if(el.bottom.isIntersect(player)) {
+						game.setLoop('overM');												
+					}
+				};
+				if(el.top.isInCamera()) {
+					if(el.top.isIntersect(player)) {
+						game.setLoop('overM');
+					}
+				};
+			});
+		};
+
+		this.update = function () {
+			drawBG();
+			
+			brush.drawRect({
+				fillColor : '#9aa498',
+				h : 30, w : 70,
+				x : 560, y : 10
+			});
+
+			brush.drawText({
+				text : ' ' + score,
+				size : 20,
+				color: '#fef2dc',
+				x : 565, y: 10,
+				font: 'Ubuntu'
+			});	
+
+			var pause = game.newImageObject({
+				file: 'img/pause.png',
+				x : 10, y : 10,
+				scale: 0.5
+			});
+			pause.draw();
+
+			player.draw();
+			player.dy += 0.5;
+			player.y += player.dy;
+
+			drawGR();
+			drawTriangles();
+
+			if(fivex == false || tenx == false)
+				score = score +1;
+
+			if(fivex == true)
+				score += 5;
+
+			if(tenx == true)
+				score += 10;
+
+			if(player.y >= player.dy)
+				player.dy == 0;
+
+			if(m.isPeekObject('LEFT', pause)) {
+				this.entry;
+				game.setLoop('menu');
+			}
+
+			if(m.isPress('LEFT')) {
+				if(click == false) {
+					click = true;
+					player.dy = -8;
+					player.angle = player.angle + 90;
+				}
+			}
+			if(key.isPress('SPACE')) {
+				if(click == false) {
+					click = true;
+					player.dy = -8;
+					player.angle = player.angle + 90;
+				}
+			}
+		};
+		this.entry = function () {
+			triangles = [], oldTriangle = false;
+
+			OOP.forInt(5, function() {
+				addTriangles(height / 2);
+			});
+
+			player.setPositionC(point(115, 365));//385
+			score = 0;
+		};
+	};
+
+	var GameH = function () {
 		
 		var triangles = [], oldTriangle = false;
 		var space = 96;
@@ -426,17 +716,17 @@
 
 				if(el.bottom.isInCamera()) {
 					if(el.bottom.isIntersect(player)) {
-						game.setLoop('over');												
+						game.setLoop('overH');												
 					}
 				};
 				if(el.top.isInCamera()) {
 					if(el.top.isIntersect(player)) {
-						game.setLoop('over');
+						game.setLoop('overH');
 					}
 				};
 				if(el.triangle.isInCamera()) {
 					if(el.triangle.isIntersect(player)) {
-						game.setLoop('over');
+						game.setLoop('overH');
 					}
 				};
 			});
@@ -473,11 +763,14 @@
 			drawGR();
 			drawTriangles();
 
-			if(adminLogin == false)
+			if(fivex == false || tenx == false)
 				score = score +1;
 
-			if(adminLogin == true)
-				score = score +5;
+			if(fivex == true)
+				score += 5;
+
+			if(tenx == true)
+				score += 10;
 
 			if(player.y >= player.dy)
 				player.dy == 0;
@@ -514,7 +807,7 @@
 		};
 	};
 
-	var Over = function () {
+	var OverE = function () {
 		this.update = function () {
 			var fon_zad = game.newRectObject({
 				x: 150, y: 100,
@@ -562,6 +855,11 @@
 				style: 'Bold',
 				x: 230, y: 225
 			});
+			if(score > 3000) {
+				if(mlb == true) {
+					mlb = false;
+				}
+			}
 			share.draw();
 			if(m.isPeekObject('LEFT', back_menu)) {
 				player.angle = 0;
@@ -569,11 +867,172 @@
 			}
 			if(m.isPeekObject('LEFT', reflesh)) {
 				player.angle = 0;
-				game.setLoop('game');
+				if(mlb == true)
+					game.setLoop('leversE');
+				if(hlb == true)
+					game.setLoop('leversM');
+				if(hlb == false)
+					game.setLoop('leversH');
 			}
 			if(m.isPeekObject('LEFT', share)) {
 				VK.api('wall.post', {
-					'message': 'В новой игре SquareDash я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
+					'message': 'В новой игре SquareDash на легкой сложности я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
+					'attachments': 'photo-132547045_456239018'
+				}, function (data) {
+					log('susses');
+				});
+			}
+		};
+	};
+
+	var OverM = function () {
+		this.update = function () {
+			var fon_zad = game.newRectObject({
+				x: 150, y: 100,
+				w: 300, h: 150,
+				fillColor: '#728ebd'
+			});
+			var fon_zad_bl = game.newRectObject({
+				x: 0, y: 0,
+				w: width, h: height,
+				fillColor: '#fef2dc'
+			});
+			var gameover = game.newTextObject({
+				text: 'Game Over',
+				font: 'Ubuntu',
+				size: 25,
+				color: '#fef2dc',
+				x: 230, y: 110
+			});
+			var scoreT = game.newTextObject({
+				text: 'Score: ' + score,
+				font: 'Ubuntu',
+				size: 25,
+				color: '#fef2dc',
+				x: 220, y: 140				
+			});
+			var back_menu = game.newImageObject({
+				file: 'img/back.png',
+				x: 270, y: 195
+			});
+			var reflesh = game.newImageObject({
+				file: 'img/reload.png',
+				x: 300, y: 195
+			});
+			fon_zad_bl.draw();
+			fon_zad.draw();	
+			gameover.draw();
+			scoreT.draw();
+			back_menu.draw();
+			reflesh.draw();
+			var share = game.newTextObject({
+				text: 'Поделится счетом',
+				font: 'Arial',
+				size: 15,
+				color: '#fef2dc',
+				style: 'Bold',
+				x: 230, y: 225
+			});
+			if(score > 3000) {
+				if(hlb == true) {
+					hlb = false;
+				}
+			}
+			share.draw();
+			if(m.isPeekObject('LEFT', back_menu)) {
+				player.angle = 0;
+				game.setLoop('menu');
+			}
+			if(m.isPeekObject('LEFT', reflesh)) {
+				player.angle = 0;
+				if(mlb == true)
+					game.setLoop('leversE');
+				if(hlb == true)
+					game.setLoop('leversM');
+				if(hlb == false)
+					game.setLoop('leversH');
+			}
+			if(m.isPeekObject('LEFT', share)) {
+				VK.api('wall.post', {
+					'message': 'В новой игре SquareDash на средней сложности я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
+					'attachments': 'photo-132547045_456239018'
+				}, function (data) {
+					log('susses');
+				});
+			}
+		};
+	};
+
+	var OverH = function () {
+		this.update = function () {
+			var fon_zad = game.newRectObject({
+				x: 150, y: 100,
+				w: 300, h: 150,
+				fillColor: '#728ebd'
+			});
+			var fon_zad_bl = game.newRectObject({
+				x: 0, y: 0,
+				w: width, h: height,
+				fillColor: '#fef2dc'
+			});
+			var gameover = game.newTextObject({
+				text: 'Game Over',
+				font: 'Ubuntu',
+				size: 25,
+				color: '#fef2dc',
+				x: 230, y: 110
+			});
+			var scoreT = game.newTextObject({
+				text: 'Score: ' + score,
+				font: 'Ubuntu',
+				size: 25,
+				color: '#fef2dc',
+				x: 220, y: 140				
+			});
+			var back_menu = game.newImageObject({
+				file: 'img/back.png',
+				x: 270, y: 195
+			});
+			var reflesh = game.newImageObject({
+				file: 'img/reload.png',
+				x: 300, y: 195
+			});
+			fon_zad_bl.draw();
+			fon_zad.draw();	
+			gameover.draw();
+			scoreT.draw();
+			back_menu.draw();
+			reflesh.draw();
+			var share = game.newTextObject({
+				text: 'Поделится счетом',
+				font: 'Arial',
+				size: 15,
+				color: '#fef2dc',
+				style: 'Bold',
+				x: 230, y: 225
+			});
+			if(score > 3000) {
+				if(hlb == true) {
+					hlb = false;
+				}
+			}
+			share.draw();
+			if(m.isPeekObject('LEFT', back_menu)) {
+				player.angle = 0;
+				game.setLoop('menu');
+			}
+			if(m.isPeekObject('LEFT', reflesh)) {
+				player.angle = 0;
+				if(mlb == true)
+					game.setLoop('leversE');
+				if(hlb == true)
+					game.setLoop('leversM');
+				if(hlb == false)
+					game.setLoop('leversH');
+			}
+			if(m.isPeekObject('LEFT', share)) {
+				VK.api('wall.post', {
+					'message': 'В новой игре SquareDash на тяжелой сложности я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
 					'attachments': 'photo-132547045_456239018'
 				}, function (data) {
 					log('susses');
@@ -688,6 +1147,143 @@
 		}
 	};
 
+	var Levels_with_easy = function() {
+		this.update = function() {
+			drawBG();
+			drawGUP();
+			drawGBT();
+			var df = game.newTextObject({
+				text: 'Difficulty',
+				x: 270, y: 10,
+				font: 'Ubuntu',
+				size: 20,
+				color: '#fef2dc'
+			});
+			var back = game.newImageObject({
+				file: 'img/back.png',
+				x: 10, y: 10				
+			});
+			var easy_lvl = game.newImageObject({
+				file: 'img/lvl_easy.png',
+				x: 76, y: 71,
+				scale: 0.4
+			});
+			var medium_lvl = game.newImageObject({
+				file: 'img/lvl_medium_blocked.png',
+				x: 325, y: 71,
+				scale: 0.4
+			});
+			var hard_lvl = game.newImageObject({
+				file: 'img/lvl_hard_blocked.png',
+				x: 200, y: 81 + easy_lvl.h,
+				scale: 0.4
+			});
+			df.draw();
+			back.draw();
+			easy_lvl.draw();
+			medium_lvl.draw();
+			hard_lvl.draw();
+
+			if(m.isPeekObject('LEFT', back))
+				game.setLoop('menu');
+			if(m.isPeekObject('LEFT', easy_lvl))
+				game.setLoop('gameE');
+		}
+	};
+	var Levels_with_medium = function() {
+		this.update = function() {
+			drawBG();
+			drawGUP();
+			drawGBT();
+			var df = game.newTextObject({
+				text: 'Difficulty',
+				x: 270, y: 10,
+				font: 'Ubuntu',
+				size: 20,
+				color: '#fef2dc'
+			});
+			var back = game.newImageObject({
+				file: 'img/back.png',
+				x: 10, y: 10				
+			});
+			var easy_lvl = game.newImageObject({
+				file: 'img/lvl_easy.png',
+				x: 76, y: 71,
+				scale: 0.4
+			});
+			var medium_lvl = game.newImageObject({
+				file: 'img/lvl_medium.png',
+				x: 325, y: 71,
+				scale: 0.4
+			});
+			var hard_lvl = game.newImageObject({
+				file: 'img/lvl_hard_blocked.png',
+				x: 200, y: 81 + easy_lvl.h,
+				scale: 0.4
+			});
+			df.draw();
+			back.draw();
+			easy_lvl.draw();
+			medium_lvl.draw();
+			hard_lvl.draw();
+
+			if(m.isPeekObject('LEFT', back))
+				game.setLoop('menu');
+			if(m.isPeekObject('LEFT', easy_lvl))
+				game.setLoop('gameE');
+			if(m.isPeekObject('LEFT', medium_lvl))
+				game.setLoop('gameM');
+        }
+	};
+
+	var Levels_with_hard = function() {
+		this.update = function() {
+			drawBG();
+			drawGUP();
+			drawGBT();
+			var df = game.newTextObject({
+				text: 'Difficulty',
+				x: 270, y: 10,
+				font: 'Ubuntu',
+				size: 20,
+				color: '#fef2dc'
+			});
+			var back = game.newImageObject({
+				file: 'img/back.png',
+				x: 10, y: 10				
+			});
+			var easy_lvl = game.newImageObject({
+				file: 'img/lvl_easy.png',
+				x: 76, y: 71,
+				scale: 0.4
+			});
+			var medium_lvl = game.newImageObject({
+				file: 'img/lvl_medium.png',
+				x: 325, y: 71,
+				scale: 0.4
+			});
+			var hard_lvl = game.newImageObject({
+				file: 'img/lvl_hard.png',
+				x: 200, y: 81 + easy_lvl.h,
+				scale: 0.4
+			});
+			df.draw();
+			back.draw();
+			easy_lvl.draw();
+			medium_lvl.draw();
+			hard_lvl.draw();
+
+			if(m.isPeekObject('LEFT', back))
+				game.setLoop('menu');
+			if(m.isPeekObject('LEFT', easy_lvl))
+				game.setLoop('gameE');
+			if(m.isPeekObject('LEFT', medium_lvl))
+				game.setLoop('gameM');
+			if(m.isPeekObject('LEFT', hard_lvl))
+				game.setLoop('gameH');
+        }
+	};
+
 	var Adminka = function() {
 		this.update = function() {
 			drawBG();
@@ -760,29 +1356,36 @@
 			button1_yellow.draw();
 			button2_green.draw();
 			button2_yellow.draw();
-			brush.drawText({
+			var onl = game.newTextObject({
 				text: 'Online: 1',
 				color: '#fef2dc',
 			  	size : 15,
 			  	font : 'Ubuntu',
 			  	x: 30, y: 65  
 			});
-			brush.drawText({
-				text: '+100SD',
+			var onec = game.newTextObject({
+				text: '+1 coins',
 				color: '#fef2dc',
 			  	size : 15,
 			  	font : 'Ubuntu',
 			  	x: 30, y: 105  
 			});
-			brush.drawText({
-				text: '+1000SD',
+			var fivec = game.newTextObject({
+				text: '+5 coins',
 				color: '#fef2dc',
 			  	size : 15,
 			  	font : 'Ubuntu',
 			  	x: 30, y: 145  
 			});
-			brush.drawText({
-				text: '+10000SD',
+			/*var fivex = game.newTextObject({
+				text: '5x score',
+				color: '#fef2dc',
+			  	size : 15,
+			  	font : 'Ubuntu',
+			  	x: 30, y: 185  
+			});*/
+			var tenx = game.newTextObject({
+				text: '10x score',
 				color: '#fef2dc',
 			  	size : 15,
 			  	font : 'Ubuntu',
@@ -792,20 +1395,46 @@
 				file: 'img/back.png',
 				x: 10, y: 10				
 			});
+			onl.draw();
+			onec.draw();
+			fivec.draw();
+			//fivex.draw();
+			tenx.draw();
 			back.draw();
 			if(m.isPeekObject('LEFT', back)) {
 				game.setLoop('menu');
 			}
+			if(m.isPeekObject('LEFT', onec)) {
+				money += 1;
+			}
+			if(m.isPeekObject('LEFT', fivec)) {
+				money += 5;
+			}
+			/*if(m.isPeekObject('LEFT', fivex)) {
+				fivex = true;
+			}*/
+			if(m.isPeekObject('LEFT', tenx)) {
+				tenx = true;
+			}
 		};
 	}
 
-	game.newLoopFromClassObject('game', new Game());
+	game.newLoopFromClassObject('gameE', new GameE());
+	game.newLoopFromClassObject('gameM', new GameM());
+	game.newLoopFromClassObject('gameH', new GameH());
 	game.newLoopFromClassObject('menu', new Menu());
-	game.newLoopFromClassObject('over', new Over());
+	game.newLoopFromClassObject('overE', new OverE());
+	game.newLoopFromClassObject('overM', new OverM());
+	game.newLoopFromClassObject('overH', new OverH());
 	game.newLoopFromClassObject('shop', new Shop());
 	game.newLoopFromClassObject('beta', new Beta());
+	game.newLoopFromClassObject('leversE', new Levels_with_easy());
+	game.newLoopFromClassObject('leversM', new Levels_with_medium());
+	game.newLoopFromClassObject('leversH', new Levels_with_hard());
 	game.newLoopFromClassObject('adminka', new Adminka());
-	game.setLoopSound('game', [music1, music2, music3]);
+	game.setLoopSound('gameE', [music1]);
+	game.setLoopSound('gameM', [music2]);
+	game.setLoopSound('gameH', [music3]);
 	/* 
 
 	GR: #728ebd
