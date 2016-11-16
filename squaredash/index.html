@@ -40,6 +40,7 @@
 	var recordStatus = false;
 	var fivex = false;
 	var tenx = false;
+	var elb = false;
 	var mlb = true;
 	var hlb = true;
 	
@@ -282,7 +283,7 @@
 	var music2 = js.audio.newAudio("audio/BaseAfterBase.mp3", 0.5);
 	var music3 = js.audio.newAudio("audio/CantLetGo.mp3", 0.5);
 
-	var money = 10;
+	var money = 0;
 	var record = 10;
 	var addMoney = 0;
 	var endScore = score - 1;
@@ -348,6 +349,142 @@
 			//console.log(key.getKeyList());
 		};
 	};
+
+	var Adminka = function() {
+		this.update = function() {
+			tenx = true;
+			drawBG();
+			drawGBT();
+			drawGUP();
+			brush.drawText({
+				text: 'Admin Panel',
+				color: '#fef2dc',
+				size: 20,
+				x : 260, y : 10,
+				font: 'Ubuntu'
+			});
+			var dmitry = game.newImageObject({
+				file: 'img/dmitry.png',
+				w: 30, h: 30,
+				x: 480, y: 10 
+			});
+			var jenya = game.newImageObject({
+				file: 'img/jenya.png',
+				w: 30, h: 30,
+				x: 520, y: 10 
+			});
+			var egor = game.newImageObject({
+				file: 'img/egor.png',
+				w: 30, h: 30,
+				x: 560, y: 10 
+			});
+			var denis = game.newImageObject({
+				file: 'img/denis.png',
+				w: 30, h: 30,
+				x: 600, y: 10 
+			});
+			var logoSD = game.newImageObject({
+				file: 'img/logo.png',
+				scale: 0.5,
+				x : 440, y : 50
+			});
+			var logoPL = game.newImageObject({
+				file: 'img/150x150.jpg',
+				x : 480, y: 100,
+				scale: 0.5
+			});
+			var button1_green = game.newImageObject({
+				file: 'img/button_play.png',
+				x: 15, y : 65,
+				scale: 0.5
+			});
+			var button1_yellow = game.newImageObject({
+				file: 'img/button_shop.png',
+				x: 15, y : 105,
+				scale: 0.5
+			});
+			var button2_green = game.newImageObject({
+				file: 'img/button_play.png',
+				x: 15, y : 145,
+				scale: 0.5
+			});
+			var button2_yellow = game.newImageObject({
+				file: 'img/button_shop.png',
+				x: 15, y : 185,
+				scale: 0.5
+			});
+			jenya.draw();
+			egor.draw();
+			denis.draw();
+			dmitry.draw();
+			logoSD.draw();
+			logoPL.draw();
+			button1_green.draw();
+			button1_yellow.draw();
+			button2_green.draw();
+			button2_yellow.draw();
+			var onl = game.newTextObject({
+				text: 'Online: 1',
+				color: '#fef2dc',
+			  	size : 15,
+			  	font : 'Ubuntu',
+			  	x: 30, y: 65  
+			});
+			var onec = game.newTextObject({
+				text: '+1 coins',
+				color: '#fef2dc',
+			  	size : 15,
+			  	font : 'Ubuntu',
+			  	x: 30, y: 105  
+			});
+			var fivec = game.newTextObject({
+				text: '+5 coins',
+				color: '#fef2dc',
+			  	size : 15,
+			  	font : 'Ubuntu',
+			  	x: 30, y: 145  
+			});
+			/*var fivex = game.newTextObject({
+				text: '5x score',
+				color: '#fef2dc',
+			  	size : 15,
+			  	font : 'Ubuntu',
+			  	x: 30, y: 185  
+			});*/
+			var tenx = game.newTextObject({
+				text: '10x score',
+				color: '#fef2dc',
+			  	size : 15,
+			  	font : 'Ubuntu',
+			  	x: 30, y: 185  
+			});
+			var back = game.newImageObject({
+				file: 'img/back.png',
+				x: 10, y: 10				
+			});
+			onl.draw();
+			onec.draw();
+			fivec.draw();
+			//fivex.draw();
+			tenx.draw();
+			back.draw();
+			if(m.isPeekObject('LEFT', back)) {
+				game.setLoop('menu');
+			}
+			if(m.isPeekObject('LEFT', onec)) {
+				money += 1;
+			}
+			if(m.isPeekObject('LEFT', fivec)) {
+				money += 5;
+			}
+			/*if(m.isPeekObject('LEFT', fivex)) {
+				fivex = true;
+			}*/
+			if(m.isPeekObject('LEFT', tenx)) {
+				tenx = true;
+			}
+		};
+	}
 
 	var GameE = function () {
 		
@@ -436,15 +573,15 @@
 
 			drawGR();
 			drawTriangles();
-
+			
 			if(fivex == false || tenx == false)
 				score = score+1;
 
 			if(fivex == true)
-				score += 5;
+				score = score + 5;
 
 			if(tenx == true)
-				score += 10;
+				score = score + 10;
 
 			if(player.y >= player.dy)
 				player.dy == 0;
@@ -587,15 +724,18 @@
 
 			drawGR();
 			drawTriangles();
-
+			
 			if(fivex == false || tenx == false)
-				score = score +1;
+				score = score+1;
 
 			if(fivex == true)
-				score += 5;
+				score = score + 5;
 
 			if(tenx == true)
-				score += 10;
+				score = score + 10;
+
+			if(player.y >= player.dy)
+				player.dy == 0;
 
 			if(player.y >= player.dy)
 				player.dy == 0;
@@ -764,13 +904,13 @@
 			drawTriangles();
 
 			if(fivex == false || tenx == false)
-				score = score +1;
+				score = score+1;
 
 			if(fivex == true)
-				score += 5;
+				score = score + 5;
 
 			if(tenx == true)
-				score += 10;
+				score = score + 10;
 
 			if(player.y >= player.dy)
 				player.dy == 0;
@@ -855,7 +995,7 @@
 				style: 'Bold',
 				x: 230, y: 225
 			});
-			if(score > 3000) {
+			if(score > 1500) {
 				if(mlb == true) {
 					mlb = false;
 				}
@@ -867,9 +1007,9 @@
 			}
 			if(m.isPeekObject('LEFT', reflesh)) {
 				player.angle = 0;
-				if(mlb == true)
+				if(elb == false)
 					game.setLoop('leversE');
-				if(hlb == true)
+				if(mlb == false)
 					game.setLoop('leversM');
 				if(hlb == false)
 					game.setLoop('leversH');
@@ -933,7 +1073,7 @@
 				style: 'Bold',
 				x: 230, y: 225
 			});
-			if(score > 3000) {
+			if(score > 1500) {
 				if(hlb == true) {
 					hlb = false;
 				}
@@ -1077,10 +1217,6 @@
 				x: 325, y: 71+skins_banner.h+10,
 				scale: 0.4
 			});
-			var avatar = game.newImageObject({
-				file: 'img/dmitry.png',
-				x: 295, y: 410
-			});
 			var balance = game.newTextObject({
 				text: '' + money,
 				x: 275, y: 460,
@@ -1089,18 +1225,12 @@
 				color: '#fef2dc'
 			});
 
-
-
 			shopT.draw();
 			back.draw();
 			coins_banner.draw();
 			skins_banner.draw();
 			coins1_banner.draw();
 			skins1_banner.draw();
-			avatar.draw();
-			balance.draw();
-
-
 
 			if(m.isPeekObject('LEFT', back)) {
 				game.setLoop('menu');
@@ -1175,9 +1305,15 @@
 			});
 			var hard_lvl = game.newImageObject({
 				file: 'img/lvl_hard_blocked.png',
-				x: 200, y: 81 + easy_lvl.h,
+				x: 76, y: 81 + easy_lvl.h,
 				scale: 0.4
 			});
+			var bonus_lvl = game.newImageObject({
+				file: 'img/lvl_bonus_blocked.png',
+				x: 325, y: 81 + easy_lvl.h,
+				scale: 0.4
+			});
+			bonus_lvl.draw();
 			df.draw();
 			back.draw();
 			easy_lvl.draw();
@@ -1218,9 +1354,15 @@
 			});
 			var hard_lvl = game.newImageObject({
 				file: 'img/lvl_hard_blocked.png',
-				x: 200, y: 81 + easy_lvl.h,
+				x: 76, y: 81 + easy_lvl.h,
 				scale: 0.4
 			});
+			var bonus_lvl = game.newImageObject({
+				file: 'img/lvl_bonus_blocked.png',
+				x: 325, y: 81 + easy_lvl.h,
+				scale: 0.4
+			});
+			bonus_lvl.draw();
 			df.draw();
 			back.draw();
 			easy_lvl.draw();
@@ -1264,9 +1406,15 @@
 			});
 			var hard_lvl = game.newImageObject({
 				file: 'img/lvl_hard.png',
-				x: 200, y: 81 + easy_lvl.h,
+				x: 76, y: 81 + easy_lvl.h,
 				scale: 0.4
 			});
+			var bonus_lvl = game.newImageObject({
+				file: 'img/lvl_bonus_blocked.png',
+				x: 325, y: 81 + easy_lvl.h,
+				scale: 0.4
+			});
+			bonus_lvl.draw();
 			df.draw();
 			back.draw();
 			easy_lvl.draw();
@@ -1283,141 +1431,6 @@
 				game.setLoop('gameH');
         }
 	};
-
-	var Adminka = function() {
-		this.update = function() {
-			drawBG();
-			drawGBT();
-			drawGUP();
-			brush.drawText({
-				text: 'Admin Panel',
-				color: '#fef2dc',
-				size: 20,
-				x : 260, y : 10,
-				font: 'Ubuntu'
-			});
-			var dmitry = game.newImageObject({
-				file: 'img/dmitry.png',
-				w: 30, h: 30,
-				x: 480, y: 10 
-			});
-			var jenya = game.newImageObject({
-				file: 'img/jenya.png',
-				w: 30, h: 30,
-				x: 520, y: 10 
-			});
-			var egor = game.newImageObject({
-				file: 'img/egor.png',
-				w: 30, h: 30,
-				x: 560, y: 10 
-			});
-			var denis = game.newImageObject({
-				file: 'img/denis.png',
-				w: 30, h: 30,
-				x: 600, y: 10 
-			});
-			var logoSD = game.newImageObject({
-				file: 'img/logo.png',
-				scale: 0.5,
-				x : 440, y : 50
-			});
-			var logoPL = game.newImageObject({
-				file: 'img/150x150.jpg',
-				x : 480, y: 100,
-				scale: 0.5
-			});
-			var button1_green = game.newImageObject({
-				file: 'img/button_play.png',
-				x: 15, y : 65,
-				scale: 0.5
-			});
-			var button1_yellow = game.newImageObject({
-				file: 'img/button_shop.png',
-				x: 15, y : 105,
-				scale: 0.5
-			});
-			var button2_green = game.newImageObject({
-				file: 'img/button_play.png',
-				x: 15, y : 145,
-				scale: 0.5
-			});
-			var button2_yellow = game.newImageObject({
-				file: 'img/button_shop.png',
-				x: 15, y : 185,
-				scale: 0.5
-			});
-			jenya.draw();
-			egor.draw();
-			denis.draw();
-			dmitry.draw();
-			logoSD.draw();
-			logoPL.draw();
-			button1_green.draw();
-			button1_yellow.draw();
-			button2_green.draw();
-			button2_yellow.draw();
-			var onl = game.newTextObject({
-				text: 'Online: 1',
-				color: '#fef2dc',
-			  	size : 15,
-			  	font : 'Ubuntu',
-			  	x: 30, y: 65  
-			});
-			var onec = game.newTextObject({
-				text: '+1 coins',
-				color: '#fef2dc',
-			  	size : 15,
-			  	font : 'Ubuntu',
-			  	x: 30, y: 105  
-			});
-			var fivec = game.newTextObject({
-				text: '+5 coins',
-				color: '#fef2dc',
-			  	size : 15,
-			  	font : 'Ubuntu',
-			  	x: 30, y: 145  
-			});
-			/*var fivex = game.newTextObject({
-				text: '5x score',
-				color: '#fef2dc',
-			  	size : 15,
-			  	font : 'Ubuntu',
-			  	x: 30, y: 185  
-			});*/
-			var tenx = game.newTextObject({
-				text: '10x score',
-				color: '#fef2dc',
-			  	size : 15,
-			  	font : 'Ubuntu',
-			  	x: 30, y: 185  
-			});
-			var back = game.newImageObject({
-				file: 'img/back.png',
-				x: 10, y: 10				
-			});
-			onl.draw();
-			onec.draw();
-			fivec.draw();
-			//fivex.draw();
-			tenx.draw();
-			back.draw();
-			if(m.isPeekObject('LEFT', back)) {
-				game.setLoop('menu');
-			}
-			if(m.isPeekObject('LEFT', onec)) {
-				money += 1;
-			}
-			if(m.isPeekObject('LEFT', fivec)) {
-				money += 5;
-			}
-			/*if(m.isPeekObject('LEFT', fivex)) {
-				fivex = true;
-			}*/
-			if(m.isPeekObject('LEFT', tenx)) {
-				tenx = true;
-			}
-		};
-	}
 
 	game.newLoopFromClassObject('gameE', new GameE());
 	game.newLoopFromClassObject('gameM', new GameM());
