@@ -29,8 +29,8 @@
 	    VK.callMethod('showOrderBox', params);
 	  }
 
-	  VK.addCallback('onOrderSuccess', function(order_id) {
-	    callbacksResults.innerHTML += '<br />onOrderSuccess '+order_id;
+	  VK.addCallback('onOrderSuccess', function() {
+	   money = money + 3;
 	  });
 
  	var width = 640, height = 480;
