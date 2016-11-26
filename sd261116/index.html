@@ -22,7 +22,8 @@
 
  	var user = {
  		name : 'none',
- 		id : ''
+ 		id : '',
+ 		money : 0
  	};
 
  	VK.api('users.get', {'fields' : 'photo_50'}, function(data) {
@@ -363,10 +364,10 @@
 			}
 			if(m.isPeekObject('LEFT', shop)) {
 			    VK.api("storage.get", {
-			    	user_id : user,
+			    	user_id : user.id,
 			    	key : 'balance'
 			    }, function (data) {
-					balance = data.response;
+					money = data.response;
 				});
 				game.setLoop('shop');
 			}
