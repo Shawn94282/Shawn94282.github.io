@@ -33,27 +33,25 @@
 	function order() {
 	    var params = {
 	      type: 'votes',
-	      votes: '5'
+	      votes: '3'
 	    };
 	    VK.callMethod('showOrderBox', params);
 	  }
 
 	  VK.addCallback('onOrderSuccess', function() {
-	    money = money + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: money
+	    	value: money + 3
 	    }, function (data) {
 			console.log('susses');
 		});
 	  });
 	  VK.addCallback('onOrderFail', function() {
-	    money = money + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: money
+	    	value: money + 3
 	    }, function (data) {
 			console.log('susses');
 		});
@@ -63,7 +61,7 @@
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: 0
+	    	value: money + 3
 	    }, function (data) {
 			console.log('susses');
 		});
@@ -103,28 +101,7 @@
 	var L14 = 0;
 	var L15 = 0;
 	var L16 = 0;
-	VK.api("storage.set", {
-	    	user_id : user.id,
-	    	key : 'L1',
-	    	value: L1
-	    }, function (data) {
-			console.log('susses');
-	});
-	VK.api("storage.set", {
-	    	user_id : user.id,
-	    	key : 'L2',
-	    	value: L2
-	    }, function (data) {
-			console.log('susses');
-	});
-	VK.api("storage.set", {
-	    	user_id : user.id,
-	    	key : 'L2',
-	    	value: L2
-	    }, function (data) {
-			console.log('susses');
-	});
-	
+
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
 		oldB = game.newImageObject({
