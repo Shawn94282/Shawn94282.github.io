@@ -20,6 +20,19 @@
 
  	}, '5.60');
 
+	function order() {
+	    var params = {
+	      type: 'item',
+	      item: 'item_25new',
+	      votes: '3',
+	    };
+	    VK.callMethod('showOrderBox', params);
+	  }
+
+	  VK.addCallback('onOrderSuccess', function(order_id) {
+	    money = money + 3;
+	  });
+
  	var width = 640, height = 480;
 	var js = new PointJS('2d', width, height, {backgroundColor: '#757575'});
 	js.system.initFullScale();
