@@ -103,6 +103,27 @@
 	var L14 = 0;
 	var L15 = 0;
 	var L16 = 0;
+	VK.api("storage.set", {
+	    	user_id : user.id,
+	    	key : 'L1',
+	    	value: L1
+	    }, function (data) {
+			console.log('susses');
+	});
+	VK.api("storage.set", {
+	    	user_id : user.id,
+	    	key : 'L2',
+	    	value: L2
+	    }, function (data) {
+			console.log('susses');
+	});
+	VK.api("storage.set", {
+	    	user_id : user.id,
+	    	key : 'L2',
+	    	value: L2
+	    }, function (data) {
+			console.log('susses');
+	});
 	
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
