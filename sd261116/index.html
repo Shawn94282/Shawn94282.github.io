@@ -87,22 +87,22 @@
 	var width = js.game.getWH().w;
 	var height = js.game.getWH().h;
 	var click = false;
-	var L1 = true;
-	var L2 = false;
-	var L3 = false;
-	var L4 = false;
-	var L5 = false;
-	var L6 = false;
-	var L7 = false;
-	var L8 = false;
-	var L9 = false;
-	var L10 = false;
-	var L11 = false;
-	var L12 = false;
-	var L13 = false;
-	var L14 = false;
-	var L15 = false;
-	var L16 = false;
+	var L1 = 1;
+	var L2 = 0;
+	var L3 = 0;
+	var L4 = 0;
+	var L5 = 0;
+	var L6 = 0;
+	var L7 = 0;
+	var L8 = 0;
+	var L9 = 0;
+	var L10 = 0;
+	var L11 = 0;
+	var L12 = 0;
+	var L13 = 0;
+	var L14 = 0;
+	var L15 = 0;
+	var L16 = 0;
 	
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
@@ -354,11 +354,29 @@
 			news.draw();
 
 			if(m.isPeekObject('LEFT', play)) {
-				if(L1 == true)
+ 				VK.api("storage.get", {
+			    	user_id : user.id,
+			    	key : 'L1'
+			    }, function (data) {
+					L1 = data.response;
+				});
+ 				VK.api("storage.get", {
+			    	user_id : user.id,
+			    	key : 'L2'
+			    }, function (data) {
+					L2 = data.response;
+				});
+ 				VK.api("storage.get", {
+			    	user_id : user.id,
+			    	key : 'L3'
+			    }, function (data) {
+					L3 = data.response;
+				});				
+				if(L1 == 1)
 					game.setLoop('L1');
-				if(L2 == true)
+				if(L2 == 1)
 					game.setLoop('L2');				
-				if(L3 == true)
+				if(L3 == 1)
 					game.setLoop('L3');
 			}
 			if(m.isPeekObject('LEFT', shop)) {
@@ -858,8 +876,15 @@
 				x: 230, y: 175
 			});
 			if(score >= 500) {
-				if(L1 == true) {
-					L2 = true;
+				if(L1 == 1) {
+					L2 = 1;
+					 VK.api("storage.set", {
+	    				user_id : user.id,
+				    	key : 'L2',
+				    	value: L2
+				    }, function (data) {
+						console.log('susses');
+					});
 				}
 			}
 			share.draw();
@@ -922,8 +947,15 @@
 				x: 230, y: 175
 			});
 			if(score >= 500) {
-				if(L2 == true) {
-					L3 = true;
+				if(L2 == 1) {
+					L3 = 1;
+			 		VK.api("storage.set", {
+				    	user_id : user.id,
+				    	key : 'L3',
+				    	value: L3
+				    }, function (data) {
+						console.log('susses');
+					});
 				}
 			}
 			share.draw();
