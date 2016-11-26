@@ -30,7 +30,7 @@
 	  }
 
 	  VK.addCallback('onOrderSuccess', function(order_id) {
-	    money = money + 3;
+	    callbacksResults.innerHTML += '<br />onOrderSuccess '+order_id;
 	  });
 
  	var width = 640, height = 480;
