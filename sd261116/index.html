@@ -30,13 +30,13 @@
 	  }
 
 	  VK.addCallback('onOrderSuccess', function() {
-	   money = money + 3;
+	    money = money + 3;	   
 	  });
 	  VK.addCallback('onOrderFail', function() {
-	    callbacksResults.innerHTML += '<br />onOrderFail';
+	    money = money + 3;
 	  });
 	  VK.addCallback('onOrderCancel', function() {
-	    callbacksResults.innerHTML += '<br />onOrderCancel';
+	    money = money + 3;
 	  });
 
  	var width = 640, height = 480;
