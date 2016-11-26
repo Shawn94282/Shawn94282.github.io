@@ -39,6 +39,7 @@
 	  }
 
 	  VK.addCallback('onOrderSuccess', function() {
+	    money = money + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
@@ -48,6 +49,7 @@
 		});
 	  });
 	  VK.addCallback('onOrderFail', function() {
+	    money = money + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
@@ -57,6 +59,7 @@
 		});
 	  });
 	  VK.addCallback('onOrderCancel', function() {
+	    money = money + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
