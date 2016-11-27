@@ -858,7 +858,7 @@
 				x: 230, y: 175
 			});
 			if(score >= 500) {
-				if(L1 == 1) {
+				if(user.L1 == 1) {
 					user.L2 = 1;
 					VK.api("storage.set", {
 				    	user_id : user.id,
@@ -929,7 +929,7 @@
 				x: 230, y: 175
 			});
 			if(score >= 500) {
-				if(L2 == 1) {
+				if(user.L2 == 1) {
 					user.L3 = 1;
 					VK.api("storage.set", {
 				    	user_id : user.id,
