@@ -13,7 +13,6 @@
  	<script type="text/javascript">
 	
 	var vk_inited = false;
-	var bal = user.balance;
  	
  	VK.init(function() {
  		vk_inited = true;
@@ -44,21 +43,21 @@
 	  }
 
 	  VK.addCallback('onOrderSuccess', function() {
-	  	bal = money + 3;
+	    user.balance = user.balance + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: bal
+	    	value: user.balance
 	    }, function (data) {
 			console.log('susses');
 		});
 	  });
 	  VK.addCallback('onOrderFail', function() {
-	  	bal = money + 3;
+	  	user.balance = user.balance + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: bal
+	    	value: user.balance
 	    }, function (data) {
 			console.log('susses');
 		});
