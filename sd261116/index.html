@@ -69,7 +69,7 @@
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: 0
+	    	value: bal
 	    }, function (data) {
 			console.log('susses');
 		});
@@ -369,7 +369,7 @@
 			    	peer_id : user.id,
 			    	key : 'balance'
 			    }, function (data) {
-					money = data.response;
+					money = 0;
 				});
 				game.setLoop('shop');
 			}
