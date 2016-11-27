@@ -24,17 +24,15 @@
  	var user = {
  		name : 'none',
  		id : '',
+ 		balance : '0',
 		L1 : '1',
 		L2 : '0',
-		L3 : '0',
-		balance : 0
+		L3 : '0'
  	};
 
  	VK.api('users.get', {'fields' : 'photo_50'}, function(data) {
  		user['name'] = data.response[0].first_nane;
  		user['id'] = data.response[0].id;
- 		user['L2'] = data.response[0].L2;
- 		user['L3'] = data.response[0].L3;
  	})
 
 	function order() {
@@ -66,11 +64,11 @@
 		});
 	  });
 	  VK.addCallback('onOrderCancel', function() {
-	    bal = user.balance + 3;
+	    user.balance = user.balance + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: bal
+	    	value: user.balance
 	    }, function (data) {
 			console.log('susses');
 		});
@@ -344,19 +342,7 @@
 			vk.draw();
 			news.draw();
 
-			if(m.isPeekObject('LEFT', play)) {
-				VK.api("storage.get", {
-			    	user_id : user.id,
-			    	key : 'L2'
-			    }, function (data) {
-					user.L2 = data.response;
-				});	
-				VK.api("storage.get", {
-			    	user_id : user.id,
-			    	key : 'L3'
-			    }, function (data) {
-					user.L3 = data.response;
-				});						
+			if(m.isPeekObject('LEFT', play)) {					
 				if(user.L1 == 1)
 					game.setLoop('L1');
 				if(user.L2 == 1)
@@ -370,7 +356,7 @@
 			    	peer_id : user.id,
 			    	key : 'balance'
 			    }, function (data) {
-					money = 0;
+					user.balance = data.response;
 				});
 				game.setLoop('shop');
 			}
