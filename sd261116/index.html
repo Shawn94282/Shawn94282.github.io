@@ -63,7 +63,7 @@
 		});
 	  });
 	  VK.addCallback('onOrderCancel', function() {
-	    user.balance = user.balance + 3;
+	    user.balance += 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
