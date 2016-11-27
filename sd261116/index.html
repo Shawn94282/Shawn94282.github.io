@@ -362,7 +362,7 @@
 			    	peer_id : user.id,
 			    	key : 'balance'
 			    }, function (data) {
-					user.balance = data.response;
+					user.balance = 0;
 				});
 				game.setLoop('shop');
 			}
