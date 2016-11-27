@@ -372,6 +372,14 @@
 				});
 				game.setLoop('shop');
 			}
+			if(m.isPeekObject('LEFT', vk)) {
+				VK.api("message.send", {
+					user_id : user.id,
+					message: 'adadadadadadadadadadadadada'
+				}, function(data) {
+					log('send');
+				});
+			}
 			//console.log(key.getKeyList());
 		};
 	};
