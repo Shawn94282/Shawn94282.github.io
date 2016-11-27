@@ -366,6 +366,7 @@
 			if(m.isPeekObject('LEFT', shop)) {
 			    VK.api("storage.get", {
 			    	user_id : user.id,
+			    	peer_id : user.id,
 			    	key : 'balance'
 			    }, function (data) {
 					money = data.response;
