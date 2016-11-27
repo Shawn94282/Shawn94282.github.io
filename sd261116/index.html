@@ -13,6 +13,7 @@
  	<script type="text/javascript">
 	
 	var vk_inited = false;
+	var bal = 0;
  	
  	VK.init(function() {
  		vk_inited = true;
@@ -67,9 +68,9 @@
 	    	user_id : user.id,
 	    	key : 'balance'
 	    }, function (data) {
-			user.balance = data.response;
+			bal = data.response;
 		});
-	    user.balance += 3;
+	    user.balance = bal + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
