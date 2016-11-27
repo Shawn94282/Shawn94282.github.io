@@ -353,11 +353,11 @@
 			    }, function (data) {
 					user.L3 = data.response;
 				});						
-				if(L1 == 1)
+				if(user.L1 == 1)
 					game.setLoop('L1');
-				if(L2 == 1)
+				if(user.L2 == 1)
 					game.setLoop('L2');				
-				if(L3 == 1)
+				if(user.L3 == 1)
 					game.setLoop('L3');
 			}
 			if(m.isPeekObject('LEFT', shop)) {
