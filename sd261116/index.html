@@ -348,7 +348,7 @@
 			    	user_id : user.id,
 			    	key : 'L2'
 			    }, function (data) {
-					user.L2 = data.response;
+					log(data.response);
 				});	
 				VK.api("storage.get", {
 			    	user_id : user.id,
