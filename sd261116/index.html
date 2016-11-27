@@ -26,7 +26,8 @@
  		id : '',
 		L1 : '1',
 		L2 : '0',
-		L3 : '0'
+		L3 : '0',
+		balance : 0
  	};
 
  	VK.api('users.get', {'fields' : 'photo_50'}, function(data) {
@@ -65,7 +66,7 @@
 		});
 	  });
 	  VK.addCallback('onOrderCancel', function() {
-	    bal = money + 3;
+	    bal = user.balance + 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
