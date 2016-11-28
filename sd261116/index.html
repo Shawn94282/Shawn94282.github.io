@@ -38,13 +38,19 @@
 
  	VK.api("storage.get", {user_id : user.id, key : 'balance'}, function(data) {
  		user['balance'] = data.response;
- 		money = user.balance;
  	});
+ 	VK.api("storage.get", {user_id : user.id, key : 'L2'}, function(data) {
+ 		user['L2'] = data.response;
+ 	});
+ 	VK.api("storage.get", {user_id : user.id, key : 'L3'}, function(data) {
+ 		user['L3'] = data.response;
+ 	});
+
 
 	function order() {
 	    var params = {
-	      type: 'votes',
-	      votes: '3'
+	      type: 'item',
+	      item: 'item2'
 	    };
 	    VK.callMethod('showOrderBox', params);
 	  }
@@ -76,14 +82,12 @@
 	  	}, function (data) {
 	  		bal = data.response;
 	  	})
-	  	bal += 3;
-	  	money = bal;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: money
+	    	value: money + 3
 	    }, function (data) {
-			log('susses');
+			money += 3;
 		});
 	  });
 
@@ -361,12 +365,12 @@
 					game.setLoop('L3');
 			}
 			if(m.isPeekObject('LEFT', shop)) {
-			    /*VK.api("storage.get", {
+			    VK.api("storage.get", {
 			    	user_id : user.id,
 			    	key : 'balance'
 			    }, function (data) {
 					money = data.response;
-				});*/
+				});
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', vk)) {
