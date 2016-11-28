@@ -14,7 +14,7 @@
 	
 	var vk_inited = false;
 	var bal = 0;
-	var group_id = '132547045';
+	var group_id = 132547045;
  	
  	VK.init(function() {
  		vk_inited = true;
@@ -25,7 +25,6 @@
  	var user = {
  		name : 'none',
  		id : '',
- 		balance : '0',
 		L1 : '1',
 		L2 : '0',
 		L3 : '0'
@@ -65,13 +64,12 @@
 		});
 	  });
 	  VK.addCallback('onOrderCancel', function() {
-	    money += 3;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: money
+	    	value: money + 3
 	    }, function (data) {
-			console.log('susses');
+			money += 3;
 		});
 	  });
 
