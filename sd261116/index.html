@@ -25,6 +25,7 @@
  	var user = {
  		name : 'none',
  		id : '',
+ 		balance : '',
 		L1 : '1',
 		L2 : '0',
 		L3 : '0'
@@ -32,8 +33,13 @@
 
  	VK.api('users.get', {'fields' : 'photo_50'}, function(data) {
  		user['name'] = data.response[0].first_nane;
- 		user['id'] = data.response[0].id;
- 	})
+ 		user['id'] = data.response[1].id;
+ 	});
+
+ 	VK.api("storage.get", {user_id : user.id, key : 'balance'}, function(data) {
+ 		user['balance'] = data.response;
+ 		money = user.balance;
+ 	});
 
 	function order() {
 	    var params = {
@@ -64,6 +70,12 @@
 		});
 	  });
 	  VK.addCallback('onOrderCancel', function() {
+	  	VK.api("storage.get", {
+	  		user_id : user.id,
+	  		key: 'balance',
+	  	}, function (data) {
+	  		bal = data.response;
+	  	})
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
@@ -347,12 +359,12 @@
 					game.setLoop('L3');
 			}
 			if(m.isPeekObject('LEFT', shop)) {
-			    VK.api("storage.get", {
+			    /*VK.api("storage.get", {
 			    	user_id : user.id,
 			    	key : 'balance'
 			    }, function (data) {
 					money = data.response;
-				});
+				});*/
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', vk)) {
