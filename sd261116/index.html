@@ -76,12 +76,14 @@
 	  	}, function (data) {
 	  		bal = data.response;
 	  	})
+	  	bal += 3;
+	  	money = bal;
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: money + 3
+	    	value: money
 	    }, function (data) {
-			money += 3;
+			log('susses');
 		});
 	  });
 
