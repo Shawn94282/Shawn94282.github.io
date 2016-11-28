@@ -14,6 +14,7 @@
 	
 	var vk_inited = false;
 	var bal = 0;
+	var group_id = 132547045;
  	
  	VK.init(function() {
  		vk_inited = true;
@@ -316,14 +317,8 @@
 
 			var invite = game.newImageObject({
 				file: 'img/menu/faq.jpg',
-				w: 117, h: 70,
+				w: 244, h: 70,
 				x : 198, y : 293 
-			});
-
-			var lastupd = game.newImageObject({
-				file: 'img/menu/lastupd.jpg',
-				w: 117, h: 70,
-				x : 322, y : 293 
 			});
 
 			var vk = game.newImageObject({
@@ -371,11 +366,11 @@
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', vk)) {
-				VK.api("message.send", {
+				VK.api("groups.join", {
 					user_id : user.id,
-					message: 'adadadadadadadadadadadadada'
+					group_id: group_id
 				}, function(data) {
-					log('send');
+					log('join');
 				});
 			}
 			//console.log(key.getKeyList());
