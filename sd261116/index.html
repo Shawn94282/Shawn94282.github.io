@@ -26,9 +26,11 @@
  		name : 'none',
  		id : '',
  		balance : '',
+ 		S1 : '1',
 		L1 : '1',
 		L2 : '0',
-		L3 : '0'
+		L3 : '0',
+		L4 : '0'
  	};
 
  	VK.api('users.get', {'fields' : 'photo_50'}, function(data) {
@@ -299,7 +301,6 @@
 	var record = 10;
 	var addMoney = 0;
 	var endScore = score - 1;
-	var gameSpeed = -5.5;
 
 	/* 
 
@@ -434,7 +435,7 @@
 			OOP.forArr(triangles, function(el) {
 				el.bottom.draw();
 
-				el.bottom.move(point(gameSpeed, 0));
+				el.bottom.move(point(-5.5, 0));
 
 				if(el.bottom.x + el.bottom.y < 0) {
 					el.bottom.x = oldTriangle.bottom.x + oldTriangle.bottom.w + random(150, 300);
@@ -477,7 +478,6 @@
 			player.y += player.dy;
 
 			score = score + 1;
-			gameSpeed = gameSpeed + 1;
 
 			drawGR();
 			drawTriangles();
