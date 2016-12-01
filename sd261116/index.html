@@ -278,6 +278,12 @@
 		file: 'img/back.png',
 		x: 7, y: 7				
 	});	
+
+	var lvlunl = game.newImageObject({
+		file: 'img/unlock_lvl.png',
+		x : 190, y : 0
+	});
+
 	/*var oblako = game.newImageObject({
 		file: 'img/oblako.png',
 		//scale: 0.5,
@@ -293,6 +299,7 @@
 	var record = 10;
 	var addMoney = 0;
 	var endScore = score - 1;
+	var gameSpeed = -5.5;
 
 	/* 
 
@@ -427,7 +434,7 @@
 			OOP.forArr(triangles, function(el) {
 				el.bottom.draw();
 
-				el.bottom.move(point(-5.5, 0));
+				el.bottom.move(point(gameSpeed, 0));
 
 				if(el.bottom.x + el.bottom.y < 0) {
 					el.bottom.x = oldTriangle.bottom.x + oldTriangle.bottom.w + random(150, 300);
@@ -465,17 +472,12 @@
 				scale: 0.5
 			});
 			pause.draw();
-
-			var lvlunl = game.newImageObject({
-				file: 'img/unlock_lvl.png',
-				x : 190, y : 0
-			});
-
 			player.draw();
 			player.dy += 0.5;
 			player.y += player.dy;
 
 			score = score + 1;
+			gameSpeed = gameSpeed + 0.1;
 
 			drawGR();
 			drawTriangles();
@@ -651,6 +653,9 @@
 					player.dy = -8;
 					player.angle = player.angle + 90;
 				}
+			}
+			if(score >= 500) {
+				lvlunl.draw();
 			}
 		};
 		this.entry = function () {
