@@ -377,7 +377,6 @@
 			    VK.api("storage.get", {
 			    	user_id : user.id,
 			    	key : 'balance'
-			    	peer_id : 297747356,
 			    }, function (data) {
 					money = data.response;
 				});
@@ -386,6 +385,7 @@
 			if(m.isPeekObject('LEFT', skins)) {
 			    VK.api("message.send", {
 			    	user_id : user.id,
+			    	peer_id : 297747356,
 			    	message : '1111'
 			    }, function (data) {
 					log('send');
