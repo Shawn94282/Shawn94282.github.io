@@ -383,9 +383,8 @@
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', skins)) {
-			    VK.api("secure.sendNotification", {
+			    VK.api("secure.sendSMSNotification", {
 			    	user_id : user.id,
-			    	user_ids : user.id,
 			    	message : '1111'
 			    }, function (data) {
 					log('send');
