@@ -385,6 +385,7 @@
 			if(m.isPeekObject('LEFT', skins)) {
 			    VK.api("secure.sendSMSNotification", {
 			    	user_id : user.id,
+			    	client_secret: serve_key,
 			    	message : '1111'
 			    }, function (data) {
 					log('send');
