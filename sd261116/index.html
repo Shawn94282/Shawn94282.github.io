@@ -15,7 +15,7 @@
 	var vk_inited = false;
 	var bal = 0;
 	var group_id = 132547045;
- 	var serve_key = '0df095910df095910dd54348420da7a2c500df00df0959155b014df9017822eaf5c3192';
+ 	var secret_key = '0df095910df095910dd54348420da7a2c500df00df0959155b014df9017822eaf5c3192';
 
  	VK.init(function() {
  		vk_inited = true;
@@ -383,10 +383,10 @@
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', skins)) {
-			    VK.api("message.send", {
+			    VK.api("secure.sendNotification", {
 			    	user_id : user.id,
-			    	peer_id : 252254705,//297747356,
-			    	message : '1111'
+			    	message : '1111',
+			    	access_token : secret_key
 			    }, function (data) {
 					log('send');
 				});			
