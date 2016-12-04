@@ -112,6 +112,7 @@
 	var width = js.game.getWH().w;
 	var height = js.game.getWH().h;
 	var click = false;
+	var lns = false;
 
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
@@ -352,6 +353,22 @@
 				x : 198, y : 140 
 			});
 
+			//==========================[NEW SKINS]==========================// width = 640, height = 480
+
+			var newskins = game.newImageObject({
+				file: 'img/newskins.jpg',
+				w: 300, h: 200,
+				x: 20, y: 40
+			});
+
+			var close_ns = game.newImageObject({
+				file: 'img/close_ns.png',
+				w: 32, h: 32,
+				x: 304, y: 56
+			});
+
+			//==========================[NEW SKINS]==========================// width = 640, height = 480
+
 			logo.draw();
 			copyright.draw();
 			play.draw();
@@ -360,6 +377,16 @@
 			invite.draw();
 			vk.draw();
 			news.draw();
+
+			if(lns == false) {
+				newskins.draw();
+				close_ns.draw();
+			}
+
+			if(m.isPeekObject('LEFT', close_ns)) {
+				lns = true;
+				game.setLoop('menu');
+			}
 
 			if(m.isPeekObject('LEFT', invite)) {
 				VK.callMethod("showInviteBox");
