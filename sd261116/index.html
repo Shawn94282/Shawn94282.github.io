@@ -303,7 +303,7 @@
 
 	*/
 
-	//==========================[NEW SKINS]==========================// width = 640, height = 480
+	//==========================[LOADING]==========================// width = 640, height = 480
 
 	var loadingSprites = game.newAnimationObject({
 		w: 200, h: 200,
@@ -312,7 +312,7 @@
 		animation: js.tiles.newAnimation('img/loading.gif', 200, 200, 8)
 	});
 
-	//==========================[NEW SKINS]==========================// width = 640, height = 480
+	//==========================[LOADING]==========================// width = 640, height = 480
 
 	var Menu = function () {
 		this.update = function () {
@@ -1158,6 +1158,28 @@
 			balanceBlock.draw();
 			balance.draw();
 
+			//===============[LOADING]===============
+
+			var Lfon = game.newRectObject({
+				w: width, h: height,
+				fillColor: '#fef2dc',
+				x: 0, y: 0
+			});		
+
+			//===============[LOADING]===============
+
+			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
+				loading = false;
+				lns = false;
+				game.setLoop('menu');
+			}); 
+
+			if(loading == true) {
+				Lfon.draw();
+				loadingSprites.draw();
+				loadingTimer.start();
+			}
+
 			if(m.isPeekObject('LEFT', back)) {
 				game.setLoop('menu');
 			}
@@ -1166,45 +1188,6 @@
 				order();
 			}
 		};
-	};
-
-	var Beta = function() {
-		this.update = function() {
-			var bg = game.newRectObject({
-				w: width, h: height,
-				fillColor: '#fef2dc'
-			});
-			var text = game.newTextObject({
-				text: 'Внимание! Данная игра находится на стадии разработки!',
-				x: width/20, y: height/20+100,
-				font: 'Arial',
-				style: 'bold',
-				size: 15,
-				color: '#728ebd'				
-			});
-			var text1 = game.newTextObject({
-				text: 'Если вы увидите какую-то недоработку, то знайте, скоро их не будет!',
-				x: width/20, y: height/20+130,
-				font: 'Arial',
-				style: 'bold',
-				size: 15,
-				color: '#728ebd'				
-			});
-			var text2 = game.newTextObject({
-				text: '(нажмите на экран что бы зайти в меню)',
-				x: width/20, y: height/20+160,
-				font: 'Arial',
-				style: 'bold',
-				size: 15,
-				color: '#728ebd'				
-			});
-			bg.draw();
-			text.draw();
-			text1.draw();
-			text2.draw();
-			if(m.isDown('LEFT')) 
-				game.setLoop('menu');
-		}
 	};
 
 	var LW1MENU = function() {
@@ -1301,27 +1284,19 @@
 				w: width, h: height,
 				fillColor: '#fef2dc',
 				x: 0, y: 0
-			});
-
-			var loadingText = game.newTextObject({
-				text: 'Загрузка...',
-				x: 280, y: 120,
-				font: 'Arial',
-				style: 'bold',
-				size: 20,
-				color: '#728ebd'				
-			});			
+			});		
 
 			//===============[LOADING]===============
 
 			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
 				loading = false;
+				lns = false;
 				game.setLoop('L1');
 			}); 
 
 			if(loading == true) {
 				Lfon.draw();
-				loadingText.draw();
+				loadingSprites.draw();
 				loadingTimer.start();
 			}
 
@@ -1425,27 +1400,19 @@
 				w: width, h: height,
 				fillColor: '#fef2dc',
 				x: 0, y: 0
-			});
-
-			var loadingText = game.newTextObject({
-				text: 'Загрузка...',
-				x: 300, y: 120,
-				font: 'Arial',
-				style: 'bold',
-				size: 20,
-				color: '#728ebd'				
-			});			
+			});		
 
 			//===============[LOADING]===============
 
 			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
 				loading = false;
+				lns = false;
 				game.setLoop('L2');
 			}); 
 
 			if(loading == true) {
 				Lfon.draw();
-				loadingText.draw();
+				loadingSprites.draw();
 				loadingTimer.start();
 			}
 
@@ -1552,27 +1519,19 @@
 				w: width, h: height,
 				fillColor: '#fef2dc',
 				x: 0, y: 0
-			});
-
-			var loadingText = game.newTextObject({
-				text: 'Загрузка...',
-				x: 300, y: 120,
-				font: 'Arial',
-				style: 'bold',
-				size: 20,
-				color: '#728ebd'				
-			});			
+			});		
 
 			//===============[LOADING]===============
 
 			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
 				loading = false;
+				lns = false;
 				game.setLoop('L3');
 			}); 
 
 			if(loading == true) {
 				Lfon.draw();
-				loadingText.draw();
+				loadingSprites.draw();
 				loadingTimer.start();
 			}
 
@@ -1595,7 +1554,6 @@
 	game.newLoopFromClassObject('overL2', new OverL2());
 	game.newLoopFromClassObject('overL3', new OverL3());
 	game.newLoopFromClassObject('shop', new Shop());
-	game.newLoopFromClassObject('beta', new Beta());
 	game.newLoopFromClassObject('L1', new LW1MENU());
 	game.newLoopFromClassObject('L2', new LW2MENU());
 	game.newLoopFromClassObject('L3', new LW3MENU());
@@ -1605,7 +1563,7 @@
 	BG: #fef2dc
 
 	*/
-	game.startLoop('beta');
+	game.startLoop('menu');
 	</script>
 </body>
 </html>
