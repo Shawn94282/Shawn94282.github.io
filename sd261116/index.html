@@ -114,7 +114,7 @@
 	var click = false;
 	var lns = false;
 	var loading = true;
-	var loadingTime = 3000;
+	var loadingTime = 2000;
 
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
@@ -390,6 +390,37 @@
 				newskins.draw();
 				close_ns.draw();
 				buy.draw();
+			}
+
+			//===============[LOADING]===============
+
+			var Lfon = game.newRectObject({
+				w: width, h: height,
+				fillColor: '#fef2dc',
+				x: 0, y: 0
+			});
+
+			var loadingText = game.newTextObject({
+				text: 'Загрузка...',
+				x: 280, y: 120,
+				font: 'Arial',
+				style: 'bold',
+				size: 20,
+				color: '#728ebd'				
+			});			
+
+			//===============[LOADING]===============
+
+			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
+				loading = false;
+				lns = false;
+				game.setLoop('L1');
+			}); 
+
+			if(loading == true) {
+				Lfon.draw();
+				loadingText.draw();
+				loadingTimer.start();
 			}
 
 			if(m.isPeekObject('LEFT', close_ns)) {
@@ -1282,7 +1313,7 @@
 
 			var loadingText = game.newTextObject({
 				text: 'Загрузка...',
-				x: 300, y: 120,
+				x: 280, y: 120,
 				font: 'Arial',
 				style: 'bold',
 				size: 20,
