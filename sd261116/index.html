@@ -113,6 +113,8 @@
 	var height = js.game.getWH().h;
 	var click = false;
 	var lns = false;
+	var loading = true;
+	var loadingTime = 3000;
 
 	var bg = [], oldB;
 	OOP.forInt(3, function (i) {
@@ -1252,6 +1254,36 @@
 				x: 465, y: 355
 			});
 
+			//===============[LOADING]===============
+
+			var Lfon = game.newRectObject({
+				w: width, h: height,
+				fillColor: '#fef2dc',
+				x: 0, y: 0
+			});
+
+			var loading = game.newTextObject({
+				text: 'Загрузка...',
+				x: 300, y: 120,
+				font: 'Arial',
+				style: 'bold',
+				size: 20,
+				color: '#728ebd'				
+			});			
+
+			//===============[LOADING]===============
+
+			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
+				loading = false;
+				game.setLoop('LW1MENU');
+			}); 
+
+			if(loading = true) {
+				Lfon.draw();
+				loading.draw();
+				loadingTimer.start();
+			}
+
 			L1.draw();
 			L2.draw();
 			L3.draw();
@@ -1344,6 +1376,36 @@
 				file: 'img/levels/L16_B.jpg',
 				x: 465, y: 355
 			});
+
+			//===============[LOADING]===============
+
+			var Lfon = game.newRectObject({
+				w: width, h: height,
+				fillColor: '#fef2dc',
+				x: 0, y: 0
+			});
+
+			var loading = game.newTextObject({
+				text: 'Загрузка...',
+				x: 300, y: 120,
+				font: 'Arial',
+				style: 'bold',
+				size: 20,
+				color: '#728ebd'				
+			});			
+
+			//===============[LOADING]===============
+
+			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
+				loading = false;
+				game.setLoop('LW2MENU');
+			}); 
+
+			if(loading = true) {
+				Lfon.draw();
+				loading.draw();
+				loadingTimer.start();
+			}
 
 			L1.draw();
 			L2.draw();
@@ -1440,6 +1502,36 @@
 				file: 'img/levels/L16_B.jpg',
 				x: 465, y: 355
 			});
+
+			//===============[LOADING]===============
+
+			var Lfon = game.newRectObject({
+				w: width, h: height,
+				fillColor: '#fef2dc',
+				x: 0, y: 0
+			});
+
+			var loading = game.newTextObject({
+				text: 'Загрузка...',
+				x: 300, y: 120,
+				font: 'Arial',
+				style: 'bold',
+				size: 20,
+				color: '#728ebd'				
+			});			
+
+			//===============[LOADING]===============
+
+			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
+				loading = false;
+				game.setLoop('LW3MENU');
+			}); 
+
+			if(loading = true) {
+				Lfon.draw();
+				loading.draw();
+				loadingTimer.start();
+			}
 
 			L1.draw();
 			L2.draw();
