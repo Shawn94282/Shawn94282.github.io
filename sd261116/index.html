@@ -367,6 +367,12 @@
 				x: 504, y: 74
 			});
 
+			var buy = game.newImageObject({
+				file: 'img/buy1.png',
+				w: 81, h: 24,
+				x: 239, y: 144
+			});
+
 			//==========================[NEW SKINS]==========================// width = 640, height = 480
 
 			logo.draw();
@@ -381,11 +387,17 @@
 			if(lns == false) {
 				newskins.draw();
 				close_ns.draw();
+				buy.draw();
 			}
 
 			if(m.isPeekObject('LEFT', close_ns)) {
 				lns = true;
 				game.setLoop('menu');
+			}
+
+			if(m.isPeekObject('LEFT', buy)) {
+				lns = true;
+				game.setLoop('skins');
 			}
 
 			if(m.isPeekObject('LEFT', invite)) {
