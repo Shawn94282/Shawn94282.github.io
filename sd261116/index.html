@@ -112,7 +112,9 @@
 	var width = js.game.getWH().w;
 	var height = js.game.getWH().h;
 	var click = false;
-	var lns = false;
+	//==========================[NEW SKINS]==========================//
+	var lns = true;
+	//==========================[NEW SKINS]==========================//
 	var loading = true;
 	var loadingTime = 2000;
 
@@ -439,6 +441,7 @@
 					game.setLoop('L3');
 			}
 			if(m.isPeekObject('LEFT', shop)) {
+				loading = true;
 			    VK.api("storage.get", {
 			    	user_id : user.id,
 			    	key : 'balance'
@@ -448,6 +451,7 @@
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', skins)) {
+				//loading = true;
 			    VK.api("secure.sendNotification", {
 			    	user_id : user.id,
 			    	message : '1111',
