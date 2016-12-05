@@ -1295,7 +1295,7 @@
 				game.setLoop('L1');
 			}); 
 
-			if(loading = true) {
+			if(loading == true) {
 				Lfon.draw();
 				loadingText.draw();
 				loadingTimer.start();
@@ -1419,6 +1419,12 @@
 				game.setLoop('L2');
 			}); 
 
+			if(loading == true) {
+				Lfon.draw();
+				loadingText.draw();
+				loadingTimer.start();
+			}
+
 			if(m.isPeekObject('LEFT', back))
 				game.setLoop('menu');
 			if(m.isPeekObject('LEFT', L1))
@@ -1539,6 +1545,12 @@
 				loading = false;
 				game.setLoop('L3');
 			}); 
+
+			if(loading == true) {
+				Lfon.draw();
+				loadingText.draw();
+				loadingTimer.start();
+			}
 
 			if(m.isPeekObject('LEFT', back))
 				game.setLoop('menu');
