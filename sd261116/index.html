@@ -290,16 +290,6 @@
 		x : 190, y : 0
 	});
 
-	/*var oblako = game.newImageObject({
-		file: 'img/oblako.png',
-		//scale: 0.5,
-		x : 65, y : 255
-	});
-
-	var developed = game.newTextObject({
-
-	})*/
-
 	var score = 0;
 	var money = 0;
 	var record = 10;
@@ -312,6 +302,12 @@
 	BG: #fef2dc
 
 	*/
+
+	var loadingSprites = game.newAnimationObject({
+		w: 1600, h: 200,
+		x: 0, y: 0,
+		animation: js.tiles.newAnimation('img/loading.gif', 1600, 200, 8)
+	});
 
 	var Menu = function () {
 		this.update = function () {
@@ -398,16 +394,7 @@
 				w: width, h: height,
 				fillColor: '#fef2dc',
 				x: 0, y: 0
-			});
-
-			var loadingText = game.newTextObject({
-				text: 'Загрузка...',
-				x: 280, y: 120,
-				font: 'Arial',
-				style: 'bold',
-				size: 20,
-				color: '#728ebd'				
-			});			
+			});		
 
 			//===============[LOADING]===============
 
@@ -418,72 +405,8 @@
 			}); 
 
 			if(loading == true) {
-				//Lfon.draw();
-				//loadingText.draw();
-				const path = document.querySelector('#wave');
-				const animation = document.querySelector('#moveTheWave');
-				const m = 0.512286623256592433;
-
-				function buildWave(w, h) {
-				  
-				  const a = h / 4;
-				  const y = h / 2;
-				  
-				  const pathData = [
-				    'M', w * 0, y + a / 2, 
-				    'c', 
-				      a * m, 0,
-				      -(1 - a) * m, -a, 
-				      a, -a,
-				    's', 
-				      -(1 - a) * m, a,
-				      a, a,
-				    's', 
-				      -(1 - a) * m, -a,
-				      a, -a,
-				    's', 
-				      -(1 - a) * m, a,
-				      a, a,
-				    's', 
-				      -(1 - a) * m, -a,
-				      a, -a,
-				    
-				    's', 
-				      -(1 - a) * m, a,
-				      a, a,
-				    's', 
-				      -(1 - a) * m, -a,
-				      a, -a,
-				    's', 
-				      -(1 - a) * m, a,
-				      a, a,
-				    's', 
-				      -(1 - a) * m, -a,
-				      a, -a,
-				    's', 
-				      -(1 - a) * m, a,
-				      a, a,
-				    's', 
-				      -(1 - a) * m, -a,
-				      a, -a,
-				    's', 
-				      -(1 - a) * m, a,
-				      a, a,
-				    's', 
-				      -(1 - a) * m, -a,
-				      a, -a,
-				    's', 
-				      -(1 - a) * m, a,
-				      a, a,
-				    's', 
-				      -(1 - a) * m, -a,
-				      a, -a
-				  ].join(' ');
-				  
-				  path.setAttribute('d', pathData);
-				}
-
-				buildWave(90, 60);
+				Lfon.draw();
+				loadingSprites.draw();
 				loadingTimer.start();
 			}
 
