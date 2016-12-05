@@ -35,7 +35,7 @@
  	};
 
  	VK.api('users.get', {'fields' : 'photo_50'}, function(data) {
- 		user['name'] = data.response[0].first_nane;
+ 		user['name'] = data.response[0].first_name;
  		user['id'] = data.response[0].id;
  	});
 
@@ -1254,6 +1254,23 @@
 				x: 465, y: 355
 			});
 
+			L1.draw();
+			L2.draw();
+			L3.draw();
+			L4.draw();	
+			L5.draw();
+			L6.draw();
+			L7.draw();
+			L8.draw();
+			L9.draw();
+			L10.draw();
+			L11.draw();
+			L12.draw();			
+			L13.draw();
+			L14.draw();
+			L15.draw();
+			L16.draw();
+
 			//===============[LOADING]===============
 
 			var Lfon = game.newRectObject({
@@ -1284,22 +1301,6 @@
 				loadingTimer.start();
 			}
 
-			L1.draw();
-			L2.draw();
-			L3.draw();
-			L4.draw();	
-			L5.draw();
-			L6.draw();
-			L7.draw();
-			L8.draw();
-			L9.draw();
-			L10.draw();
-			L11.draw();
-			L12.draw();			
-			L13.draw();
-			L14.draw();
-			L15.draw();
-			L16.draw();
 			if(m.isPeekObject('LEFT', back))
 				game.setLoop('menu');
 			if(m.isPeekObject('LEFT', L1))
@@ -1377,6 +1378,23 @@
 				x: 465, y: 355
 			});
 
+			L1.draw();
+			L2.draw();
+			L3.draw();
+			L4.draw();	
+			L5.draw();
+			L6.draw();
+			L7.draw();
+			L8.draw();
+			L9.draw();
+			L10.draw();
+			L11.draw();
+			L12.draw();			
+			L13.draw();
+			L14.draw();
+			L15.draw();
+			L16.draw();
+
 			//===============[LOADING]===============
 
 			var Lfon = game.newRectObject({
@@ -1398,31 +1416,9 @@
 
 			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
 				loading = false;
-				game.setLoop('LW2MENU');
+				game.setLoop('LW1MENU');
 			}); 
 
-			if(loading = true) {
-				Lfon.draw();
-				loadingText.draw();
-				loadingTimer.start();
-			}
-
-			L1.draw();
-			L2.draw();
-			L3.draw();
-			L4.draw();	
-			L5.draw();
-			L6.draw();
-			L7.draw();
-			L8.draw();
-			L9.draw();
-			L10.draw();
-			L11.draw();
-			L12.draw();			
-			L13.draw();
-			L14.draw();
-			L15.draw();
-			L16.draw();
 			if(m.isPeekObject('LEFT', back))
 				game.setLoop('menu');
 			if(m.isPeekObject('LEFT', L1))
@@ -1503,6 +1499,23 @@
 				x: 465, y: 355
 			});
 
+			L1.draw();
+			L2.draw();
+			L3.draw();
+			L4.draw();	
+			L5.draw();
+			L6.draw();
+			L7.draw();
+			L8.draw();
+			L9.draw();
+			L10.draw();
+			L11.draw();
+			L12.draw();			
+			L13.draw();
+			L14.draw();
+			L15.draw();
+			L16.draw();
+
 			//===============[LOADING]===============
 
 			var Lfon = game.newRectObject({
@@ -1524,31 +1537,9 @@
 
 			var loadingTimer = js.OOP.newTimer(loadingTime, function () { 
 				loading = false;
-				game.setLoop('LW3MENU');
+				game.setLoop('LW1MENU');
 			}); 
 
-			if(loading = true) {
-				Lfon.draw();
-				loadingText.draw();
-				loadingTimer.start();
-			}
-
-			L1.draw();
-			L2.draw();
-			L3.draw();
-			L4.draw();	
-			L5.draw();
-			L6.draw();
-			L7.draw();
-			L8.draw();
-			L9.draw();
-			L10.draw();
-			L11.draw();
-			L12.draw();			
-			L13.draw();
-			L14.draw();
-			L15.draw();
-			L16.draw();
 			if(m.isPeekObject('LEFT', back))
 				game.setLoop('menu');
 			if(m.isPeekObject('LEFT', L1))
