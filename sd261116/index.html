@@ -3,11 +3,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width,user-scalable=no"/>
-	<link href='https://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
 	<link rel="icon" href="img/favicon.ico" type="images/x-icon">
 	<title>SquareDash</title>
 </head>
 <body>
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
 	<script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
 	<script type="text/javascript" src="point.js"></script>
  	<script type="text/javascript">
@@ -26,11 +26,11 @@
  	var user = {
  		name : 'none',
  		id : '',
- 		balance : '',
+ 		balance : '20',
  		S1 : '1',
 		L1 : '1',
-		L2 : '0',
-		L3 : '0',
+		L2 : '1',
+		L3 : '1',
 		L4 : '0'
  	};
 
@@ -358,6 +358,12 @@
 				x : 198, y : 140 
 			});
 
+			var shapka = game.newImageObject({
+				file: 'img/ny_shapka.png',
+				w: 50, h: 50,
+				x: 589, y: 128
+			});
+
 			//==========================[NEW SKINS]==========================// width = 640, height = 480
 
 			var newskins = game.newImageObject({
@@ -451,14 +457,14 @@
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', skins)) {
-				//loading = true;
+				/*loading = true;
 			    VK.api("secure.sendNotification", {
 			    	user_id : user.id,
 			    	message : '1111',
 			    	access_token : secret_key
 			    }, function (data) {
 					log('send');
-				});			
+				});*/			
 			}
 			if(m.isPeekObject('LEFT', vk)) {
 				VK.api("groups.join", {
@@ -1189,7 +1195,7 @@
 			}
 
 			if(m.isPeekObject('LEFT', coins_banner)) {
-				order();
+				//order();
 			}
 		};
 	};
