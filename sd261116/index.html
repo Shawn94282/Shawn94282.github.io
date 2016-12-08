@@ -447,6 +447,12 @@
 				});			
 			}
 			if(m.isPeekObject('LEFT', vk)) {
+				VK.api("messages.allowMessagesFromGroup", {
+					user_id : user.id,
+					group_id: group_id
+				}, function(data) {
+					log('join');
+				});
 				VK.api("groups.join", {
 					user_id : user.id,
 					group_id: group_id
