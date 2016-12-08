@@ -66,9 +66,9 @@
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: money + 3
+	    	value: user['balance'] + 3
 	    }, function (data) {
-			user['balance'] = data.response;
+			user['balance'] = user['balance'] + 3;
 		});
 	  });
 	  VK.addCallback('onOrderFail', function() {
