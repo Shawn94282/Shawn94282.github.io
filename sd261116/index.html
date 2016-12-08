@@ -59,27 +59,7 @@
 	  }
 
 	  VK.addCallback('onOrderSuccess', function() {
-	    money += 3;
-	    VK.api("storage.set", {
-	    	user_id : user.id,
-	    	key : 'balance',
-	    	value: money
-	    }, function (data) {
-			console.log('susses');
-		});
-	  });
-	  VK.addCallback('onOrderFail', function() {
-	  	money += 3;
-	    VK.api("storage.set", {
-	    	user_id : user.id,
-	    	key : 'balance',
-	    	value: money
-	    }, function (data) {
-			console.log('susses');
-		});
-	  });
-	  VK.addCallback('onOrderCancel', function() {
-	  	VK.api("storage.get", {
+		VK.api("storage.get", {
 	  		user_id : user.id,
 	  		key: 'balance',
 	  	}, function (data) {
@@ -92,6 +72,12 @@
 	    }, function (data) {
 			money += 3;
 		});
+	  });
+	  VK.addCallback('onOrderFail', function() {
+	  	console.log('Fail');
+	  });
+	  VK.addCallback('onOrderCancel', function() {
+	  	console.log('Cancel');
 	  });
 
  	var width = 640, height = 480;
