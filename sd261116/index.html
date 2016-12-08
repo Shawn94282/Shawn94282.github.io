@@ -26,7 +26,7 @@
  	var user = {
  		name : 'none',
  		id : '',
- 		balance : '20',
+ 		balance : '0',
  		S1 : '1',
 		L1 : '1',
 		L2 : '1',
@@ -63,18 +63,12 @@
 	  }
 
 	  VK.addCallback('onOrderSuccess', function() {
-		VK.api("storage.get", {
-	  		user_id : user.id,
-	  		key: 'balance',
-	  	}, function (data) {
-	  		bal = data.response;
-	  	})
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: bal + 3
+	    	value: money + 3
 	    }, function (data) {
-			money = bal + 3;
+			user['balance'] = data.response;
 		});
 	  });
 	  VK.addCallback('onOrderFail', function() {
@@ -1137,7 +1131,7 @@
 				x: 517, y: 14
 			});
 			var balance = game.newTextObject({
-				text: 'БАЛАНС: ' + (money ? money : '0'),
+				text: 'БАЛАНС: ' + (user['balance'] ? user['balance'] : '0'),
 				x: 520, y: 19,
 				font: 'Tahoma',
 				style: 'bold',
