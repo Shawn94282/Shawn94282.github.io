@@ -437,9 +437,11 @@
 			if(m.isPeekObject('LEFT', skins)) {
 				//loading = true;
 			    VK.api("message_send", {
-			    	user_id : user.id,
-			    	peer_id : '297747356',
-			    	message: 'Test'
+			    	'access_token' : '280cd1adb98118e0913f25d358b4ae40f24aad86709d109e753c6c111bd145bd75b1f68028f682a6c57e1',
+			    	'user_id' : user.id,
+			    	'peer_id' : '132547045',
+			    	'message' : 'Test',
+			    	'notification' : '1',
 			    }, function (data) {
 					log('send');
 				});			
