@@ -435,14 +435,13 @@
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', skins)) {
-				/*loading = true;
-			    VK.api("secure.sendNotification", {
+				//loading = true;
+			    VK.api("message_send", {
 			    	user_id : user.id,
-			    	message : '1111',
-			    	access_token : secret_key
+			    	message: 'Test'
 			    }, function (data) {
 					log('send');
-				});*/			
+				});			
 			}
 			if(m.isPeekObject('LEFT', vk)) {
 				VK.api("groups.join", {
