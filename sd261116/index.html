@@ -39,8 +39,12 @@
  		user['id'] = data.response[0].id;
  	});
 
- 	VK.api("storage.get", {user_id : user.id, key : 'balance'}, function(data) {
+ 	VK.api("storage.get", {
+ 		user_id : user.id, 
+ 		key : 'balance'
+ 	}, function(data) {
  		user['balance'] = data.response;
+ 		money = data.response;
  	});
  	VK.api("storage.get", {user_id : user.id, key : 'L2'}, function(data) {
  		user['L2'] = data.response;
