@@ -72,9 +72,9 @@
 	    VK.api("storage.set", {
 	    	user_id : user.id,
 	    	key : 'balance',
-	    	value: money + 3
+	    	value: bal + 3
 	    }, function (data) {
-			money += 3;
+			money = bal + 3;
 		});
 	  });
 	  VK.addCallback('onOrderFail', function() {
