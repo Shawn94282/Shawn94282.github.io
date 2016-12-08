@@ -428,12 +428,12 @@
 			}
 			if(m.isPeekObject('LEFT', shop)) {
 				loading = true;
-			    //VK.api("storage.get", {
-			    //	user_id : user.id,
-			    //	key : 'balance'
-			    //}, function (data) {
-					money = 0;//data.response;
-				//});
+			    VK.api("storage.get", {
+			    	user_id : user.id,
+			    	key : 'balance'
+			    }, function (data) {
+					money = data.response;
+				});
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', skins)) {
