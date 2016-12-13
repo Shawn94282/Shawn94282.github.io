@@ -8,75 +8,8 @@
 </head>
 <body>
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
-	<script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
 	<script type="text/javascript" src="point.js"></script>
  	<script type="text/javascript">
-	
-	var vk_inited = false;
-	var bal = 0;
-	var group_id = 132547045;
- 	var secret_key = '0df095910df095910dd54348420da7a2c500df00df0959155b014df9017822eaf5c3192';
-
- 	VK.init(function() {
- 		vk_inited = true;
- 	}, function() {
-
- 	}, '5.60');
-
- 	var user = {
- 		name : 'none',
- 		id : '',
- 		balance : '0',
- 		S1 : '1',
-		L1 : '1',
-		L2 : '1',
-		L3 : '1',
-		L4 : '0'
- 	};
-
- 	VK.api('users.get', {'fields' : 'photo_50'}, function(data) {
- 		user['name'] = data.response[0].first_name;
- 		user['id'] = data.response[0].id;
- 	});
-
- 	VK.api("storage.get", {
- 		user_id : user.id, 
- 		key : 'balance'
- 	}, function(data) {
- 		user['balance'] = data.response;
- 		money = data.response;
- 	});
- 	VK.api("storage.get", {user_id : user.id, key : 'L2'}, function(data) {
- 		user['L2'] = data.response;
- 	});
- 	VK.api("storage.get", {user_id : user.id, key : 'L3'}, function(data) {
- 		user['L3'] = data.response;
- 	});
-
-
-	function order() {
-	    var params = {
-	      type: 'item',
-	      item: 'item2'
-	    };
-	    VK.callMethod('showOrderBox', params);
-	  }
-
-	  VK.addCallback('onOrderSuccess', function() {
-	    VK.api("storage.set", {
-	    	user_id : user.id,
-	    	key : 'balance',
-	    	value: user['balance'] + 3
-	    }, function (data) {
-			user['balance'] = user['balance'] + 3;
-		});
-	  });
-	  VK.addCallback('onOrderFail', function() {
-	  	console.log('Fail');
-	  });
-	  VK.addCallback('onOrderCancel', function() {
-	  	console.log('Cancel');
-	  });
 
  	var width = 640, height = 480;
 	var js = new PointJS('2d', width, height, {backgroundColor: '#757575'});
@@ -96,6 +29,9 @@
 	var width = js.game.getWH().w;
 	var height = js.game.getWH().h;
 	var click = false;
+	var L1 = 1;
+	var L2 = 1;
+	var L3 = 1;	
 	//==========================[NEW SKINS]==========================//
 	var lns = false;
 	//==========================[NEW SKINS]==========================//
@@ -271,11 +207,6 @@
 		x: 7, y: 7				
 	});	
 
-	var lvlunl = game.newImageObject({
-		file: 'img/unlock_lvl.png',
-		x : 190, y : 0
-	});
-
 	var score = 0;
 	var money = 0;
 	var record = 10;
@@ -411,17 +342,13 @@
 				game.setLoop('skins');
 			}
 
-			if(m.isPeekObject('LEFT', invite)) {
-				VK.callMethod("showInviteBox");
-			}
-
 			if(m.isPeekObject('LEFT', play)) {					
 				loading = true;
-				if(user.L1 == 1)
+				if(L1 == 1)
 					game.setLoop('L1');
-				if(user.L2 == 1)
+				if(L2 == 1)
 					game.setLoop('L2');				
-				if(user.L3 == 1)
+				if(L3 == 1)
 					game.setLoop('L3');
 			}
 			if(m.isPeekObject('LEFT', shop)) {
@@ -435,30 +362,7 @@
 				game.setLoop('shop');
 			}
 			if(m.isPeekObject('LEFT', skins)) {
-				//loading = true;
-			    VK.api("message_send", {
-			    	'access_token' : '280cd1adb98118e0913f25d358b4ae40f24aad86709d109e753c6c111bd145bd75b1f68028f682a6c57e1',
-			    	'user_id' : user.id,
-			    	'peer_id' : '132547045',
-			    	'message' : 'Test',
-			    	'notification' : '1',
-			    }, function (data) {
-					log('send');
-				});			
-			}
-			if(m.isPeekObject('LEFT', vk)) {
-				VK.api("messages.allowMessagesFromGroup", {
-					user_id : user.id,
-					group_id: group_id
-				}, function(data) {
-					log('join');
-				});
-				VK.api("groups.join", {
-					user_id : user.id,
-					group_id: group_id
-				}, function(data) {
-					log('join');
-				});
+				//loading = true;		
 			}
 			//console.log(key.getKeyList());
 		};
@@ -574,9 +478,6 @@
 					player.dy = -8;
 					player.angle = player.angle + 90;
 				}
-			}
-			if(score >= 500) {
-				lvlunl.draw();
 			}
 		};
 		this.entry = function () {
@@ -724,9 +625,6 @@
 					player.dy = -8;
 					player.angle = player.angle + 90;
 				}
-			}
-			if(score >= 500) {
-				lvlunl.draw();
 			}
 		};
 		this.entry = function () {
@@ -944,38 +842,9 @@
 			gameover.draw();
 			scoreT.draw();
 			back_menu.draw();
-			var share = game.newTextObject({
-				text: 'Поделится счетом',
-				font: 'Arial',
-				size: 15,
-				color: '#fef2dc',
-				style: 'Bold',
-				x: 230, y: 175
-			});
-			if(score >= 500) {
-				if(user.L1 == 1) {
-					user.L2 = 1;
-					VK.api("storage.set", {
-				    	user_id : user.id,
-				    	key : 'L2',
-				    	value: user.L2
-				    }, function (data) {
-						log('saved');
-					});	
-				}
-			}
-			share.draw();
 			if(m.isPeekObject('LEFT', back_menu)) {
 				player.angle = 0;
 				game.setLoop('menu');
-			}
-			if(m.isPeekObject('LEFT', share)) {
-				VK.api('wall.post', {
-					'message': 'В новой игре SquareDash на 1 уровне я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
-					'attachments': 'photo-132547045_456239018'
-				}, function (data) {
-					log('susses');
-				});
 			}
 		};
 	};
@@ -1015,38 +884,9 @@
 			gameover.draw();
 			scoreT.draw();
 			back_menu.draw();
-			var share = game.newTextObject({
-				text: 'Поделится счетом',
-				font: 'Arial',
-				size: 15,
-				color: '#fef2dc',
-				style: 'Bold',
-				x: 230, y: 175
-			});
-			if(score >= 500) {
-				if(user.L2 == 1) {
-					user.L3 = 1;
-					VK.api("storage.set", {
-				    	user_id : user.id,
-				    	key : 'L3',
-				    	value: user.L3
-				    }, function (data) {
-						log('saved');
-					});	
-				}
-			}
-			share.draw();
 			if(m.isPeekObject('LEFT', back_menu)) {
 				player.angle = 0;
 				game.setLoop('menu');
-			}
-			if(m.isPeekObject('LEFT', share)) {
-				VK.api('wall.post', {
-					'message': 'В новой игре SquareDash на 2 уровне я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
-					'attachments': 'photo-132547045_456239018'
-				}, function (data) {
-					log('susses');
-				});
 			}
 		};
 	};
@@ -1086,31 +926,9 @@
 			gameover.draw();
 			scoreT.draw();
 			back_menu.draw();
-			var share = game.newTextObject({
-				text: 'Поделится счетом',
-				font: 'Arial',
-				size: 15,
-				color: '#fef2dc',
-				style: 'Bold',
-				x: 230, y: 175
-			});
-			/*if(score >= 500) {
-				if(L1 == true) {
-					L2 = true;
-				}
-			}*/
-			share.draw();
 			if(m.isPeekObject('LEFT', back_menu)) {
 				player.angle = 0;
 				game.setLoop('menu');
-			}
-			if(m.isPeekObject('LEFT', share)) {
-				VK.api('wall.post', {
-					'message': 'В новой игре SquareDash на 3 уровне я набрал ' + score + ' очков, а сколько наберешь ты?\n\nИгра - https://vk.com/app5715796_297747356\nГруппа игры - https://vk.com/squaredash',
-					'attachments': 'photo-132547045_456239018'
-				}, function (data) {
-					log('susses');
-				});
 			}
 		};
 	};
@@ -1139,7 +957,7 @@
 				x: 517, y: 14
 			});
 			var balance = game.newTextObject({
-				text: 'БАЛАНС: ' + (user['balance'] ? user['balance'] : '0'),
+				text: 'БАЛАНС: 20',
 				x: 520, y: 19,
 				font: 'Tahoma',
 				style: 'bold',
