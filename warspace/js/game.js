@@ -81,8 +81,8 @@ var Loading = function() {
 		loadingT.draw();
 
 		if(zag_bl.w < 500)
-			zag_bl.w = zag_bl.w + rand(0.05,1);
-		if(zag_bl.w == 500)
+			zag_bl.w = zag_bl.w + rand(1,5);
+		if(zag_bl.w > 499)
 			game.setLoop('menu');
 	};
 };
