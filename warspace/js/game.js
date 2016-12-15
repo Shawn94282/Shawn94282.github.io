@@ -44,7 +44,7 @@ var meteor1=[];
 for(m1=0; m1<3; m1++) {
 	meteor1.push(
 		game.newImageObject({
-			file: 'img/meteors/meteorGrey_big1.png',
+			file: 'img/Meteors/meteorGrey_big1.png',
 			x: rand(0, 1500), y: rand(0, 1500),
 			w: 101, h: 84 
 		})
@@ -55,7 +55,7 @@ var meteor2=[];
 for(m2=0; m2<3; m2++) {
 	meteor2.push(
 		game.newImageObject({
-			file: 'img/meteors/meteorBrown_big1.png',
+			file: 'img/Meteors/meteorBrown_big1.png',
 			x: rand(0, 1500), y: rand(0, 1500),
 			w: 101, h: 84 
 		})
@@ -66,7 +66,7 @@ var meteor3=[];
 for(m3=0; m3<5; m3++) {
 	meteor1.push(
 		game.newImageObject({
-			file: 'img/meteors/meteorGrey_small1.png',
+			file: 'img/Meteors/meteorGrey_small1.png',
 			x: rand(0, 1500), y: rand(0, 1500),
 			w: 28, h: 28 
 		})
@@ -77,7 +77,7 @@ var meteor4=[];
 for(m4=0; m4<5; m4++) {
 	meteor2.push(
 		game.newImageObject({
-			file: 'img/meteors/meteorBrown_med1.png',
+			file: 'img/Meteors/meteorBrown_med1.png',
 			x: rand(0, 1500), y: rand(0, 1500),
 			w: 43, h: 43 
 		})
