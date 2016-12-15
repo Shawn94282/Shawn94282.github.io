@@ -339,7 +339,7 @@ var Game = function () {
 
 		pl.draw();
 		pl.rotate(mPos);
-		pl.moveTimeC(m.getPosition(), 20);
+		pl.moveTimeC(m.getPosition(), 100);
 		camera.setPositionC(pl.getPosition(1));
 
 		map.setPositionS(p(width - 110,  height - 110));
