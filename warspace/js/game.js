@@ -60,13 +60,10 @@ var loadingT = game.newTextObject({
 	color: 'white'
 });
 
-var copyright = game.newTextObject({
-	text: '2016 - 2017 © Дмитрий Вансович',
-	positionC: p(width/2-165, height/2+350),
-	size: 30,
-	font: 'Arial',
-	style: 'bold',
-	color: 'white'
+var copyright = game.newImageObject({
+	file: 'img/copyright.png',
+	positionC: p(width/2, height/2+330),
+	w: 500, h: 50
 });
 
 var Loading = function() {
@@ -84,6 +81,8 @@ var Loading = function() {
 			zag_bl.w = zag_bl.w + rand(1,5);
 		if(zag_bl.w > 499)
 			game.setLoop('menu');
+		if(m.isPeekObject('LEFT', copyright))
+			window.open('http://vk.com/dimonka282');
 	};
 };
 
@@ -128,6 +127,10 @@ var Menu = function() {
 		news.draw();
 		faq.draw();
 
+		if(m.isPeekObject('LEFT', news))
+			window.open('http://vk.com/warspace_official');
+		if(m.isPeekObject('LEFT', copyright))
+			
 		if(m.isPeekObject('LEFT', play))
 			game.setLoop('game');
 	};
@@ -726,6 +729,8 @@ var GameOver = function() {
 			text: 'Kills: ' + endKills
 		});		
 
+		if(m.isPeekObject('LEFT', copyright))
+			window.open('http://vk.com/dimonka282');
 		if(m.isPeekObject('LEFT', menu_bl)) {
 			game.setLoop('menu');
 			location.reload();
@@ -733,8 +738,16 @@ var GameOver = function() {
 	};
 };
 
+var Levels = function() {
+	this.update = function() {
+
+	};
+};
+
 game.newLoopFromClassObject('game', new Game());
 game.newLoopFromClassObject('loading', new Loading());
 game.newLoopFromClassObject('gameOver', new GameOver());
 game.newLoopFromClassObject('menu', new Menu());
+game.newLoopFromClassObject('levels', new Levels());
+
 game.startLoop('loading');
