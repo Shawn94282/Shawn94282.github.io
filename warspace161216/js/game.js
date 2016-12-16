@@ -130,7 +130,7 @@ var Menu = function() {
 		if(m.isPeekObject('LEFT', news))
 			window.open('http://vk.com/warspace_official');
 		if(m.isPeekObject('LEFT', copyright))
-			
+			window.open('https://vk.com/dimonka282');
 		if(m.isPeekObject('LEFT', play))
 			game.setLoop('game');
 	};
@@ -750,4 +750,4 @@ game.newLoopFromClassObject('gameOver', new GameOver());
 game.newLoopFromClassObject('menu', new Menu());
 game.newLoopFromClassObject('levels', new Levels());
 
-game.startLoop('loading');
+game.startLoop('menu');
