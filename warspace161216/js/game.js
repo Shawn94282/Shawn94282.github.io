@@ -750,4 +750,4 @@ game.newLoopFromClassObject('gameOver', new GameOver());
 game.newLoopFromClassObject('menu', new Menu());
 game.newLoopFromClassObject('levels', new Levels());
 
-game.startLoop('menu');
+game.startLoop('loading');
