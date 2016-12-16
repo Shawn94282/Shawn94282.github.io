@@ -152,7 +152,10 @@ for(x=0; x<15; x++) {
 var pl = game.newImageObject({
 	file: 'img/playerShip1_orange.png',
 	x: rand(0, 1500), y: rand(0, 1500),
-	w: 75, h: 99
+	w: 75, h: 99,
+	userData : {
+		energy : 0
+	}
 });
 
 var meteor1=[];
@@ -212,7 +215,7 @@ for(i=0; i<count; i++) {
 		})
 	);
 }
-var enemles1=[], i, count = 1;
+var enemles1=[], i, count = 3;
 for(i=0; i<count; i++) {
 	enemles1.push(
 		game.newImageObject({
@@ -225,7 +228,7 @@ for(i=0; i<count; i++) {
 		})
 	);
 }
-var enemles2=[], i, count = 1;
+var enemles2=[], i, count = 3;
 for(i=0; i<count; i++) {
 	enemles2.push(
 		game.newImageObject({
@@ -238,7 +241,7 @@ for(i=0; i<count; i++) {
 		})
 	);
 }
-var enemles3=[], i, count = 1;
+var enemles3=[], i, count = 3;
 for(i=0; i<count; i++) {
 	enemles3.push(
 		game.newImageObject({
@@ -258,10 +261,18 @@ for(i=0; i<count; i++) {
 		game.newImageObject({
 			file: 'img/pill_green.png',
 			x: rand(0, 1500), y: rand(0, 1500),
-			w: 22, h: 21,
-			userData : {
-				hp: 0
-			} 
+			w: 22, h: 21, 
+		})
+	);
+}
+
+var energy=[], i, count = 1;
+for(i=0; i<count; i++) {
+	energy.push(
+		game.newImageObject({
+			file: 'img/bolt_gold.png',
+			x: rand(0, 1500), y: rand(0, 1500),
+			w: 19, h: 30,
 		})
 	);
 }
@@ -277,6 +288,64 @@ var cell = game.newCircleObject({
 	fillColor: 'white'
 });
 
+var energy_cell = game.newCircleObject({
+	radius: 2,
+	fillColor: 'yellow'
+});
+
+
+
+
+
+var vrag1 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag2 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag3 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag4 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag5 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag6 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag7 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag8 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+var vrag9 = game.newCircleObject({
+	radius: 2,
+	fillColor: 'red'
+});
+
+
+
+
+
 var score = 0;
 var scoreT = game.newTextObject({
 	text: '' + score,
@@ -291,9 +360,19 @@ var lifesImg = game.newImageObject({
 	x: 20, y: 20,
 	w: 33, h: 26
 });
+var killsImg = game.newImageObject({
+	file: 'img/laserRed08.png',
+	x: 20, y: 66,
+	w: 34, h: 32
+});
 var x = game.newImageObject({
 	file: 'img/numeralX.png',
 	x: 60, y: 20,
+	w: 17, h: 17
+});
+var x1 = game.newImageObject({
+	file: 'img/numeralX.png',
+	x: 60, y: 66,
 	w: 17, h: 17
 });
 var l0 = game.newImageObject({
@@ -313,6 +392,36 @@ var l2 = game.newImageObject({
 });
 var l3 = game.newImageObject({
 	file: 'img/numeral3.png',
+	x: 60, y: 20,
+	w: 20, h: 20
+});
+var l4 = game.newImageObject({
+	file: 'img/numeral4.png',
+	x: 60, y: 20,
+	w: 20, h: 20
+});
+var l5 = game.newImageObject({
+	file: 'img/numeral5.png',
+	x: 60, y: 20,
+	w: 20, h: 20
+});
+var l6 = game.newImageObject({
+	file: 'img/numeral6.png',
+	x: 60, y: 20,
+	w: 20, h: 20
+});
+var l7 = game.newImageObject({
+	file: 'img/numeral7.png',
+	x: 60, y: 20,
+	w: 20, h: 20
+});
+var l8 = game.newImageObject({
+	file: 'img/numeral8.png',
+	x: 60, y: 20,
+	w: 20, h: 20
+});
+var l9 = game.newImageObject({
+	file: 'img/numeral9.png',
 	x: 60, y: 20,
 	w: 20, h: 20
 });
@@ -428,6 +537,17 @@ var Game = function () {
 			}
 		};
 
+		for(i in energy) {
+			if(energy[i].isInCamera()) {
+				energy[i].draw();
+				if(pl.isIntersect(energy[i])) {
+					pl.energy = 1;
+					energy[i].moveTimeC(1000000000, 1);				
+				}
+			}
+		};
+
+
 		OOP.forArr(buls, function(el) {
 			if(el.life) {
 				el.draw();
@@ -536,10 +656,14 @@ var Game = function () {
 			buls.push(bul);
 		}
 
+		//======================================================[**PLAYER**]======================================================
+
 		pl.draw();
 		pl.rotate(mPos);
 		pl.moveTimeC(m.getPosition(), 60);
 		camera.setPositionC(pl.getPosition(1));
+
+		//======================================================[**MAP**]======================================================
 
 		map.setPositionS(p(width - 210,  height - 210));
 		map.draw();
@@ -548,6 +672,50 @@ var Game = function () {
 		cell.move(p(pl.getPosition(1).x/8.5, pl.getPosition(1).y/8.5));
 		cell.draw();
 
+		energy_cell.setPositionS(p(width - 210,  height - 210));
+		energy_cell.move(p(energy[0].getPosition(1).x/8.5, energy[0].getPosition(1).y/8.5));
+		energy_cell.draw();
+
+		if(pl.energy) {
+			vrag1.setPositionS(p(width - 210,  height - 210));
+			vrag1.move(p(enemles1[0].getPosition(1).x/8.5, enemles1[0].getPosition(1).y/8.5));
+			vrag1.draw();
+
+			vrag2.setPositionS(p(width - 210,  height - 210));
+			vrag2.move(p(enemles1[1].getPosition(1).x/8.5, enemles1[1].getPosition(1).y/8.5));
+			vrag2.draw();
+
+			vrag3.setPositionS(p(width - 210,  height - 210));
+			vrag3.move(p(enemles1[2].getPosition(1).x/8.5, enemles1[2].getPosition(1).y/8.5));
+			vrag3.draw();
+
+			vrag4.setPositionS(p(width - 210,  height - 210));
+			vrag4.move(p(enemles2[0].getPosition(1).x/8.5, enemles2[0].getPosition(1).y/8.5));
+			vrag4.draw();
+
+			vrag5.setPositionS(p(width - 210,  height - 210));
+			vrag5.move(p(enemles2[1].getPosition(1).x/8.5, enemles2[1].getPosition(1).y/8.5));
+			vrag5.draw();
+
+			vrag6.setPositionS(p(width - 210,  height - 210));
+			vrag6.move(p(enemles2[2].getPosition(1).x/8.5, enemles2[2].getPosition(1).y/8.5));
+			vrag6.draw();		
+
+			vrag7.setPositionS(p(width - 210,  height - 210));
+			vrag7.move(p(enemles3[0].getPosition(1).x/8.5, enemles3[0].getPosition(1).y/8.5));
+			vrag7.draw();
+
+			vrag8.setPositionS(p(width - 210,  height - 210));
+			vrag8.move(p(enemles3[1].getPosition(1).x/8.5, enemles3[1].getPosition(1).y/8.5));
+			vrag8.draw();
+
+			vrag9.setPositionS(p(width - 210,  height - 210));
+			vrag9.move(p(enemles3[2].getPosition(1).x/8.5, enemles3[2].getPosition(1).y/8.5));
+			vrag9.draw();
+		};
+
+		//======================================================[**SCORE**]======================================================
+
 		scoreT.setPositionS(p(880, 20));
 		scoreT.draw();
 
@@ -555,6 +723,54 @@ var Game = function () {
 			text: '' + score
 		});
 
+		//======================================================[**KILLS**]======================================================
+
+		killsImg.setPositionS(p(20, 66));
+		killsImg.draw();
+		x1.setPositionS(p(55, 74));
+		x1.draw();		
+		if(kills == 0) {
+			l0.setPositionS(p(75, 71));
+			l0.draw();
+		}
+		if(kills == 1) {
+			l1.setPositionS(p(75, 71));
+			l1.draw();
+		}
+		if(kills == 2) {
+			l2.setPositionS(p(75, 71));
+			l2.draw();
+		}
+		if(kills == 3) {
+			l3.setPositionS(p(75, 71));
+			l3.draw();
+		}
+		if(kills == 4) {
+			l4.setPositionS(p(75, 71));
+			l4.draw();
+		}
+		if(kills == 5) {
+			l5.setPositionS(p(75, 71));
+			l5.draw();
+		}
+		if(kills == 6) {
+			l6.setPositionS(p(75, 71));
+			l6.draw();
+		}
+		if(kills == 7) {
+			l7.setPositionS(p(75, 71));
+			l7.draw();
+		}
+		if(kills == 8) {
+			l8.setPositionS(p(75, 71));
+			l8.draw();
+		}
+		if(kills == 9) {
+			l9.setPositionS(p(75, 71));
+			l9.draw();
+		}
+
+		//======================================================[**LIFES**]======================================================
 
 		lifesImg.setPositionS(p(20, 20));
 		lifesImg.draw();
@@ -578,7 +794,9 @@ var Game = function () {
 			l3.draw();
 		}
 
-		if(kills == 4) {
+		//======================================================[**END**]======================================================
+
+		if(kills == 9) {
 			if(lifes == 3)
 				endScore = endScore + 30;
 			if(lifes == 2)
