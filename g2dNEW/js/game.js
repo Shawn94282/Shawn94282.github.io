@@ -8,7 +8,7 @@ var cursorDefaul = function() {
 
 var width = 1000, height = 750;
 var js = new PointJS('2d', width, height, {
-	backgroundColor: '#D9D9D9'
+	backgroundColor: '#6EC4ED'
 });
 js.system.initFullScale();
 
@@ -63,7 +63,8 @@ var drawRoad = function() {
 // Красный - #D30321 
 // Зеленый - #59eda7
 // Желтый - #f5d95e
-// Голубой - #769dac
+// Голубой - #6EC4ED
+// Серый - #4A4A4A
 //
 //====================================[HUD]==================================================
 var speedF;
@@ -80,17 +81,63 @@ var drawHud = function() {
 		alpha: 0.9
 	});
 
+	var arboxZ = game.newRectObject({
+		w: 100, h: 15,
+		fillColor: '#FFFFFF',
+		alpha: 0.5
+	});
+
+	var arbox = game.newRectObject({
+		w: man.armour, h: 15,
+		fillColor: '#FFFFFF'
+	});
+
+	var artext = game.newTextObject({
+		text:  man.armour,
+		color: '#FFFFFF',
+		font: 'font1',
+		strokeColorText: '#000000',
+		strokeWidthText: 1,
+		size: 15,
+	});
+
 	var hpboxZ = game.newRectObject({
 		w: 100, h: 15,
 		fillColor: '#D30321',
-		alpha: 0.6
+		alpha: 0.5
 	});
 
-	moneyText.setPositionCS(p(width - 80,  60));
+	var hpbox = game.newRectObject({
+		w: man.hp, h: 15,
+		fillColor: '#D30321'
+	});
+
+	var hptext = game.newTextObject({
+		text:  man.hp,
+		color: '#FFFFFF',
+		font: 'font1',
+		strokeColorText: '#000000',
+		strokeWidthText: 1,
+		size: 15,
+	});
+
+	moneyText.setPositionCS(p(width - 80,  20));
 	moneyText.draw();
 
-	hpboxZ.setPositionCS(p(width - 80,  40));
+	arboxZ.setPositionS(p(width - 115,  45));
+	arboxZ.draw();
+	hpboxZ.setPositionS(p(width - 115,  65));
 	hpboxZ.draw();
+
+	arbox.setPositionS(p(width - 115,  45));
+	arbox.draw();
+	hpbox.setPositionS(p(width - 115,  65));
+	hpbox.draw();
+
+	artext.setPositionCS(p(width - 65,  47));
+	artext.draw();
+	hptext.setPositionCS(p(width - 65,  67));
+	hptext.draw();
 
 	if(inCar) {
 		if(speedW < 0.5 || speedS < 0.5) 
@@ -115,7 +162,7 @@ var drawHud = function() {
 			speedF = 6;
 
 		if(speedW > 6 || speedS > 6) 
-			speedF = 9;
+			speedF = 7;
 
 		if(speedW > 7 || speedS > 7) 
 			speedF = 8;
@@ -217,8 +264,8 @@ var drawHud = function() {
 var t = game.newBackgroundObject({
 	file: 'img/bg.jpg',
 	w: 100, h: 100,
-	countY: 30,
-	countX: 30
+	countY: 100,
+	countX: 100
 });
 
 var man = game.newImageObject({
@@ -238,8 +285,8 @@ var car_taxi1 = game.newImageObject({
 	h: 69, w: 142,
 	scale: 1.3,
 	userData : {
-		MAXspeedW: 6.9,
-		MAXspeedS: 2.9,
+		MAXspeedW: 7.9,
+		MAXspeedS: 3.9,
 		MAXturn: 5
 	}
 });
@@ -256,8 +303,8 @@ var Game = function() {
 	this.update = function() {
 		game.clear();
 		t.draw();
-		drawHelp();
 		drawRoad();
+		drawHelp();
 		drawHud();
 		var manPos = man.getPosition(0);
 	
@@ -447,6 +494,16 @@ var drawHelp = function() {
 		alpha: 0.9		
 	});
 
+	/*var infoI = game.newImageObject({
+		w: 16, h: 16,
+		file: 'img/info.png'
+	});
+
+	var infoB = game.newCircleObject({
+		radius: 13,
+		fillColor: '#FFFFFF'
+	});*/
+
 	if(distCAR < 70) {
 		blockF.setPositionS(p(20,  (height/2)-20));
 		blockF.draw();
@@ -454,7 +511,12 @@ var drawHelp = function() {
 		helpF1.setPositionS(p(25,  (height/2)-15));
 		helpF1.draw();
 		helpF2.setPositionS(p(25,  (height/2)+5));
-		helpF2.draw();				
+		helpF2.draw();	
+
+		//infoB.setPositionS(p(0,  0));
+		//infoB.draw();						
+		//infoI.setPositionS(p(5,  5));
+		//infoI.draw();
 	};
 };
 
@@ -463,7 +525,8 @@ var drawHelp = function() {
 // Красный - #D30321 
 // Зеленый - #59eda7
 // Желтый - #f5d95e
-// Голубой - #769dac
+// Голубой - #6EC4ED
+// Серый - #4A4A4A
 //
 
 game.newLoopFromClassObject('game', new Game());
