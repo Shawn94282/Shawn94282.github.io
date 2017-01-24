@@ -163,4 +163,4 @@ game.newLoopFromClassObject('menu', new Menu());
 game.newLoopFromClassObject('game_settings', new Game_settings());
 game.newLoopFromClassObject('game_q_1', new Game_q_1());
 
-game.startLoop('menu');
+game.startLoop('game_q_1');
