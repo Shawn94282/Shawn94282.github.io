@@ -21,7 +21,7 @@ var Records = function () {
 			align : 'center'
 		});
 
-		if (touch.isPress()) {
+		if (m.isPress('LEFT')) {
 			game.setLoop('menu');
 		}
 

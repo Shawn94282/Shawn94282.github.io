@@ -11,6 +11,7 @@ var OOP    = pjs.OOP;            // Object's manager
 var math   = pjs.math;           // More Math-methods
 
 var touch = pjs.touchControl.initTouchControl();
+var m = pjs.mouseControl.initMouseControl();
 
 var width = game.getWH().w;
 var height = game.getWH().h;
@@ -132,8 +133,23 @@ var Game = function () {
 		}
 
 		var2.draw();
+		if(m.isInObject(var2)) {
+			var2.fillColor = '#E3AE57';
+		} else {
+			var2.fillColor = '#DC3D24';
+		}
 		var1.draw();
+		if(m.isInObject(var1)) {
+			var1.fillColor = '#E3AE57';
+		} else {
+			var1.fillColor = '#DC3D24';
+		}
 		var3.draw();
+		if(m.isInObject(var3)) {
+			var3.fillColor = '#E3AE57';
+		} else {
+			var3.fillColor = '#DC3D24';
+		}
 
 		brush.drawText({
 			text : var1.value,
@@ -170,30 +186,26 @@ var Game = function () {
 			y : sizeText / 2,
 			align : 'center'
 		});
+		var tmp;
 
-		if (touch.isPress()) {
+		if (m.isPeekStatic('LEFT', var1.getStaticBox())) {
+			tmp = var1.value;
+		} else if (m.isPeekStatic('LEFT', var2.getStaticBox())) {
+			tmp = var2.value;
+		}else  if (m.isPeekStatic('LEFT', var3.getStaticBox())) {
+			tmp = var3.value;
+		} else {
+			return;
+		}
 
-			var tmp;
-
-			if (touch.isPeekStatic(var1.getStaticBox())) {
-				tmp = var1.value;
-			} else if (touch.isPeekStatic(var2.getStaticBox())) {
-				tmp = var2.value;
-			}else  if (touch.isPeekStatic(var3.getStaticBox())) {
-				tmp = var3.value;
-			} else {
-				return;
-			}
-
-			if (tmp == result) {
-				gen();
-				score++;
-				if (score > record)
-					pjs.memory.local.save('record', score);
-			}
-			else {
-				game.setLoop('records');
-			}
+		if (tmp == result) {
+			gen();
+			score++;
+			if (score > record)
+				pjs.memory.local.save('record', score);
+		}
+		else {
+			game.setLoop('records');
 		}
 
 	};

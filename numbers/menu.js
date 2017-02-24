@@ -6,6 +6,7 @@ var Menu = function (pjs, obj) {
 	var width = game.getWH().w;
 	var height = game.getWH().h;
 	var touch = pjs.touchControl.initTouchControl();
+	var m = pjs.mouseControl.initMouseControl();
 	var r = game.getResolution();
 
 	var gameName = obj.name || false;
@@ -33,7 +34,7 @@ var Menu = function (pjs, obj) {
 		obj.color = 'white';
 		obj.ondraw = function () {
 
-			if (touch.isInObject(this)) {
+			if (m.isInObject(this)) {
 				this.fillColor = clr.itemHover;
 				this.color = clr.itemColorHover;
 			} else {
@@ -102,7 +103,7 @@ var Menu = function (pjs, obj) {
 		OOP.forArr(items, function (el) {
 			el.draw();
 
-			if (touch.isPeekObject(el)) {
+			if (m.isPeekObject('LEFT', el)) {
 				game.setLoop(el.loop);
 			}
 
