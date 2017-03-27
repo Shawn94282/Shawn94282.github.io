@@ -1,5 +1,5 @@
 var pjs = new PointJS('2D', 1000, 750); // 16:9
-pjs.system.initFullPage(); // for Full Page mode
+//pjs.system.initFullPage(); // for Full Page mode
 // pjs.system.initFullScreen(); // for Full Screen mode (only Desctop)
 
 var log    = pjs.system.log;     // log = console.log;
@@ -19,58 +19,81 @@ var width = game.getWH().w;
 var height = game.getWH().h;
 //var r = game.getResolution();
 
+var Menu = function() {
+	var logotype = game.newImageObject({
+		file: 'logo.png',
+		w: 372, h: 117,
+		positionC: p(504, 100),
+		//scale: 0.7,
+		strokeColor: 'black',
+		strokeWidth: 3
+	});
+	var left_backgroud = game.newRectObject({
+		w: 500, h: 750,
+		x: 0, y: 0,
+		fillColor: '#3498db'
+	});
+	var right_backgroud = game.newRectObject({
+		w: 500, h: 750,
+		x: 500, y: 0,
+		fillColor: '#e74c3c'
+	});
+
+	var menu_box_one = game.newRectObject({
+		fillColor: 'black',
+		w: 300, h: 50,
+		positionC: p(500, 300)
+	})
+
+	this.update = function() {
+		game.clear();
+		//game.fill('black');
+
+		left_backgroud.draw();
+		right_backgroud.draw();
+		logotype.draw();
+
+		menu_box_one.draw();
+	}
+}
+
 var Game_level_1 = function() {
 	var debug_mod = false;
 	var double_jump = false;
-	var player_freeze = false;
+	var player_freeze = true;
 
 	var map = {
-		width: 50,
-		height: 50,
+		width: 25,
+		height: 25,
 		sourse : [
+			'',
+			'',
+			'',
+			'',
+			'                                                P',
 			'                                                                                                                                                                                                                                                                          ',	
 			'                                                                                                                                                                                                                                                                          ',	
-			'                                                                                                                                                                                                                                                                          ',	
-			'                                                                                                                                                                                                                                                                          ',	
-			'                                                                                                                                                                                                                                                                          ',	
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                            P                                                                                                                                                                                             ',
-			'                                                                                             0000000                                                                                                                                                                      ',
-			'                                                                           000               0000000                                                                                                                                                                      ',
-			'                                                                                  11111111                                                                                                                                                                                ',
-			'                                                                 111111           11111111                                                                                                                                                                                ',
-			'                                                                 111111  0000000                                                                                                                                                                                          ',
-			'                                                                         0000000                111111111                                                                                                                                                                 ',
-			'                                                                                    00000000    111111111                                                                                                                                                                 ',
-			'                                                                 00000              00000000                                                                                                                                                                              ',
-			'                                                                 00000                                                                                                                                                                                                    ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                         0000   0000                                                                                                                                                                                      ',
-			'                                                                        000000 000000                                                                                                                                                                                     ',
-			'                                                                        0000000000000                                                                                                                                                                                     ',
-			'                                                                         00000000000                                                                                                                                                                                      ',
-			'                                                                          000000000                                                                                                                                                                                       ',
-			'                                                                           0000000                                                                                                                                                                                        ',
-			'                                                                            00000                                                                                                                                                                                         ',
-			'                                                                             000                                                                                                                                                                                          ',
-			'                                                                              0                                                                                                                                                                                           ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
-			'                                                                                                                                                                                                                                                                          ',
+			'                              11111111111111111111111111111111111111                                                                                                                                                                                                      ',	
+			'                              1                                    1                                                                                                                                                                                                      ',	
+			'                              1 00000 0000  00  0000 00000 0    00 1                                                                                                                                                                                                      ',	
+			'                              1 0   0 0  0 0  0 0      0   0   0 0 1                                                                                                                                                                                                      ',
+			'                              1 0   0 0000 0  0 0      0   0  0  0 1                                                                                                                                                                                                      ',
+			'                              1 0   0 0    0  0 0      0   0 0   0 1                                                                                                                                                                                                      ',
+			'                              1 0   0 0     00  0000   0   00    0 1                                                                                                                                                                                                      ',                                                                                                                                                              
+			'                              1                                    1                                                                                                                                                                                                      ',
+			'                              11111111111111111111111111111111111111                                                                                                                                                                                                      ',                                                                                                                                                                                                                                                                          
+			'',
+			'',
+			'',
+			'',
+			'',
+			'',
+			'',
+			'',
+			'',
+			'',
+			'',
+			'',			
 			'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
 		]
 	};
@@ -339,5 +362,6 @@ var Game_level_1 = function() {
 	};
 };
 
+game.newLoopFromClassObject('menu', new Menu());
 game.newLoopFromClassObject('glvl1', new Game_level_1());
 game.startLoop('glvl1');
