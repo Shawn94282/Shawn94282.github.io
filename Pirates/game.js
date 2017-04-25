@@ -1,4 +1,4 @@
-var pjs = new PointJS('2D', 800, 600); // 16:9
+var pjs = new PointJS('2D', 1000, 750); // 16:9
 //pjs.system.initFullPage(); // for Full Page mode
 // pjs.system.initFullScreen(); // for Full Screen mode (only Desctop)
 
