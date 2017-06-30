@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Wartanks</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/alertify.min.css"/>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/default.min.css"/>
+	<link rel="stylesheet" href="css/tanks.css">
+
+	<link rel="shortcut icon" href="img/icon.png">
+
+</head>
+<body onload="window.resizeTo(500,500)">
+	<div id="top" class="top-menu">
+		<input class="btn btn-warning" type="submit" value="Spectate mode">
+		<input id="back" class="btn btn-primary" type="submit" value="Back to menu">
+	</div>
+
+	<div id="prompt" class="name-prompt">
+		<div class="logo">
+	    	<label>WARTANKS</label>
+    	</div>
+		<div class="input-group">
+	      <input id="tank-name" maxlength="13" type="text" class="form-control" placeholder="Name your tank" onblur="f()" autocomplete="off">
+	      <span class="input-group-btn">
+	        <button id="join" class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+	        <button disabled id="spec" class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
+	      </span>
+	    </div>
+	    <div class="tank-select col-md-12">
+	    	<label>Choose your tank:</label>
+	      	<ul class="tank-selection">
+	      		<li class="selected" data-tank="1">
+	      			<img src="img/preview-tank-1.png">
+	      		</li>
+	      		<li data-tank="2">
+	      			<img src="img/preview-tank-2.png">
+	      		</li>
+	      		<li data-tank="3">
+	      			<img src="img/preview-tank-3.png">
+	      		</li>
+	      	</ul>
+	      	<p>Copyright 2017 Dmitry Vansovich</p>
+    	</div>
+	</div>
+
+	<div id="chat" class="chat-box">
+		<div class="input-group">
+		    <button id="chat-send" class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> SEND MESSAGE</button>
+		</div>
+	</div>
+
+	<div id="arena" class="arena">
+	</div>
+	
+    <script src="//cdn.jsdelivr.net/alertifyjs/1.10.0/alertify.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/socket.io.js"></script>
+	<script type="text/javascript" src="js/tanks.js"></script>
+	<script type="text/javascript" src="js/client.js"></script>
+
+	<script>
+		function f() {
+	        var input = document.getElementById('tank-name')
+	        input.value = input.value.replace(/\s/g, '')
+	    }
+
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','UA-XXXXX-X');ga('send','pageview');
+	</script>
+</body>
+</html>
