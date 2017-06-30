@@ -1,5 +1,5 @@
-var WIDTH = 700;
-var HEIGHT = 700; // 633 with spectate mode // 676 disabled spectate
+var WIDTH = 600;
+var HEIGHT = 600; // 633 with spectate mode // 676 disabled spectate
 var socket = io.connect('http://wartanks-dmitryvansovich94628623.codeanyapp.com');
 var game = new Game('#arena', WIDTH, HEIGHT, socket);
 var selectedTank = 1;
