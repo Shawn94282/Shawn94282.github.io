@@ -345,4 +345,4 @@ var Game_level_1 = function() {
 
 game.newLoopFromClassObject('menu', new Menu());
 game.newLoopFromClassObject('glvl1', new Game_level_1());
-game.startLoop('menu');
+game.startLoop('glvl1');
