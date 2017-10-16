@@ -58,7 +58,7 @@ var Menu = function() {
 }
 
 var Game_level_1 = function() {
-	var debug_mod = false;
+	var debug_mod = true;
 	var double_jump = false;
 	var player_freeze = false;
 
