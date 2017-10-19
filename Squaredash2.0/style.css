@@ -158,3 +158,65 @@ input[type=range].range-orange::-moz-range-progress {
   background-color: #d9a93a;
   border-radius: 2px;
 }
+
+div.left{
+    margin: 0;
+    width: 50%;
+    float: left;
+}
+
+div.right{
+    margin: 0;
+    width: 50%;
+    float: right;
+}
+
+button.btn-white{
+    outline: none;
+    border: none;
+    box-shadow: none;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-weight: 900;
+    background-color: #fff;
+    color: #000;
+}
+
+button.btn-black{
+    outline: none;
+    border: none;
+    box-shadow: none;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-weight: 900;
+    background-color: #000;
+    color: #fff;
+}
+
+button.btn-green{
+    outline: none;
+    border: none;
+    box-shadow: none;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-weight: 900;
+    background-color: #79aa58;
+    color: #fff;
+}
+
+button:active, button:focus, button:hover{
+    outline: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+div.loseTable .back-black, div.loseTable .back-white{
+    padding: 6px;
+}
