@@ -220,3 +220,7 @@ button:active, button:focus, button:hover{
 div.loseTable .back-black, div.loseTable .back-white{
     padding: 6px;
 }
+
+.nofloat{
+    float: none;
+}

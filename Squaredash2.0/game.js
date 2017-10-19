@@ -31,6 +31,9 @@ game.newLoopFromConstructor('level1', function () {
 	var platformBlock = [];
 	var winBlocks = [];
 	var moneyBlocks = [];
+
+	var level_finished = false;
+
 	pjs.levels.forStringArray({w: 40, h: 40, source: [
 		'                                                                                              G   ',
 		'                                                                                --  --  --  ---       ',
@@ -81,7 +84,7 @@ game.newLoopFromConstructor('level1', function () {
 				fillColor: '#79aa58',
 				alpha: 0.5
 			}));	
-		} else if(S === "G"){
+		} else if(level_finished == false && S === "G"){
 			moneyBlocks.push(game.newImageObject({
 				w: W/2, h: H/2,
 				x: X+(W/2)/2, y: Y+H/1.2,
@@ -115,7 +118,7 @@ game.newLoopFromConstructor('level1', function () {
 	`;
 
 	statsMenu.innerHTML = `
-		<div class="back-black"><h1>Уровень 1</h1><div style="text-align: left;"><h1><input type="range" class="range-orange" min="1" max="5" value="1" disabled><br>Сложность</h1><h1><input type="range" class="range-green" min="1" max="5" value="2" disabled><br>Скорость</h1></div>
+		<button class="btn-green" onclick="menu();">Меню</button>	
 	`;
 
 	var lose = function(){
@@ -140,7 +143,7 @@ game.newLoopFromConstructor('level1', function () {
 		game.clear();
 
 		if (speed.x < 5) speed.y += 0.13;
-		else speed.y += 0.13;
+		else if(speed.x > 4) speed.y += 0.13;
 		if (jump == false){
 			if (key.isPress('W') || key.isPress('UP') || key.isPress('SPACE') || mouse.isPress('LEFT')){
 				jump = true;
@@ -187,12 +190,14 @@ game.newLoopFromConstructor('level1', function () {
 
 			if (pl.isStaticIntersect(w)){
 				gamestopped = true;
+				level_finished = true;
 				game.stop();
 				win();
 			}
 		});
 
 		OOP.forArr(moneyBlocks, function(m, mId){
+			m.setAlpha(1 - pl.getDistanceC(m.getPositionC()) / 300);
 			if (m.isInCameraStatic()) m.draw();
 
 			if (pl.isStaticIntersect(m)){
@@ -206,6 +211,7 @@ game.newLoopFromConstructor('level1', function () {
 		});
 
 		OOP.forArr(triangleBlock, function(t){
+			t.setAlpha(1 - pl.getDistanceC(t.getPositionC()) / 300);
 			if (t.isInCameraStatic()) t.draw();
 
 			if (pl.getDistanceC(t.getPositionC()) < 100){
@@ -220,6 +226,7 @@ game.newLoopFromConstructor('level1', function () {
 		});
 
 		OOP.forArr(platformBlock, function(p){
+			p.setAlpha(1 - pl.getDistanceC(p.getPositionC()) / 300);
 			if (p.isInCameraStatic()) p.draw();
 
 			if (pl.getDistanceC(p.getPositionC()) < 100){
@@ -245,7 +252,6 @@ game.newLoopFromConstructor('level1', function () {
 
 	this.entry = function () {
 		score = 0;
-		money = 0;
 		pl.x = pPos.x;
 		pl.y = pPos.y;
 		gamestopped = false;
