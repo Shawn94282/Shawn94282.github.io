@@ -1,0 +1,160 @@
+body{
+	font-size: 12px;
+    font-family: 'PT Sans', sans-serif;
+    line-height: 1.154;
+    font-weight: 900;
+}
+
+h1{
+	font-size: 12px;
+}
+
+input{
+	margin: 0;
+	padding: 0;
+	height: 8px;
+	margin-left: 2px;
+}
+
+.scoreMenu{
+	margin-top: 1em;
+	display: inline-block;
+}
+
+.back-white{
+	background-color: #ffffff;
+	text-align: center;
+	padding-left: 16px;
+	padding-right: 16px;
+	color: black;
+	position: relative;
+	float: right;
+}
+
+.back-black{
+	background-color: #151515;
+	text-align: center;
+	padding-left: 16px;
+	padding-right: 16px;
+	color: white;
+	float: left;
+}
+
+.border-right{
+	margin-right: 5px;
+}
+
+.vl{
+    border-left: 1px solid #e8e8e8;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+hr{
+	border-color: 1px solid #e8e8e8;
+	background-color: #e8e8e8;
+	border: none;
+	height: 1px;
+}
+
+img.coin{
+	width: 10px;
+	height: 10px;
+}
+
+.statsMenu{
+	margin-top: 4em;
+}
+
+input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    
+    /*required for proper track sizing in FF*/
+    width: 143px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 143px;
+    height: 5px;
+    background: #363636;
+    border: none;
+    border-radius: 2px;
+}
+
+input[type=range].range-green::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 4px;
+    width: 5px;
+    border-radius: 50%;
+    background: #79aa58;
+}
+
+input[type=range].range-orange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 4px;
+    width: 5px;
+    border-radius: 50%;
+    background: #d9a93a;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-moz-range-track {
+    width: 143px;
+    height: 4px;
+    background: #363636;
+    border: none;
+    border-radius: 2px;
+}
+
+input[type=range].range-green::-moz-range-thumb {
+    border: none;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: #79aa58;
+}
+
+input[type=range].range-orange::-moz-range-thumb {
+    border: none;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: #d9a93a;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline-offset: -1px;
+}
+
+input[type=range].range-green::-ms-thumb {
+    border: none;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background: #79aa58;
+}
+
+input[type=range].range-green::-moz-range-progress {
+  background-color: #79aa58;
+  border-radius: 2px;
+}
+
+input[type=range].range-orange::-ms-thumb {
+    border: none;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background: #d9a93a;
+}
+
+input[type=range].range-orange::-moz-range-progress {
+  background-color: #d9a93a;
+  border-radius: 2px;
+}
