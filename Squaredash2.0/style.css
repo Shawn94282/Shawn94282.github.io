@@ -224,3 +224,36 @@ div.loseTable .back-black, div.loseTable .back-white{
 .nofloat{
     float: none;
 }
+
+.container{
+    display: flex;
+    justify-content:space-between;
+    flex-direction:column;
+    margin-top: 1em;
+    margin-left: 220px;
+    width: 400px;
+    word-wrap: break-word;
+}
+
+.label-black {
+    background-color: #000;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.scoll{
+    overflow-y: auto;
+    max-height: 100px;
+    padding-right: 16px;
+}
