@@ -1,0 +1,159 @@
+body{
+	font-size: 12px;
+    font-family: 'PT Sans', sans-serif;
+    line-height: 1.154;
+    font-weight: 900;
+    word-wrap: break-word;
+}
+
+.bottomPanelUI, .topPanelUI{
+    color: white;
+    margin-left: 420px;
+    margin-top: 442.15px;
+    transform: translateX(-50%);
+}
+
+.bottomPanelUItr td, .topPanelUI td{
+    background-color: rgba(0,0,0,0.3);
+    padding: 12px;
+}
+
+.bottomPanelUItr td:hover, .topPanelUI td:hover{
+    background-color: rgba(0,0,0,0.7);
+    cursor: pointer;
+}
+
+.bottomPanelUI table{
+  border-collapse: separate;
+  border-spacing: 4px 0px;
+}
+
+.tileStats{
+    margin-top: 240px;
+    transform: translateY(-50%);
+}
+
+.tileStats > .stats > .tile, .tileStats > .stats > .info, .tileStats > .stats > .keys{
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+    padding: 12px;
+}
+
+.label-black{
+    background-color: #000;
+    color: #fff;
+}
+
+.label-white{
+    background-color: #fff;
+    color: #000;
+}
+
+.label{
+    display: inline;
+    padding: .3em .6em .3em;
+    font-size: 75%;
+    font-weight: 900;
+    line-height: 1em;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.version{
+    margin-top: 442.15px;
+    color: white;
+    padding: 12px;
+}
+
+.scoll{
+    overflow-y: auto;
+    max-height: 250px;
+    padding-right: 12px;
+}
+
+.panelUIBuild, .panelUIStats, .panelUIPopulation, .panelUIRes{
+    display: flex;
+    justify-content:space-between;
+    flex-direction:column;
+    margin-top: 70px;
+    margin-left: 420px;
+    transform: translateX(-50%);
+    width: 500px;
+    word-wrap: break-word;
+}
+
+button.btn-green{
+    outline: none;
+    border: none;
+    box-shadow: none;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-weight: 900;
+    background-color: #79aa58;
+    color: #fff;
+}
+
+button:active, button:focus, button:hover{
+    outline: none;
+    -moz-outline: none;
+    -webkit-outline: none;
+    border: none;
+    -moz-border: none;
+    -webkit-outline: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    cursor: pointer;
+}
+
+div.left{
+    margin: 0;
+    width: 50%;
+    float: left;
+}
+
+div.right{
+    margin: 0;
+    width: 50%;
+    float: right;
+}
+
+.back-black{
+    background-color: rgba(0,0,0,0.7);
+    text-align: center;
+    padding: 12px;
+    color: white;
+    float: left;
+}
+
+.back-black-03{
+    background-color: rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 0px 12px 0px;
+    color: white;
+    float: left;
+}
+
+.buildMenu{
+    padding: 8px;
+}
+
+.panelUIBuild table{
+  border-collapse: separate;
+  border-spacing: 8px 12px;
+  margin-left: 230px;
+  transform: translateX(-50%);
+}
+
+.panelUIBuild table > tr{
+    text-align: center;
+}
+
+img.res{
+    margin: -10px;
+    margin-left: -8px;
+}
