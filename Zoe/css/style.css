@@ -6,7 +6,32 @@ body{
     word-wrap: break-word;
 }
 
-.bottomPanelUI, .topPanelUI{
+.topPanelUI{
+    color: white;
+    margin-left: 420px;
+    margin-top: -2px;
+    transform: translateX(-50%);
+}
+
+div.timeprogress{
+    margin-top: 3px;
+    background: #fff;
+    height: 3px;
+    width: 1px;
+}
+
+td.time{
+    text-align: center;
+}
+
+div.timeprogress-back{
+    margin-top: 3px;
+    background: rgba(0,0,0,0.5);
+    height: 3px;
+    width: 110px;
+}
+
+.bottomPanelUI{
     color: white;
     margin-left: 420px;
     margin-top: 442.15px;
@@ -24,6 +49,11 @@ body{
 }
 
 .bottomPanelUI table{
+  border-collapse: separate;
+  border-spacing: 4px 0px;
+}
+
+.topPanelUI table{
   border-collapse: separate;
   border-spacing: 4px 0px;
 }

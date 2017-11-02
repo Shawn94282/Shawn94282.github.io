@@ -10,7 +10,7 @@ var UIBuild = function(){
 		<div class="scoll back-black-03">
 			<table>
 				<tr class="bottomPanelUItr buildMenu">
-					<td>
+					<td onclick="toBuild = 'str1'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str1.png">
 						</div>
@@ -20,7 +20,7 @@ var UIBuild = function(){
 							<p>40 <img class="res" width="30" height="30" src="img/Environment/res2.png"></p>
 						</div>
 					</td>
-					<td>
+					<td onclick="toBuild = 'str2'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str2.png">
 						</div>
@@ -30,7 +30,7 @@ var UIBuild = function(){
 							<p>15 <img class="res" width="30" height="30" src="img/Environment/res2.png"></p>
 						</div>
 					</td>
-					<td>
+					<td onclick="toBuild = 'str3'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str3.png">
 						</div>
@@ -40,7 +40,7 @@ var UIBuild = function(){
 							<p>30 <img class="res" width="30" height="30" src="img/Environment/res2.png"></p>
 						</div>
 					</td>
-					<td>
+					<td onclick="toBuild = 'str4'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str4.png">
 						</div>
@@ -52,7 +52,7 @@ var UIBuild = function(){
 					</td>
 				</tr>
 				<tr class="bottomPanelUItr buildMenu" style="margin-top: 8px;">
-					<td>
+					<td onclick="toBuild = 'str5'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str5.png">
 						</div>
@@ -62,7 +62,7 @@ var UIBuild = function(){
 							<p>70 <img class="res" width="30" height="30" src="img/Environment/res2.png"></p>
 						</div>
 					</td>
-					<td>
+					<td onclick="toBuild = 'str6'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str6.png">
 						</div>
@@ -72,7 +72,7 @@ var UIBuild = function(){
 							<p>20 <img class="res" width="30" height="30" src="img/Environment/res2.png"></p>
 						</div>
 					</td>
-					<td>
+					<td onclick="toBuild = 'str7'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str7.png">
 						</div>
@@ -82,7 +82,7 @@ var UIBuild = function(){
 							<p>40 <img class="res" width="30" height="30" src="img/Environment/res2.png"></p>
 						</div>
 					</td>
-					<td>
+					<td onclick="toBuild = 'str8'; UIBuildClose();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str8.png">
 						</div>
