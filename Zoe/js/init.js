@@ -22,7 +22,119 @@ var height = game.getWH().h;
 
 pjs.system.initFPSCheck();
 
+var res1Event = '';
+var res2Event = '';
+
+var addResEvent = function(count,res){
+	if(res == 1){
+		res1Event = '<div class="back-black-03 resEvent" style="color:red;">-'+count+'</div>';
+		topPanelUI.innerHTML = `
+			<table>
+				<tr class="topPanelUItr">
+					<td class="day">
+						День `+day+`
+					</td>
+					<td class="time">
+						`+date+`
+						<div class="timeprogress-back">
+						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+						</div>
+					</td>
+					<td>
+						`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png"><br>
+						`+res1Event+`
+					</td>
+					<td>
+						`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png"><br>
+						`+res2Event+`
+					</td>
+				</tr>
+			</table>
+		`;
+		setTimeout(function(){
+			res1Event = '';
+			topPanelUI.innerHTML = `
+				<table>
+					<tr class="topPanelUItr">
+						<td class="day">
+							День `+day+`
+						</td>
+						<td class="time">
+							`+date+`
+							<div class="timeprogress-back">
+							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+							</div>
+						</td>
+						<td>
+							`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png"><br>
+							`+res1Event+`
+						</td>
+						<td>
+							`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png"><br>
+							`+res2Event+`
+						</td>
+					</tr>
+				</table>
+			`;
+		}, 5000);
+	} else if(res == 2){
+		res2Event = '<div class="back-black-03 resEvent" style="color:red;">-'+count+'</div>';
+		topPanelUI.innerHTML = `
+			<table>
+				<tr class="topPanelUItr">
+					<td class="day">
+						День `+day+`
+					</td>
+					<td class="time">
+						`+date+`
+						<div class="timeprogress-back">
+						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+						</div>
+					</td>
+					<td>
+						`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png"><br>
+						`+res1Event+`
+					</td>
+					<td>
+						`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png"><br>
+						`+res2Event+`
+					</td>
+				</tr>
+			</table>
+		`;
+		setTimeout(function(){
+			res2Event = '';
+			topPanelUI.innerHTML = `
+				<table>
+					<tr class="topPanelUItr">
+						<td class="day">
+							День `+day+`
+						</td>
+						<td class="time">
+							`+date+`
+							<div class="timeprogress-back">
+							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+							</div>
+						</td>
+						<td>
+							`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png"><br>
+							`+res1Event+`
+						</td>
+						<td>
+							`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png"><br>
+							`+res2Event+`
+						</td>
+					</tr>
+				</table>
+			`;
+		}, 5000);
+	}
+}
+
 var day = 1;
+
+var res1 = 500;
+var res2 = 100;
 
 var date_day = 1;
 var date_mouth = 11;
@@ -69,7 +181,7 @@ var mothes =  [
 
 var date = date_day+" "+mothes[date_mouth-1].name+" "+date_year;
 
-var toBuild;
+var toBuild, toBuildFund;
 
 var bottomPanelUI = pjs.system.newDOM('div', true);
 bottomPanelUI.className = 'bottomPanelUI';
@@ -106,16 +218,24 @@ topPanelUI.innerHTML = `
 				<div id="timeprogress" class="timeprogress">
 				</div>
 			</td>
+			<td>
+				`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png"><br>
+				`+res1Event+`
+			</td>
+			<td>
+				`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png"><br>
+				`+res2Event+`
+			</td>
 		</tr>
 	</table>
 `;
 
-var progress = 0.1;
+var progress = 1;
 setInterval(function(){
 	var timeprogress = document.getElementById('timeprogress');
 	timeprogress.style = "width:"+progress+"px;";
 	if(progress > 109){
-		progress = 0.1;
+		progress = 1;
 		day++;
 		date_day++;
 		date = date_day+" "+mothes[date_mouth-1].name+" "+date_year;
@@ -140,13 +260,47 @@ setInterval(function(){
 						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
 						</div>
 					</td>
+					<td>
+						`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png"><br>
+						`+res1Event+`
+					</td>
+					<td>
+						`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png"><br>
+						`+res1Event+`
+					</td>
 				</tr>
 			</table>
 		`;
 	} else {
-		progress += 0.1;
+		progress += 1;
 	}
 }, 100);
+
+if(res1Event || res2Event){
+	topPanelUI.innerHTML = `
+		<table>
+			<tr class="topPanelUItr">
+				<td class="day">
+					День `+day+`
+				</td>
+				<td class="time">
+					`+date+`
+					<div class="timeprogress-back">
+					<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+					</div>
+				</td>
+				<td>
+					`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png"><br>
+					`+res1Event+`
+				</td>
+				<td>
+					`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png"><br>
+					`+res1Event+`
+				</td>
+			</tr>
+		</table>
+	`;
+}
 
 var tileStats = pjs.system.newDOM('div', true);
 tileStats.className = 'tileStats';
@@ -154,7 +308,7 @@ tileStats.className = 'tileStats';
 var version = pjs.system.newDOM('div', true);
 version.className = 'version';
 version.innerHTML = `
-	beta 0.1.3.7
+	beta 0.1.6.9
 `;
 
 var panelUIBuild = pjs.system.newDOM('div', true);
@@ -172,3 +326,34 @@ var UIPopulationShow = false;
 var panelUIStats = pjs.system.newDOM('div', true);
 panelUIStats.className = 'panelUIStats';
 var UIStatsShow = false;
+
+var needsPanel = pjs.system.newDOM('div', true);
+needsPanel.className = 'needsPanel';
+
+var randpos1;
+var randpos2;
+var randpos3;
+var randpos4;
+var randpos5;
+var randpos6;
+var randpos7;
+var randpos8;
+var randpos9;
+var randpos10;
+var randpos11;
+var randpos12;
+
+setInterval(function(){
+	randpos1 = pjs.math.random(-40,40);
+	randpos2 = pjs.math.random(-40,40);
+	randpos3 = pjs.math.random(-40,40);
+	randpos4 = pjs.math.random(-40,40);
+	randpos5 = pjs.math.random(-40,40);
+	randpos6 = pjs.math.random(-40,40);
+	randpos7 = pjs.math.random(-40,40);
+	randpos8 = pjs.math.random(-40,40);
+	randpos9 = pjs.math.random(-40,40);
+	randpos10 = pjs.math.random(-40,40);
+	randpos11 = pjs.math.random(-40,40);
+	randpos12 = pjs.math.random(-40,40);
+}, 10000);

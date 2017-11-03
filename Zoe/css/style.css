@@ -187,3 +187,35 @@ img.res{
     margin: -10px;
     margin-left: -8px;
 }
+
+img.need{
+    margin: -10px;
+    margin-left: 1px;
+}
+
+.resEvent{
+    margin-top: 4px;
+    width: 100%;
+    padding: 2px 8px 2px;
+}
+
+p{
+    margin: .5em 0 .5em;
+}
+
+hr.white{
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
+    margin: .8em 0 .8em;
+}
+
+.needsPanel .back-black-03{
+    margin-top: 10px;
+}
+
+.needsPanel{
+    width: 150px;
+    margin-top: 60px;
+    margin-left: 690px;
+}
