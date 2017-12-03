@@ -7,15 +7,15 @@ body{
 }
 
 .topPanelUI{
-    color: white;
-    margin-left: 420px;
-    margin-top: -2px;
-    transform: translateX(-50%);
+    color: #fff;
+    margin-top: -5px;
+    background-color: #1a1b1f;
+    width: 840px;
 }
 
 div.timeprogress{
     margin-top: 3px;
-    background: #fff;
+    background: #d8d6d9;
     height: 3px;
     width: 1px;
 }
@@ -26,45 +26,49 @@ td.time{
 
 div.timeprogress-back{
     margin-top: 3px;
-    background: rgba(0,0,0,0.5);
+    background: #3b4753;
     height: 3px;
     width: 110px;
 }
 
 .bottomPanelUI{
-    color: white;
-    margin-left: 420px;
+    color: #fff;
     margin-top: 442.15px;
-    transform: translateX(-50%);
+    background-color: #1a1b1f;
+    width: 840px;
 }
 
 .bottomPanelUItr td, .topPanelUI td{
-    background-color: rgba(0,0,0,0.3);
     padding: 12px;
 }
 
-.bottomPanelUItr td:hover, .topPanelUI td:hover{
+.bottomPanelUItr td:hover, .topPanelUI td.hover:hover{
     background-color: rgba(0,0,0,0.7);
     cursor: pointer;
 }
 
 .bottomPanelUI table{
-  border-collapse: separate;
-  border-spacing: 4px 0px;
+    border-collapse: separate;
+    border-spacing: 8px 0px;
+    margin-left: 420px;
+    transform: translateX(-50%);
 }
 
 .topPanelUI table{
-  border-collapse: separate;
-  border-spacing: 4px 0px;
+    border-collapse: separate;
+    border-spacing: 8px 0px;
+    width: 840px;
 }
 
-.tileStats{
-    margin-top: 240px;
+.stats{
+    margin-top: 220px;
     transform: translateY(-50%);
 }
 
-.tileStats > .stats > .tile, .tileStats > .stats > .info, .tileStats > .stats > .keys{
-    background-color: rgba(0,0,0,0.3);
+.statsBack{
+    background-color: #1a1b1f;
+    opacity: 0.8;
+    height: 480px;
     color: white;
     padding: 12px;
 }
@@ -97,21 +101,45 @@ div.timeprogress-back{
     padding: 12px;
 }
 
-.scoll{
+.panelInfo{
     overflow-y: auto;
-    max-height: 250px;
+    max-height: 335px;
     padding-right: 12px;
 }
 
 .panelUIBuild, .panelUIStats, .panelUIPopulation, .panelUIRes{
-    display: flex;
-    justify-content:space-between;
-    flex-direction:column;
-    margin-top: 70px;
-    margin-left: 420px;
-    transform: translateX(-50%);
-    width: 500px;
-    word-wrap: break-word;
+    margin-left: 590px;
+}
+
+.panel{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.panelBack{
+    background-color: #1a1b1f;
+    width: 250px;
+    opacity: 0.8;
+    height: 480px;
+    color: white;
+    padding: 12px;
+}
+
+.panelBuilding{
+    background-color: rgba(255,255,255,0.1);
+    padding: 24px;
+    width: 150px;
+    margin-left: 26px;
+    margin-bottom: 10px;
+}
+
+.panelBuilding:hover{
+    background-color: rgba(255,255,255,0.2);
+    cursor: pointer;
+}
+
+.key:hover{
+    cursor: pointer;
 }
 
 button.btn-green{
@@ -152,7 +180,7 @@ div.right{
     float: right;
 }
 
-.back-black{
+/*.back-black{
     background-color: rgba(0,0,0,0.7);
     text-align: center;
     padding: 12px;
@@ -166,7 +194,7 @@ div.right{
     padding: 0px 12px 0px;
     color: white;
     float: left;
-}
+}*/
 
 .buildMenu{
     padding: 8px;
