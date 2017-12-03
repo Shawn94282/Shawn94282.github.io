@@ -4,13 +4,13 @@ var UIBuild = function(){
 	panelUIRes.innerHTML = ``;
 	UIBuildShow = true;
 	panelUIBuild.innerHTML = `
-		<div class="back-black" style="text-align:left;">
-			Постройки
-		</div>
-		<div class="scoll back-black-03">
-			<table>
-				<tr class="bottomPanelUItr buildMenu">
-					<td onclick="toBuildFund = 'str1'; UIBuildClose(); checkRes();">
+		<div class="panelBack">
+			<div class="panel">
+				<div class="tile" style="text-align:center;">
+					<b>Постройки</b>
+				</div>
+				<div class="panelInfo" style="margin-top:4px;text-align:center;padding:12px;">
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str1'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str1.png">
 						</div>
@@ -22,8 +22,8 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png"> <img class="need" width="17" height="17" src="img/water.png">
 						</div>
-					</td>
-					<td onclick="toBuildFund = 'str2'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str2'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str2.png">
 						</div>
@@ -33,8 +33,8 @@ var UIBuild = function(){
 							<p>75 <img class="res" width="30" height="30" src="img/Environment/res1.png"></p>
 							<p>15 <img class="res" width="30" height="30" src="img/Environment/res2.png"></p>
 						</div>
-					</td>
-					<td onclick="toBuildFund = 'str3'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str3'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str3.png">
 						</div>
@@ -46,8 +46,8 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png"> <img class="need" width="17" height="17" src="img/water.png">
 						</div>
-					</td>
-					<td onclick="toBuildFund = 'str4'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str4'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str4.png">
 						</div>
@@ -59,10 +59,8 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png"> <img class="need" width="17" height="17" src="img/water.png">
 						</div>
-					</td>
-				</tr>
-				<tr class="bottomPanelUItr buildMenu" style="margin-top: 8px;">
-					<td onclick="toBuildFund = 'str5'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str5'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str5.png">
 						</div>
@@ -74,8 +72,8 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png"> <img class="need" width="17" height="17" src="img/water.png">
 						</div>
-					</td>
-					<td onclick="toBuildFund = 'str6'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str6'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str6.png">
 						</div>
@@ -87,8 +85,8 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png"> <img class="need" width="17" height="17" src="img/water.png">
 						</div>
-					</td>
-					<td onclick="toBuildFund = 'str7'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str7'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str7.png">
 						</div>
@@ -99,8 +97,8 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png"> <img class="need" width="17" height="17" src="img/water.png">
 						</div>
-					</td>
-					<td onclick="toBuildFund = 'str8'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str8'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str8.png">
 						</div>
@@ -112,10 +110,8 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png">
 						</div>
-					</td>
-				</tr>
-				<tr class="bottomPanelUItr buildMenu" style="margin-top: 8px;">
-					<td onclick="toBuildFund = 'str16'; UIBuildClose(); checkRes();">
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="toBuildFund = 'str16'; UIBuildClose(); checkRes();">
 						<div class="build" style="text-align: center; display:block;">
 							<img width="50" height="50" src="img/Structure/str16.png">
 						</div>
@@ -127,11 +123,13 @@ var UIBuild = function(){
 							<hr class="white">
 							Нужно:<img class="need" width="17" height="17" src="img/energy.png">
 						</div>
-					</td>
-				</tr>
-			</table>
+					</div>
+				</div>
+				<div class="key" style="margin-top:12px;text-align:center;">
+					<span class="label label-white" onclick="UIBuildClose();">Закрыть</span>
+				</div>
+			</div>
 		</div>
-		<button id="dialogButton1" class="btn-green right" onclick="UIBuildClose();">Закрыть</button>
 	`;
 }
 
@@ -278,13 +276,19 @@ var UIStats = function(){
 	panelUIRes.innerHTML = ``;
 	UIStatsShow = true;
 	panelUIStats.innerHTML = `
-		<div class="back-black" style="text-align:left;">
-			Статистика
+		<div class="panelBack">
+			<div class="panel">
+				<div class="tile" style="text-align:center;">
+					<b>Статистика</b>
+				</div>
+				<div class="panelInfo" style="margin-top:4px;text-align:center;padding:12px;">
+					В разработке
+				</div>
+				<div class="key" style="margin-top:12px;text-align:center;">
+					<span class="label label-white" onclick="UIStatsClose();">Закрыть</span>
+				</div>
+			</div>
 		</div>
-		<div class="scoll back-black-03" style="padding:12px;">
-			В разработке
-		</div>
-		<button id="dialogButton1" class="btn-green right" onclick="UIStatsClose();">Закрыть</button>
 	`;
 }
 
@@ -302,13 +306,19 @@ var UIPopulation = function(){
 	panelUIRes.innerHTML = ``;
 	UIPopulationShow = true;
 	panelUIStats.innerHTML = `
-		<div class="back-black" style="text-align:left;">
-			Население
+		<div class="panelBack">
+			<div class="panel">
+				<div class="tile" style="text-align:center;">
+					<b>Население</b>
+				</div>
+				<div class="panelInfo" style="margin-top:4px;text-align:center;padding:12px;">
+					В разработке
+				</div>
+				<div class="key" style="margin-top:12px;text-align:center;">
+					<span class="label label-white" onclick="UIPopulationClose();">Закрыть</span>
+				</div>
+			</div>
 		</div>
-		<div class="scoll back-black-03" style="padding:12px;">
-			В разработке
-		</div>
-		<button id="dialogButton1" class="btn-green right" onclick="UIPopulationClose();">Закрыть</button>
 	`;
 }
 
@@ -326,13 +336,19 @@ var UIRes = function(){
 	panelUIPopulation.innerHTML = ``;
 	UIResShow = true;
 	panelUIStats.innerHTML = `
-		<div class="back-black" style="text-align:left;">
-			Ресурсы
+		<div class="panelBack">
+			<div class="panel">
+				<div class="tile" style="text-align:center;">
+					<b>Ресурсы</b>
+				</div>
+				<div class="panelInfo" style="margin-top:4px;text-align:center;padding:12px;">
+					В разработке
+				</div>
+				<div class="key" style="margin-top:12px;text-align:center;">
+					<span class="label label-white" onclick="UIResClose();">Закрыть</span>
+				</div>
+			</div>
 		</div>
-		<div class="scoll back-black-03" style="padding:12px;">
-			В разработке
-		</div>
-		<button id="dialogButton1" class="btn-green right" onclick="UIResClose();">Закрыть</button>
 	`;
 }
 

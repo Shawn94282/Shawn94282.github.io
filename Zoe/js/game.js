@@ -134,6 +134,7 @@ game.newLoopFromConstructor('game_planet', function () {
 					hp: 100,
 					moveTo: null,
 					working: false,
+					moving: false,
 					humanTypeName: 'Инженер'
 				}
 			}));
@@ -158,6 +159,7 @@ game.newLoopFromConstructor('game_planet', function () {
 					hp: 100,
 					moveTo: null,
 					working: false,
+					moving: false,
 					humanTypeName: 'Рабочий'
 				}
 			}));
@@ -182,6 +184,7 @@ game.newLoopFromConstructor('game_planet', function () {
 					hp: 100,
 					moveTo: null,
 					working: false,
+					moving: false,
 					humanTypeName: 'Военный'
 				}
 			}));
@@ -206,6 +209,7 @@ game.newLoopFromConstructor('game_planet', function () {
 					hp: 100,
 					moveTo: null,
 					working: false,
+					moving: false,
 					humanTypeName: 'Биолог'
 				}
 			}));
@@ -271,8 +275,11 @@ game.newLoopFromConstructor('game_planet', function () {
 		}
 	});
 
+	var buildingsWithEnergy = false;
+	var buildingsWithWater = false;
+
 	this.update = function () {
-		game.clear();
+		//game.clear();
 
 		if(key.isDown('A')) camera.move(point(-5, 0));
 		if(key.isDown('D')) camera.move(point(5, 0));
@@ -291,21 +298,23 @@ game.newLoopFromConstructor('game_planet', function () {
 				if(mouse.isInStatic(w.getStaticBox())){
 					selBlocks.push(w);
 
-					if(w.tile != 9 && w.tile != 10 && w.isLake == false){
+					if(w.tile != 9 && w.tile != 10){
 						tileStats.innerHTML = `
-							<div class="stats">
-								<div class="tile" style="text-align:center;">
-									<img width="50" height="50" src="img/Tile/tile`+w.tile+`.png">
-								</div>
-								<div class="info" style="margin-top:4px;text-align:center;">
-									<p>X: `+w.x+`</p>
-									<p>Y: `+w.y+`</p>
-									<p>W: `+w.w+`</p>
-									<p>H: `+w.h+`</p>
-									<p>Tile: `+w.tile+`</p>
-								</div>
-								<div class="keys" style="margin-top: 4px;">
-									<span class="label label-white">ЛКМ</span> - удалить
+							<div class="statsBack">
+								<div class="stats">
+									<div class="tile" style="text-align:center;">
+										<img width="50" height="50" src="img/Tile/tile`+w.tile+`.png">
+									</div>
+									<div class="info" style="margin-top:4px;text-align:center;">
+										<p>X: `+w.x+`</p>
+										<p>Y: `+w.y+`</p>
+										<p>W: `+w.w+`</p>
+										<p>H: `+w.h+`</p>
+										<p>Tile: `+w.tile+`</p>
+									</div>
+									<div class="keys" style="margin-top: 4px;">
+										<span class="label label-white">ЛКМ</span> - удалить
+									</div>
 								</div>
 							</div>
 						`;
@@ -358,7 +367,7 @@ game.newLoopFromConstructor('game_planet', function () {
 													hided: false
 												}
 											}));
-											humans[i].moveTo = point(w.x, w.y+20);
+											humans[i].moveTo = point(w.x, w.y+35);
 											toBuild = null;
 											break;
 										}
@@ -375,55 +384,128 @@ game.newLoopFromConstructor('game_planet', function () {
 			if(h.isInCameraStatic()){
 				h.draw();
 
-				// if(h.working == false){
-				// 	var hrandpos1 = pjs.math.random(1, 12);
-				// 	var hrandpos2 = pjs.math.random(1, 12);
+				// if(h.working == false && h.moving == false){
+				// 	// var hrandpos1 = pjs.math.random(1, 12);
+				// 	// var hrandpos2 = pjs.math.random(1, 12);
 
-				// 	if(hrandpos1 == 1) randHumanPosTo1 = randpos1;
-				// 	if(hrandpos1 == 2) randHumanPosTo1 = randpos2;
-				// 	if(hrandpos1 == 3) randHumanPosTo1 = randpos3;
-				// 	if(hrandpos1 == 4) randHumanPosTo1 = randpos4;
-				// 	if(hrandpos1 == 5) randHumanPosTo1 = randpos5;
-				// 	if(hrandpos1 == 6) randHumanPosTo1 = randpos6;
-				// 	if(hrandpos1 == 7) randHumanPosTo1 = randpos7;
-				// 	if(hrandpos1 == 8) randHumanPosTo1 = randpos8;
-				// 	if(hrandpos1 == 9) randHumanPosTo1 = randpos9;
-				// 	if(hrandpos1 == 10) randHumanPosTo1 = randpos10;
-				// 	if(hrandpos1 == 11) randHumanPosTo1 = randpos11;
-				// 	if(hrandpos1 == 12) randHumanPosTo1 = randpos12;
+				// 	// if(hrandpos1 == 1){
+				// 	// 	randHumanPosTo1 = randpos1;
+				// 	// }
+				// 	// if(hrandpos1 == 2){
+				// 	// 	randHumanPosTo1 = randpos2;
+				// 	// }
+				// 	// if(hrandpos1 == 3){
+				// 	// 	randHumanPosTo1 = randpos3;
+				// 	// }
+				// 	// if(hrandpos1 == 4){
+				// 	// 	randHumanPosTo1 = randpos4;
+				// 	// }
+				// 	// if(hrandpos1 == 5){
+				// 	// 	randHumanPosTo1 = randpos5;
+				// 	// }
+				// 	// if(hrandpos1 == 6){
+				// 	// 	randHumanPosTo1 = randpos6;
+				// 	// }
+				// 	// if(hrandpos1 == 7){
+				// 	// 	randHumanPosTo1 = randpos7;
+				// 	// }
+				// 	// if(hrandpos1 == 8){
+				// 	// 	randHumanPosTo1 = randpos8;
+				// 	// }
+				// 	// if(hrandpos1 == 9){
+				// 	// 	randHumanPosTo1 = randpos9;
+				// 	// }
+				// 	// if(hrandpos1 == 10){
+				// 	// 	randHumanPosTo1 = randpos10
+				// 	// }
+				// 	// if(hrandpos1 == 11){
+				// 	// 	randHumanPosTo1 = randpos11
+				// 	// }
+				// 	// if(hrandpos1 == 12){
+				// 	// 	randHumanPosTo1 = randpos12;
+				// 	// }
 
-				// 	if(hrandpos2 == 1) randHumanPosTo2 = randpos1;
-				// 	if(hrandpos2 == 2) randHumanPosTo2 = randpos2;
-				// 	if(hrandpos2 == 3) randHumanPosTo2 = randpos3;
-				// 	if(hrandpos2 == 4) randHumanPosTo2 = randpos4;
-				// 	if(hrandpos2 == 5) randHumanPosTo2 = randpos5;
-				// 	if(hrandpos2 == 6) randHumanPosTo2 = randpos6;
-				// 	if(hrandpos2 == 7) randHumanPosTo2 = randpos7;
-				// 	if(hrandpos2 == 8) randHumanPosTo2 = randpos8;
-				// 	if(hrandpos2 == 9) randHumanPosTo2 = randpos9;
-				// 	if(hrandpos2 == 10) randHumanPosTo2 = randpos10;
-				// 	if(hrandpos2 == 11) randHumanPosTo2 = randpos11;
-				// 	if(hrandpos2 == 12) randHumanPosTo2 = randpos12;
 
-				// 	h.moveTo = point(h.x + randHumanPosTo1, h.y + randHumanPosTo2);
+				// 	// if(hrandpos2 == 1){
+				// 	// 	randHumanPosTo2 = randpos1;
+				// 	// }
+				// 	// if(hrandpos2 == 2){
+				// 	// 	randHumanPosTo2 = randpos2;
+				// 	// }
+				// 	// if(hrandpos2 == 3){
+				// 	// 	randHumanPosTo2 = randpos3;
+				// 	// }
+				// 	// if(hrandpos2 == 4){
+				// 	// 	randHumanPosTo2 = randpos4;
+				// 	// }
+				// 	// if(hrandpos2 == 5){
+				// 	// 	randHumanPosTo2 = randpos5;
+				// 	// }
+				// 	// if(hrandpos2 == 6){
+				// 	// 	randHumanPosTo2 = randpos6;
+				// 	// }
+				// 	// if(hrandpos2 == 7){
+				// 	// 	randHumanPosTo2 = randpos7;
+				// 	// }
+				// 	// if(hrandpos2 == 8){
+				// 	// 	randHumanPosTo2 = randpos8;
+				// 	// }
+				// 	// if(hrandpos2 == 9){
+				// 	// 	randHumanPosTo2 = randpos9;
+				// 	// }
+				// 	// if(hrandpos2 == 10){
+				// 	// 	randHumanPosTo2 = randpos10;
+				// 	// }
+				// 	// if(hrandpos2 == 11){
+				// 	// 	randHumanPosTo2 = randpos11;
+				// 	// }
+				// 	// if(hrandpos2 == 12){
+				// 	// 	randHumanPosTo2 = randpos12;
+				// 	// }
+
+				// 	// var randangle = pjs.math.random(1,4);
+				// 	// if(randangle == 1){ // right
+				// 	// 	h.moveTo = point(h.x + 10, h.y);
+				// 	// 	h.moving = true;
+				// 	// }
+				// 	// if(randangle == 2){ // left
+				// 	// 	h.moveTo = point(h.x - 10, h.y);
+				// 	// 	h.moving = true;
+				// 	// }
+				// 	// if(randangle == 3){ // up
+				// 	// 	h.moveTo = point(h.x, h.y - 10);
+				// 	// 	h.moving = true;
+				// 	// }
+				// 	// if(randangle == 4){ // down
+				// 	// 	h.moveTo = point(h.x, h.y + 10);
+				// 	// 	h.moving = true;
+				// 	// }
+				// } else if(h.moving == true){
+				// 	setInterval(function(){
+				// 		h.moveTo = null;
+				// 		h.moving = false;
+				// 	}, 10000);
 				// }
 
 				if(mouse.isInStatic(h.getStaticBox())){
 					selBlocks.push(h);
 
 					tileStats.innerHTML = `
-						<div class="stats">
-							<div class="tile" style="text-align:center;">
-								<img width="50" height="50" src="img/Unit/human`+h.humanType+`.png">
-							</div>
-							<div class="info" style="margin-top:4px;text-align:center;">
-								<p>X: `+h.x+`</p>
-								<p>Y: `+h.y+`</p>
-								<p>W: `+h.w+`</p>
-								<p>H: `+h.h+`</p>
-								<p>Working: `+h.working+`</p>
-								<p>Type: `+h.humanType+`</p>
-								<p>TypeName: `+h.humanTypeName+`</p>
+						<div class="statsBack">
+							<div class="stats">
+								<div class="tile" style="text-align:center;">
+									<img width="50" height="50" src="img/Unit/human`+h.humanType+`.png">
+								</div>
+								<div class="info" style="margin-top:4px;text-align:center;">
+									<p>X: `+h.x+`</p>
+									<p>Y: `+h.y+`</p>
+									<p>W: `+h.w+`</p>
+									<p>H: `+h.h+`</p>
+									<p>Working: `+h.working+`</p>
+									<p>Moving: `+h.moving+`</p>
+									<p>Type: `+h.humanType+`</p>
+									<p>TypeName: `+h.humanTypeName+`</p>
+								</div>
 							</div>
 						</div>
 					`;
@@ -451,67 +533,82 @@ game.newLoopFromConstructor('game_planet', function () {
 			if(b.isInCameraStatic()){
 				if(!b.hided){
 					b.draw();
-					for(var i = 0; i < buildings.length; i++){
-						if(buildings[i].building == 'str2'){
-							break;
-						} else if(i == buildings.length-1){
-							if(b.building != 'str2'){
-								if(b.isEnergy == false){
-									needs.push(game.newImageObject({
-										x: b.x+(b.w/4), y: b.y+(b.w/4),
-										w: b.w/4, h: b.h/4,
-										file: 'img/energy.png'
-									}));
-									needsPanel.innerHTML = `
-										<div class="back-black-03" style="padding: 12px;">
-											Здания без энергии!
-										</div>
-									`;
-								} else if(b.building != 'str16' && b.building != 'str2' && b.building != 'str16' && b.building != 'str8'){
-									if(b.isWater == false){
-										needs.push(game.newImageObject({
-											x: b.x+(b.w/4), y: b.y+(b.w/4),
-											w: b.w/4, h: b.h/4,
-											file: 'img/water.png'
-										}));
+					if(b.isBuild == true){
+						if(b.building == 'str2'){
+							buildingsWithEnergy = true;
+							return;
+						} else if(b.building == 'str16'){
+							buildingsWithWater = true;
+							return;
+						} else {
+							if(buildingsWithEnergy == false && b.isEnergy == false){
+								needs.push(game.newImageObject({
+									x: b.x+(b.w/3), y: b.y+(b.w/3),
+									w: b.w/3, h: b.h/3,
+									file: 'img/energy.png',
+									userData : {
+										type: 'energy'
 									}
-									needsPanel.innerHTML = `
-										<div class="back-black-03" style="padding: 12px;">
-											Здания без воды!
-										</div>
-									`;
-								} else {
-									needsPanel.innerHTML = ``;
-								}
+								}));
+								// needsPanel.innerHTML = `
+								// 	<div class="back-black-03" style="padding: 12px;">
+								// 		Здания без энергии!
+								// 	</div>
+								// `;
+								b.isEnergy = true;
+								return;
+							} else if(buildingsWithWater == false && b.isWater == false && buildingsWithEnergy == true){
+								OOP.clearArr(needs);
+								needs.push(game.newImageObject({
+									x: b.x+(b.w/3), y: b.y+(b.w/3),
+									w: b.w/3, h: b.h/3,
+									file: 'img/water.png',
+									userData : {
+										type: 'water'
+									}
+								}));
+								// needsPanel.innerHTML = `
+								// 	<div class="back-black-03" style="padding: 12px;">
+								// 		Здания без воды!
+								// 	</div>
+								// `;
+								b.isWater = true;
+								return;
+							} else if(buildingsWithEnergy == true && buildingsWithWater == true){
+								needsPanel.innerHTML = ``;
+								OOP.clearArr(needs);
+								return;
 							}
 						}
 					}
-				}
-			}
-			for(var i in humans){
-				if(b.isBuild == false || humans[i].humanType == "2"){
-					if(humans[i].isStaticIntersect(b)){
-						setTimeout(function(){
-							var X = b.x;
-								Y = b.y;
-								W = b.w;
-								H = b.h;
-								bTobuild = b.building;
-							b.hided = true;
-							buildings.push(game.newImageObject({
-								x: X, y: Y,
-								w: W, h: H,
-								file: 'img/Structure/'+bTobuild+'.png',
-								userData : {
-									building: bTobuild,
-									isBuild: true,
-									isEnergy: false,
-									isWater: false
+					if(b.isBuild == false){
+						for(let i in humans){
+							if(humans[i].humanType == "2"){
+								if(humans[i].isStaticIntersect(b)){
+									setTimeout(function(){
+										var X = b.x;
+											Y = b.y;
+											W = b.w;
+											H = b.h;
+											bTobuild = b.building;
+										b.hided = true;
+										buildings.push(game.newImageObject({
+											x: X, y: Y,
+											w: W, h: H,
+											file: 'img/Structure/'+bTobuild+'.png',
+											userData : {
+												building: bTobuild,
+												isBuild: true,
+												isEnergy: false,
+												isWater: false
+											}
+										}));
+										humans[i].working = false;
+										return;
+									}, 4000);
 								}
-							}));
-							humans[i].working = false;
-						}, 10000);
-						break;
+							}
+						}
 					}
 				}
 			}
