@@ -540,6 +540,20 @@ game.newLoopFromConstructor('game_planet', function () {
 						} else if(b.building == 'str16'){
 							buildingsWithWater = true;
 							return;
+						} else if(buildingsWithEnergy == true && buildingsWithWater == true){
+							if(b.building == 'str6'){
+								res3 = res3+0.0002;
+							}
+							if(b.building == 'str8'){
+								res2 = res2+0.0002;
+							}
+							if(b.building == 'str5'){
+								while(res3 > 1){
+									res1 = res1 + 1;
+									res3 = res3 - 1;
+								}
+							}
+							return;
 						} else {
 							if(buildingsWithEnergy == false && b.isEnergy == false){
 								needs.push(game.newImageObject({
@@ -616,7 +630,9 @@ game.newLoopFromConstructor('game_planet', function () {
 
 		OOP.forArr(needs, function(n, idN){
 			if(n.isInCameraStatic()){
-				n.draw();
+				if(buildingsWithEnergy == false || buildingsWithWater == false){
+					n.draw();
+				}
 			}
 		});	
 

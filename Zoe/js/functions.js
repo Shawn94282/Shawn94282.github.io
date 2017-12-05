@@ -342,7 +342,35 @@ var UIRes = function(){
 					<b>Ресурсы</b>
 				</div>
 				<div class="panelInfo" style="margin-top:4px;text-align:center;padding:12px;">
-					В разработке
+					<b style="color:red;">ВКЛЮЧЕН РЕЖИМ РАЗРАБОТЧИКА! ВСЕ БЕСПЛАТНО!</b><br><br>
+					<div class="panelBuilding" style="text-align:center;" onclick="res1 = res1 + 100; UIResClose();">
+						<div class="build" style="text-align: center; display:block;">
+							<img width="50" height="50" src="img/Environment/res1.png">
+						</div>
+						<div class="info" style="text-align: center;">
+							<p>Сталь</p>
+							<hr class="white">
+							<p>100 - 1 голос</p>
+							<p>300 - 3 голоса</p>
+							<p>500 - 5 голосов</p>
+							<p>1000 - 10 голосов</p>
+							<p>2500 - 25 голосов</p>
+						</div>
+					</div>
+					<div class="panelBuilding" style="text-align:center;" onclick="res2 = res2 + 100; UIResClose();">
+						<div class="build" style="text-align: center; display:block;">
+							<img width="50" height="50" src="img/Environment/res2.png">
+						</div>
+						<div class="info" style="text-align: center;">
+							<p>Биопластик</p>
+							<hr class="white">
+							<p>100 - 1 голос</p>
+							<p>300 - 3 голоса</p>
+							<p>500 - 5 голосов</p>
+							<p>1000 - 10 голосов</p>
+							<p>2500 - 25 голосов</p>
+						</div>
+					</div>
 				</div>
 				<div class="key" style="margin-top:12px;text-align:center;">
 					<span class="label label-white" onclick="UIResClose();">Закрыть</span>

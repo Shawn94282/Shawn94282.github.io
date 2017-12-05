@@ -40,15 +40,18 @@ var addResEvent = function(count,res){
 						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
 						</div>
 					</td>
-					<td class="float-right hover mx-2" style="margin-top:5px;">
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
 						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
 					</td>
 					<td class="float-right hover" style="margin-top:5px;">
-						`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-						`+res1Event+`
+						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
 					</td>
 					<td class="float-right hover" style="margin-top:5px;">
-						`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+						`+res2Event+`
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
 						`+res1Event+`
 					</td>
 				</tr>
@@ -68,15 +71,18 @@ var addResEvent = function(count,res){
 							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
 							</div>
 						</td>
-						<td class="float-right hover mx-2" style="margin-top:5px;">
+						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
 							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
 						</td>
 						<td class="float-right hover" style="margin-top:5px;">
-							`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-							`+res1Event+`
+							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
 						</td>
 						<td class="float-right hover" style="margin-top:5px;">
-							`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+							`+res2Event+`
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
 							`+res1Event+`
 						</td>
 					</tr>
@@ -97,15 +103,18 @@ var addResEvent = function(count,res){
 						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
 						</div>
 					</td>
-					<td class="float-right hover mx-2" style="margin-top:5px;">
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
 						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
 					</td>
 					<td class="float-right hover" style="margin-top:5px;">
-						`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-						`+res1Event+`
+						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
 					</td>
 					<td class="float-right hover" style="margin-top:5px;">
-						`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+						`+res2Event+`
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
 						`+res1Event+`
 					</td>
 				</tr>
@@ -125,15 +134,18 @@ var addResEvent = function(count,res){
 							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
 							</div>
 						</td>
-						<td class="float-right hover mx-2" style="margin-top:5px;">
+						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
 							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
 						</td>
 						<td class="float-right hover" style="margin-top:5px;">
-							`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-							`+res1Event+`
+							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
 						</td>
 						<td class="float-right hover" style="margin-top:5px;">
-							`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+							`+res2Event+`
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
 							`+res1Event+`
 						</td>
 					</tr>
@@ -145,8 +157,9 @@ var addResEvent = function(count,res){
 
 var day = 1;
 
-var res1 = 500;
-var res2 = 100;
+var res1 = 600;
+var res2 = 200;
+var res3 = 0;
 
 var date_day = 1;
 var date_mouth = 11;
@@ -218,32 +231,37 @@ bottomPanelUI.innerHTML = `
 
 var topPanelUI = pjs.system.newDOM('div', true);
 topPanelUI.className = 'topPanelUI';
-topPanelUI.innerHTML = `
-	<table>
-		<tr class="topPanelUItr clearfix" style="width:840px;">
-			<td class="day float-left" style="margin-top:5px;">
-				День `+day+`
-			</td>
-			<td class="time float-left">
-				`+date+`
-				<div class="timeprogress-back">
-				<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
-				</div>
-			</td>
-			<td class="float-right hover mx-2" style="margin-top:5px;">
-				<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
-			</td>
-			<td class="float-right hover" style="margin-top:5px;">
-				`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-				`+res1Event+`
-			</td>
-			<td class="float-right hover" style="margin-top:5px;">
-				`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
-				`+res1Event+`
-			</td>
-		</tr>
-	</table>
-`;
+setInterval(function(){
+	topPanelUI.innerHTML = `
+		<table>
+			<tr class="topPanelUItr clearfix" style="width:840px;">
+				<td class="day float-left" style="margin-top:5px;">
+					День `+day+`
+				</td>
+				<td class="time float-left">
+					`+date+`
+					<div class="timeprogress-back">
+					<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+					</div>
+				</td>
+				<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+					<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+				</td>
+				<td class="float-right hover" style="margin-top:5px;">
+					`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+				</td>
+				<td class="float-right hover" style="margin-top:5px;">
+					`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+					`+res2Event+`
+				</td>
+				<td class="float-right hover" style="margin-top:5px;">
+					`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+					`+res1Event+`
+				</td>
+			</tr>
+		</table>
+	`;
+},1000);
 
 var progress = 1;
 setInterval(function(){
@@ -275,15 +293,18 @@ setInterval(function(){
 						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
 						</div>
 					</td>
-					<td class="float-right hover mx-2" style="margin-top:5px;">
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
 						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
 					</td>
 					<td class="float-right hover" style="margin-top:5px;">
-						`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-						`+res1Event+`
+						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
 					</td>
 					<td class="float-right hover" style="margin-top:5px;">
-						`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+						`+res2Event+`
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
 						`+res1Event+`
 					</td>
 				</tr>
@@ -307,15 +328,18 @@ if(res1Event || res2Event){
 					<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
 					</div>
 				</td>
-				<td class="float-right hover mx-2" style="margin-top:5px;">
+				<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
 					<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
 				</td>
 				<td class="float-right hover" style="margin-top:5px;">
-					`+res2+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-					`+res1Event+`
+					`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
 				</td>
 				<td class="float-right hover" style="margin-top:5px;">
-					`+res1+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+					`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+					`+res2Event+`
+				</td>
+				<td class="float-right hover" style="margin-top:5px;">
+					`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
 					`+res1Event+`
 				</td>
 			</tr>
@@ -344,12 +368,6 @@ var UIStatsShow = false;
 
 var needsPanel = pjs.system.newDOM('div', true);
 needsPanel.className = 'needsPanel';
-
-var version = pjs.system.newDOM('div', true);
-version.className = 'version';
-version.innerHTML = `
-	beta 0.1.6.9
-`;
 
 var randpos1;
 var randpos2;
