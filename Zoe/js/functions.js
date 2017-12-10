@@ -442,7 +442,7 @@ var showMenu = function(){
 						<img class="res" width="20" height="20" src="img/icons/user.png">
 					</td>
 					<td class="day float-left" style="margin-top:5px;margin-left:-10px;">
-						Дмитрий Вансович
+						Тестер 1
 					</td>
 					<td class="time float-left">
 						2 уровень
@@ -538,7 +538,7 @@ var showShop = function(){
 						<img class="res" width="20" height="20" src="img/icons/user.png">
 					</td>
 					<td class="day float-left" style="margin-top:5px;margin-left:-10px;">
-						Дмитрий Вансович
+						Тестер 1
 					</td>
 					<td class="time float-left">
 						2 уровень
