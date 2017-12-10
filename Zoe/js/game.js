@@ -365,30 +365,6 @@ game.newLoopFromConstructor('game_planet', function () {
 		OOP.forArr(humans, function(h, idH){
 			if(h.isInCameraStatic()){
 				h.draw();
-				if(h.moving == false){
-					var randangle = pjs.math.random(1,4);
-					if(randangle == 1){ // right
-						h.moveTo = point(h.x + 10, h.y);
-						h.moving = true;
-					}
-					if(randangle == 2){ // left
-						h.moveTo = point(h.x - 10, h.y);
-						h.moving = true;
-					}
-					if(randangle == 3){ // up
-						h.moveTo = point(h.x, h.y - 10);
-						h.moving = true;
-					}
-					if(randangle == 4){ // down
-						h.moveTo = point(h.x, h.y + 10);
-						h.moving = true;
-					}
-				} else if(h.moving == true){
-					setInterval(function(){
-						h.moveTo = null;
-						h.moving = false;
-					}, 10000);
-				}
 
 				if(mouse.isInStatic(h.getStaticBox())){
 					selBlocks.push(h);
