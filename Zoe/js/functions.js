@@ -387,3 +387,308 @@ var UIResClose = function(){
 	panelUIPopulation.innerHTML = ``;
 	panelUIRes.innerHTML = ``;
 }
+
+var showMenu = function(){
+	if(game_planet_loop == true){
+		if(res1Event || res2Event){
+			topPanelUI.innerHTML = `
+				<table>
+					<tr class="topPanelUItr clearfix" style="width:840px;">
+						<td class="day float-left" style="margin-top:5px;">
+							День `+day+`
+						</td>
+						<td class="time float-left">
+							`+date+`
+							<div class="timeprogress-back">
+							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+							</div>
+						</td>
+						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+							`+res2Event+`
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+							`+res1Event+`
+						</td>
+					</tr>
+				</table>
+			`;
+		}
+	} else if(menu_loop == true){
+		menu.innerHTML = `
+			<div class="menu-back">
+				<div class="animated fadeIn">
+					<div class="menu-panel" onclick="menu_loop = false; game_planet_loop = true; showMenu(); game.setLoop('game_planet'); menu.innerHTML = ''; topPanelUI.innerHTML = ''; return true;">[ Глава 2 ]<br>Продолжить</div>
+					<div class="menu-panel" onclick="showShop();">Магазин</div>
+					<div class="menu-panel">Помощь</div>
+					<div class="menu-panel">Настройки</div>
+					<div class="menu-panel">Группа игры</div>
+					<div class="menu-panel">Разработчики</div>
+					<div class="menu-version">beta 0.2.5</div>
+				</div>
+			</div>
+		`;
+		topPanelUI.innerHTML = `
+			<table>
+				<tr class="topPanelUItr clearfix" style="width:840px;">
+					<td class="day float-left" style="margin-top:5px;">
+						<img class="res" width="20" height="20" src="img/icons/user.png">
+					</td>
+					<td class="day float-left" style="margin-top:5px;margin-left:-10px;">
+						Дмитрий Вансович
+					</td>
+					<td class="time float-left">
+						2 уровень
+						<div class="timeprogress-back">
+						<div id="timeprogress" class="timeprogress" style="width:40px;">
+						</div>
+					</td>
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						121 <img class="res" style="margin-left:1px;margin-right:1px;" width="20" height="20" src="img/icons/money32.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						5141 <img class="res" style="margin-left:1px;margin-right:1px;" width="15" height="15" src="img/icons/coin32.png">
+					</td>
+				</tr>
+			</table>
+		`;
+	}
+}
+
+var showShop = function(){
+	if(menu_loop){
+		menu.innerHTML = `
+			<div class="menu-back" style="padding-top:50px;">
+				<div class="animated fadeIn">
+					<div class="menu-header">
+						<div class="header-back" onclick="showMenu();">Назад</div>
+						<div class="header">Магазин</div>
+					</div>
+					<div style="margin-top:5px;height:400px;overflow:auto;width:450px;margin-left:auto;margin-right:auto;">
+						<div style="display:flex;width:435px;margin-top:5px;margin-left:auto;margin-right:auto;">
+							<div class="shop-pack" style="width:212.5px;margin-right:5px;float:left;">
+								Обычный бустерпак <br>[ Глава 2 ]<br><br>
+								Может выпасть:<br>
+								<ul>
+									<li>0-100 стали</li>
+									<li>0-200 биопластика</li>
+									<li>0-300 руды</li>
+									<li>2 инженера/биолога/рабочего/военного</li>
+								</ul>
+								<br>
+								1000 <img class="res" style="margin-left:1px;margin-right:1px;" width="15" height="15" src="img/icons/coin32.png">
+							</div>
+							<div class="shop-pack-primary" style="width:212.5px;float:right;">
+								Редкий бустерпак <br>[ Глава 2 ]<br><br>
+								Может выпасть:<br>
+								<ul>
+									<li>100-200 стали</li>
+									<li>200-500 биопластика</li>
+									<li>300-600 руды</li>
+									<li>4 инженера/биолога/рабочего/военного</li>
+								</ul>
+								<br>
+								50 <img class="res" style="margin-left:1px;margin-right:1px;" width="20" height="20" src="img/icons/money32.png">
+							</div>
+						</div>
+						<div style="display:flex;width:435px;margin-top:5px;margin-left:auto;margin-right:auto;">
+							<div class="shop-pack-warning" style="width:212.5px;margin-right:5px;float:left;">
+								Легендарный бустерпак <br>[ Глава 2 ]<br><br>
+								Может выпасть:<br>
+								<ul>
+									<li>200-400 стали</li>
+									<li>500-1000 биопластика</li>
+									<li>600-1200 руды</li>
+									<li>8 инженера/биолога/рабочего/военного</li>
+								</ul>
+								<br>
+								100 <img class="res" style="margin-left:1px;margin-right:1px;" width="20" height="20" src="img/icons/money32.png">
+							</div>
+							<div class="shop-pack-danger" style="width:212.5px;float:right;">
+								Тестерский бустерпак <br>[ Глава 2 ]<br><br>
+								Может выпасть:<br>
+								<ul>
+									<li>0-400 стали</li>
+									<li>0-1000 биопластика</li>
+									<li>0-1200 руды</li>
+									<li>0-8 инженера/биолога/рабочего/военного</li>
+								</ul>
+								<br>
+								1 <img class="res" style="margin-left:1px;margin-right:1px;" width="20" height="20" src="img/icons/money32.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
+		topPanelUI.innerHTML = `
+			<table>
+				<tr class="topPanelUItr clearfix" style="width:840px;">
+					<td class="day float-left" style="margin-top:5px;">
+						<img class="res" width="20" height="20" src="img/icons/user.png">
+					</td>
+					<td class="day float-left" style="margin-top:5px;margin-left:-10px;">
+						Дмитрий Вансович
+					</td>
+					<td class="time float-left">
+						2 уровень
+						<div class="timeprogress-back">
+						<div id="timeprogress" class="timeprogress" style="width:40px;">
+						</div>
+					</td>
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						121 <img class="res" style="margin-left:1px;margin-right:1px;" width="20" height="20" src="img/icons/money32.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						5141 <img class="res" style="margin-left:1px;margin-right:1px;" width="15" height="15" src="img/icons/coin32.png">
+					</td>
+				</tr>
+			</table>
+		`;
+	}
+}
+
+showMenu();
+
+var addResEvent = function(count,res){
+	if(res == 1){
+		res1Event = '<b style="color:red;" class="ml-1">-'+count+'</b>';
+		topPanelUI.innerHTML = `
+			<table>
+				<tr class="topPanelUItr clearfix" style="width:840px;">
+					<td class="day float-left" style="margin-top:5px;">
+						День `+day+`
+					</td>
+					<td class="time float-left">
+						`+date+`
+						<div class="timeprogress-back">
+						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+						</div>
+					</td>
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+						`+res2Event+`
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+						`+res1Event+`
+					</td>
+				</tr>
+			</table>
+		`;
+		setTimeout(function(){
+			res1Event = '';
+			topPanelUI.innerHTML = `
+				<table>
+					<tr class="topPanelUItr clearfix" style="width:840px;">
+						<td class="day float-left" style="margin-top:5px;">
+							День `+day+`
+						</td>
+						<td class="time float-left">
+							`+date+`
+							<div class="timeprogress-back">
+							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+							</div>
+						</td>
+						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+							`+res2Event+`
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+							`+res1Event+`
+						</td>
+					</tr>
+				</table>
+			`;
+		}, 5000);
+	} else if(res == 2){
+		res2Event = '<b style="color:red;" class="ml-1">-'+count+'</b>';
+		topPanelUI.innerHTML = `
+			<table>
+				<tr class="topPanelUItr clearfix" style="width:840px;">
+					<td class="day float-left" style="margin-top:5px;">
+						День `+day+`
+					</td>
+					<td class="time float-left">
+						`+date+`
+						<div class="timeprogress-back">
+						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+						</div>
+					</td>
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+						`+res2Event+`
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+						`+res1Event+`
+					</td>
+				</tr>
+			</table>
+		`;
+		setTimeout(function(){
+			res2Event = '';
+			topPanelUI.innerHTML = `
+				<table>
+					<tr class="topPanelUItr clearfix" style="width:840px;">
+						<td class="day float-left" style="margin-top:5px;">
+							День `+day+`
+						</td>
+						<td class="time float-left">
+							`+date+`
+							<div class="timeprogress-back">
+							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+							</div>
+						</td>
+						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+							`+res2Event+`
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+							`+res1Event+`
+						</td>
+					</tr>
+				</table>
+			`;
+		}, 5000);
+	}
+}

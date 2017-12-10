@@ -234,24 +234,6 @@ game.newLoopFromConstructor('game_planet', function () {
 					tile: randTile
 				}
 			}));
-			bottomPanelUI.innerHTML = `
-				<table>
-					<tr class="bottomPanelUItr">
-						<td onclick="UIStats()">
-							Статистика
-						</td>
-						<td onclick="UIPopulation()">
-							Население(`+humans.length+`)
-						</td>
-						<td onclick="UIRes()">
-							Ресурсы
-						</td>
-						<td onclick="UIBuild()">
-							Постройки
-						</td>
-					</tr>
-				</table>
-			`;
 		} else if(S === "S"){
 			startPos = point(X, Y);
 			var randTile = pjs.math.random(9,10);
@@ -383,109 +365,30 @@ game.newLoopFromConstructor('game_planet', function () {
 		OOP.forArr(humans, function(h, idH){
 			if(h.isInCameraStatic()){
 				h.draw();
-
-				// if(h.working == false && h.moving == false){
-				// 	// var hrandpos1 = pjs.math.random(1, 12);
-				// 	// var hrandpos2 = pjs.math.random(1, 12);
-
-				// 	// if(hrandpos1 == 1){
-				// 	// 	randHumanPosTo1 = randpos1;
-				// 	// }
-				// 	// if(hrandpos1 == 2){
-				// 	// 	randHumanPosTo1 = randpos2;
-				// 	// }
-				// 	// if(hrandpos1 == 3){
-				// 	// 	randHumanPosTo1 = randpos3;
-				// 	// }
-				// 	// if(hrandpos1 == 4){
-				// 	// 	randHumanPosTo1 = randpos4;
-				// 	// }
-				// 	// if(hrandpos1 == 5){
-				// 	// 	randHumanPosTo1 = randpos5;
-				// 	// }
-				// 	// if(hrandpos1 == 6){
-				// 	// 	randHumanPosTo1 = randpos6;
-				// 	// }
-				// 	// if(hrandpos1 == 7){
-				// 	// 	randHumanPosTo1 = randpos7;
-				// 	// }
-				// 	// if(hrandpos1 == 8){
-				// 	// 	randHumanPosTo1 = randpos8;
-				// 	// }
-				// 	// if(hrandpos1 == 9){
-				// 	// 	randHumanPosTo1 = randpos9;
-				// 	// }
-				// 	// if(hrandpos1 == 10){
-				// 	// 	randHumanPosTo1 = randpos10
-				// 	// }
-				// 	// if(hrandpos1 == 11){
-				// 	// 	randHumanPosTo1 = randpos11
-				// 	// }
-				// 	// if(hrandpos1 == 12){
-				// 	// 	randHumanPosTo1 = randpos12;
-				// 	// }
-
-
-				// 	// if(hrandpos2 == 1){
-				// 	// 	randHumanPosTo2 = randpos1;
-				// 	// }
-				// 	// if(hrandpos2 == 2){
-				// 	// 	randHumanPosTo2 = randpos2;
-				// 	// }
-				// 	// if(hrandpos2 == 3){
-				// 	// 	randHumanPosTo2 = randpos3;
-				// 	// }
-				// 	// if(hrandpos2 == 4){
-				// 	// 	randHumanPosTo2 = randpos4;
-				// 	// }
-				// 	// if(hrandpos2 == 5){
-				// 	// 	randHumanPosTo2 = randpos5;
-				// 	// }
-				// 	// if(hrandpos2 == 6){
-				// 	// 	randHumanPosTo2 = randpos6;
-				// 	// }
-				// 	// if(hrandpos2 == 7){
-				// 	// 	randHumanPosTo2 = randpos7;
-				// 	// }
-				// 	// if(hrandpos2 == 8){
-				// 	// 	randHumanPosTo2 = randpos8;
-				// 	// }
-				// 	// if(hrandpos2 == 9){
-				// 	// 	randHumanPosTo2 = randpos9;
-				// 	// }
-				// 	// if(hrandpos2 == 10){
-				// 	// 	randHumanPosTo2 = randpos10;
-				// 	// }
-				// 	// if(hrandpos2 == 11){
-				// 	// 	randHumanPosTo2 = randpos11;
-				// 	// }
-				// 	// if(hrandpos2 == 12){
-				// 	// 	randHumanPosTo2 = randpos12;
-				// 	// }
-
-				// 	// var randangle = pjs.math.random(1,4);
-				// 	// if(randangle == 1){ // right
-				// 	// 	h.moveTo = point(h.x + 10, h.y);
-				// 	// 	h.moving = true;
-				// 	// }
-				// 	// if(randangle == 2){ // left
-				// 	// 	h.moveTo = point(h.x - 10, h.y);
-				// 	// 	h.moving = true;
-				// 	// }
-				// 	// if(randangle == 3){ // up
-				// 	// 	h.moveTo = point(h.x, h.y - 10);
-				// 	// 	h.moving = true;
-				// 	// }
-				// 	// if(randangle == 4){ // down
-				// 	// 	h.moveTo = point(h.x, h.y + 10);
-				// 	// 	h.moving = true;
-				// 	// }
-				// } else if(h.moving == true){
-				// 	setInterval(function(){
-				// 		h.moveTo = null;
-				// 		h.moving = false;
-				// 	}, 10000);
-				// }
+				if(h.moving == false){
+					var randangle = pjs.math.random(1,4);
+					if(randangle == 1){ // right
+						h.moveTo = point(h.x + 10, h.y);
+						h.moving = true;
+					}
+					if(randangle == 2){ // left
+						h.moveTo = point(h.x - 10, h.y);
+						h.moving = true;
+					}
+					if(randangle == 3){ // up
+						h.moveTo = point(h.x, h.y - 10);
+						h.moving = true;
+					}
+					if(randangle == 4){ // down
+						h.moveTo = point(h.x, h.y + 10);
+						h.moving = true;
+					}
+				} else if(h.moving == true){
+					setInterval(function(){
+						h.moveTo = null;
+						h.moving = false;
+					}, 10000);
+				}
 
 				if(mouse.isInStatic(h.getStaticBox())){
 					selBlocks.push(h);
@@ -564,11 +467,6 @@ game.newLoopFromConstructor('game_planet', function () {
 										type: 'energy'
 									}
 								}));
-								// needsPanel.innerHTML = `
-								// 	<div class="back-black-03" style="padding: 12px;">
-								// 		Здания без энергии!
-								// 	</div>
-								// `;
 								b.isEnergy = true;
 								return;
 							} else if(buildingsWithWater == false && b.isWater == false && buildingsWithEnergy == true){
@@ -581,11 +479,6 @@ game.newLoopFromConstructor('game_planet', function () {
 										type: 'water'
 									}
 								}));
-								// needsPanel.innerHTML = `
-								// 	<div class="back-black-03" style="padding: 12px;">
-								// 		Здания без воды!
-								// 	</div>
-								// `;
 								b.isWater = true;
 								return;
 							} else if(buildingsWithEnergy == true && buildingsWithWater == true){
@@ -654,7 +547,51 @@ game.newLoopFromConstructor('game_planet', function () {
 	};
 
 	this.entry = function () {
-		// start
+		bottomPanelUI.innerHTML = `
+			<table>
+				<tr class="bottomPanelUItr">
+					<td onclick="UIStats()">
+						Статистика
+					</td>
+					<td onclick="UIPopulation()">
+						Население(`+humans.length+`)
+					</td>
+					<td onclick="UIRes()">
+						Ресурсы
+					</td>
+					<td onclick="UIBuild()">
+						Постройки
+					</td>
+				</tr>
+			</table>
+		`;
+		topPanelUI.innerHTML = `
+			<table>
+				<tr class="topPanelUItr clearfix" style="width:840px;">
+					<td class="day float-left" style="margin-top:5px;">
+						День 1
+					</td>
+					<td class="time float-left">
+						1 ноября 6912
+						<div class="timeprogress-back">
+						<div id="timeprogress" class="timeprogress" style="width:0px;">
+						</div>
+					</td>
+					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+					</td>
+					<td class="float-right hover" style="margin-top:5px;">
+						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+					</td>
+				</tr>
+			</table>
+		`;
 	};
 
 	this.exit = function () {
@@ -663,4 +600,10 @@ game.newLoopFromConstructor('game_planet', function () {
 
 });
 
-game.startLoop('game_planet');
+game.newLoopFromConstructor('menu', function () {
+	this.update = function() {
+		// update
+	}
+});
+
+game.startLoop('menu');

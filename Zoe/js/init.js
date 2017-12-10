@@ -22,138 +22,11 @@ var height = game.getWH().h;
 
 pjs.system.initFPSCheck();
 
+var game_planet_loop = false;
+var menu_loop = true;
+
 var res1Event = '';
 var res2Event = '';
-
-var addResEvent = function(count,res){
-	if(res == 1){
-		res1Event = '<b style="color:red;" class="ml-1">-'+count+'</b>';
-		topPanelUI.innerHTML = `
-			<table>
-				<tr class="topPanelUItr clearfix" style="width:840px;">
-					<td class="day float-left" style="margin-top:5px;">
-						День `+day+`
-					</td>
-					<td class="time float-left">
-						`+date+`
-						<div class="timeprogress-back">
-						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
-						</div>
-					</td>
-					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
-						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
-					</td>
-					<td class="float-right hover" style="margin-top:5px;">
-						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
-					</td>
-					<td class="float-right hover" style="margin-top:5px;">
-						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-						`+res2Event+`
-					</td>
-					<td class="float-right hover" style="margin-top:5px;">
-						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
-						`+res1Event+`
-					</td>
-				</tr>
-			</table>
-		`;
-		setTimeout(function(){
-			res1Event = '';
-			topPanelUI.innerHTML = `
-				<table>
-					<tr class="topPanelUItr clearfix" style="width:840px;">
-						<td class="day float-left" style="margin-top:5px;">
-							День `+day+`
-						</td>
-						<td class="time float-left">
-							`+date+`
-							<div class="timeprogress-back">
-							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
-							</div>
-						</td>
-						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
-							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
-						</td>
-						<td class="float-right hover" style="margin-top:5px;">
-							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
-						</td>
-						<td class="float-right hover" style="margin-top:5px;">
-							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-							`+res2Event+`
-						</td>
-						<td class="float-right hover" style="margin-top:5px;">
-							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
-							`+res1Event+`
-						</td>
-					</tr>
-				</table>
-			`;
-		}, 5000);
-	} else if(res == 2){
-		res2Event = '<b style="color:red;" class="ml-1">-'+count+'</b>';
-		topPanelUI.innerHTML = `
-			<table>
-				<tr class="topPanelUItr clearfix" style="width:840px;">
-					<td class="day float-left" style="margin-top:5px;">
-						День `+day+`
-					</td>
-					<td class="time float-left">
-						`+date+`
-						<div class="timeprogress-back">
-						<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
-						</div>
-					</td>
-					<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
-						<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
-					</td>
-					<td class="float-right hover" style="margin-top:5px;">
-						`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
-					</td>
-					<td class="float-right hover" style="margin-top:5px;">
-						`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-						`+res2Event+`
-					</td>
-					<td class="float-right hover" style="margin-top:5px;">
-						`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
-						`+res1Event+`
-					</td>
-				</tr>
-			</table>
-		`;
-		setTimeout(function(){
-			res2Event = '';
-			topPanelUI.innerHTML = `
-				<table>
-					<tr class="topPanelUItr clearfix" style="width:840px;">
-						<td class="day float-left" style="margin-top:5px;">
-							День `+day+`
-						</td>
-						<td class="time float-left">
-							`+date+`
-							<div class="timeprogress-back">
-							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
-							</div>
-						</td>
-						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
-							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
-						</td>
-						<td class="float-right hover" style="margin-top:5px;">
-							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
-						</td>
-						<td class="float-right hover" style="margin-top:5px;">
-							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-							`+res2Event+`
-						</td>
-						<td class="float-right hover" style="margin-top:5px;">
-							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
-							`+res1Event+`
-						</td>
-					</tr>
-				</table>
-			`;
-		}, 5000);
-	}
-}
 
 var day = 1;
 
@@ -208,79 +81,62 @@ var date = date_day+" "+mothes[date_mouth-1].name+" "+date_year;
 
 var toBuild, toBuildFund;
 
-var bottomPanelUI = pjs.system.newDOM('div', true);
-bottomPanelUI.className = 'bottomPanelUI';
-bottomPanelUI.innerHTML = `
-	<table>
-		<tr class="bottomPanelUItr">
-			<td onclick="UIStats()">
-				Статистика
-			</td>
-			<td onclick="UIPopulation()">
-				Население
-			</td>
-			<td onclick="UIRes()">
-				Ресурсы
-			</td>
-			<td onclick="UIBuild()">
-				Постройки
-			</td>
-		</tr>
-	</table>
-`;
-
-var topPanelUI = pjs.system.newDOM('div', true);
-topPanelUI.className = 'topPanelUI';
-setInterval(function(){
-	topPanelUI.innerHTML = `
-		<table>
-			<tr class="topPanelUItr clearfix" style="width:840px;">
-				<td class="day float-left" style="margin-top:5px;">
-					День `+day+`
-				</td>
-				<td class="time float-left">
-					`+date+`
-					<div class="timeprogress-back">
-					<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
-					</div>
-				</td>
-				<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
-					<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
-				</td>
-				<td class="float-right hover" style="margin-top:5px;">
-					`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
-				</td>
-				<td class="float-right hover" style="margin-top:5px;">
-					`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-					`+res2Event+`
-				</td>
-				<td class="float-right hover" style="margin-top:5px;">
-					`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
-					`+res1Event+`
-				</td>
-			</tr>
-		</table>
-	`;
-},1000);
-
 var progress = 1;
 setInterval(function(){
-	var timeprogress = document.getElementById('timeprogress');
-	timeprogress.style = "width:"+progress+"px;";
-	if(progress > 109){
-		progress = 1;
-		day++;
-		date_day++;
-		date = date_day+" "+mothes[date_mouth-1].name+" "+date_year;
-		if(date_day > 30){
-			date_day = 0;
-			if(date_mouth <= 11){
-				date_mouth++;
-			} else if(date_mouth == 12){
-				date_mouth = 1;
-				date_year++;
+	if(game_planet_loop){
+		var timeprogress = document.getElementById('timeprogress');
+		timeprogress.style = "width:"+progress+"px;";
+		if(progress > 109){
+			progress = 1;
+			day++;
+			date_day++;
+			date = date_day+" "+mothes[date_mouth-1].name+" "+date_year;
+			if(date_day > 30){
+				date_day = 0;
+				if(date_mouth <= 11){
+					date_mouth++;
+				} else if(date_mouth == 12){
+					date_mouth = 1;
+					date_year++;
+				}
 			}
+			topPanelUI.innerHTML = `
+				<table>
+					<tr class="topPanelUItr clearfix" style="width:840px;">
+						<td class="day float-left" style="margin-top:5px;">
+							День `+day+`
+						</td>
+						<td class="time float-left">
+							`+date+`
+							<div class="timeprogress-back">
+							<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
+							</div>
+						</td>
+						<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
+							<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
+							`+res2Event+`
+						</td>
+						<td class="float-right hover" style="margin-top:5px;">
+							`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
+							`+res1Event+`
+						</td>
+					</tr>
+				</table>
+			`;
+		} else {
+			progress += 0.5;
 		}
+	}
+}, 200);
+
+setInterval(function(){
+	if(game_planet_loop){
 		topPanelUI.innerHTML = `
 			<table>
 				<tr class="topPanelUItr clearfix" style="width:840px;">
@@ -310,42 +166,14 @@ setInterval(function(){
 				</tr>
 			</table>
 		`;
-	} else {
-		progress += 0.5;
 	}
-}, 100);
+},1000);
 
-if(res1Event || res2Event){
-	topPanelUI.innerHTML = `
-		<table>
-			<tr class="topPanelUItr clearfix" style="width:840px;">
-				<td class="day float-left" style="margin-top:5px;">
-					День `+day+`
-				</td>
-				<td class="time float-left">
-					`+date+`
-					<div class="timeprogress-back">
-					<div id="timeprogress" class="timeprogress" style="width:`+progress+`px;">
-					</div>
-				</td>
-				<td class="float-right hover mx-2" style="margin-top:5px;" onclick="UIRes()">
-					<img class="res" width="20" height="20" src="img/icons/plus-circle.png">
-				</td>
-				<td class="float-right hover" style="margin-top:5px;">
-					`+Math.round(res3)+` <img class="res" width="30" height="30" src="img/Environment/res3.png">
-				</td>
-				<td class="float-right hover" style="margin-top:5px;">
-					`+Math.round(res2)+` <img class="res" width="30" height="30" src="img/Environment/res2.png">
-					`+res2Event+`
-				</td>
-				<td class="float-right hover" style="margin-top:5px;">
-					`+Math.round(res1)+` <img class="res" width="30" height="30" src="img/Environment/res1.png">
-					`+res1Event+`
-				</td>
-			</tr>
-		</table>
-	`;
-}
+var topPanelUI = pjs.system.newDOM('div', true);
+topPanelUI.className = 'topPanelUI';
+
+var bottomPanelUI = pjs.system.newDOM('div', true);
+bottomPanelUI.className = 'bottomPanelUI';
 
 var tileStats = pjs.system.newDOM('div', true);
 tileStats.className = 'tileStats';
@@ -369,30 +197,20 @@ var UIStatsShow = false;
 var needsPanel = pjs.system.newDOM('div', true);
 needsPanel.className = 'needsPanel';
 
-var randpos1;
-var randpos2;
-var randpos3;
-var randpos4;
-var randpos5;
-var randpos6;
-var randpos7;
-var randpos8;
-var randpos9;
-var randpos10;
-var randpos11;
-var randpos12;
+var menu = pjs.system.newDOM('div', true);
+menu.className = 'menu';
 
-setInterval(function(){
-	randpos1 = pjs.math.random(-20,20);
-	randpos2 = pjs.math.random(-20,20);
-	randpos3 = pjs.math.random(-20,20);
-	randpos4 = pjs.math.random(-20,20);
-	randpos5 = pjs.math.random(-20,20);
-	randpos6 = pjs.math.random(-20,20);
-	randpos7 = pjs.math.random(-20,20);
-	randpos8 = pjs.math.random(-20,20);
-	randpos9 = pjs.math.random(-20,20);
-	randpos10 = pjs.math.random(-20,20);
-	randpos11 = pjs.math.random(-20,20);
-	randpos12 = pjs.math.random(-20,20);
-}, 10000);
+// var scene = pjs.system.newDOM('div', true);
+// scene.className = 'scene';
+// scene.innerHTML = `
+// 	<div class="scene-back">
+// 		<div class="scene-center">
+// 			<img width="42" height="42" src="img/icons/plus-circle.png"><br>
+// 			<h4>Глава 1: Начало</h4>
+// 			<p>Успели выжить не все. Бой продолжается.</p>
+// 		</div>
+// 		<div class="scene-bottom">
+// 			НАЖМИТЕ ЧТО БЫ ПРОДОЛЖИТЬ
+// 		</div>
+// 	</div>
+// `;
